@@ -4,13 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Upload Video</title>
 
-<link rel="stylesheet" href="../style.css">
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="../css/upload.css">
 
 </head>
 
@@ -20,15 +19,20 @@
 
 <h1>Upload Video</h1>
 
-<input type="file" accept="video/*">
+<input
+type="text"
+id="title"
+placeholder="Video Title">
 
-<input type="text" placeholder="Video Title">
+<textarea
+id="description"
+placeholder="Video Description"></textarea>
 
-<textarea placeholder="Video Description"></textarea>
+<select id="category">
 
-<select>
+<option>For You</option>
 
-<option>Select Category</option>
+<option>Trending</option>
 
 <option>Gaming</option>
 
@@ -36,53 +40,30 @@
 
 <option>Music</option>
 
-<option>Education</option>
+<option>AI</option>
 
-<option>Technology</option>
+<option>News</option>
 
 <option>Sports</option>
 
 </select>
 
-<button>Upload Video</button>
+<input
+type="file"
+id="video"
+accept="video/*">
+
+<button id="uploadBtn">
+
+Upload Video
+
+</button>
+
+<div id="status"></div>
 
 </div>
 
-<nav class="bottom-nav">
-
-<div>
-
-<span class="material-icons">home</span>
-
-<p>Home</p>
-
-</div>
-
-<div>
-
-<span class="material-icons">smart_display</span>
-
-<p>Reels</p>
-
-</div>
-
-<div style="color:#1976D2;">
-
-<span class="material-icons">cloud_upload</span>
-
-<p>Upload</p>
-
-</div>
-
-<div>
-
-<span class="material-icons">person</span>
-
-<p>Profile</p>
-
-</div>
-
-</nav>
+<script src="../js/upload.js"></script>
 
 </body>
 
