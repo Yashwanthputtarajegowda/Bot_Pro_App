@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Pro Register</title>
+    <title>Register - Bot Pro</title>
 
     <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
 
 <div class="login-container">
@@ -16,17 +15,34 @@
 
     <p>Create New Account</p>
 
-    <input type="text" placeholder="Full Name">
+    <input
+        id="fullName"
+        type="text"
+        placeholder="Full Name">
 
-    <input type="text" placeholder="Username">
+    <input
+        id="username"
+        type="text"
+        placeholder="Username">
 
-    <input type="email" placeholder="Email">
+    <input
+        id="email"
+        type="email"
+        placeholder="Email">
 
-    <input type="password" placeholder="Password">
+    <input
+        id="password"
+        type="password"
+        placeholder="Password">
 
-    <input type="password" placeholder="Confirm Password">
+    <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm Password">
 
-    <button>Create Account</button>
+    <button id="registerBtn">
+        Create Account
+    </button>
 
     <p>
         Already have an account?
@@ -34,6 +50,8 @@
     </p>
 
 </div>
+
+<script type="module" src="../script.js"></script>
 
 </body>
 </html>
