@@ -3,371 +3,182 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BOT PRO - Upload</title>
+<title>BOT PRO - Upload</title>
 
-    <link rel="stylesheet" href="../css/upload.css">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="../css/upload.css">
 
 </head>
 
 <body>
 
-    <header class="top-bar">
+<header class="top-bar">
 
-        <button id="backBtn" class="back-btn">
+<button id="backBtn" class="back-btn">
+←
+</button>
 
-            <span class="material-icons">arrow_back</span>
+<div class="logo">
 
-        </button>
+<span class="bot">BOT</span>
 
-        <div class="logo">
+<span class="pro">PRO</span>
 
-            <span class="bot">BOT</span>
+</div>
 
-            <span class="pro">PRO</span>
+<div class="header-right"></div>
 
-        </div>
+</header>
 
-    </header>
+<main class="upload-page">
 
-    <main class="upload-page">
+<h2>Upload Content</h2>
 
-        <h2>Upload Content</h2>
+<div class="tab-bar">
 
-        <div class="tab-bar">
+<button id="videoTab" class="tab active">
 
-            <button class="tab active" id="videoTab">
+🎥 Video
 
-                🎥 Video
+</button>
 
-            </button>
+<button id="reelTab" class="tab">
 
-            <button class="tab" id="reelTab">
+🎬 Reel
 
-                🎬 Reel
+</button>
 
-            </button>
+<button id="linkTab" class="tab">
 
-            <button class="tab" id="linkTab">
+🔗 Link
 
-                🔗 Link
+</button>
 
-            </button>
+</div>
 
-        </div>
+<!-- VIDEO -->
 
-        <!-- VIDEO SECTION -->
+<section id="videoSection" class="upload-section">
 
-        <section id="videoSection" class="upload-section">
+<div class="upload-card">
 
-            <div class="upload-card">
+<label>
 
-                <label>
+Thumbnail
 
-                    Thumbnail
+</label>
 
-                </label>
+<input
+type="file"
+id="thumbnail"
+accept="image/*">
 
-                <input
-                    type="file"
-                    id="thumbnail"
-                    accept="image/*">
+<div id="thumbnailPreview"></div>
 
-                <div id="thumbnailPreview"></div>
+</div>
 
-            </div>
+<div class="upload-card">
 
-            <div class="upload-card">
+<label>
 
-                <label>
+Video File
 
-                    Video File
+</label>
 
-                </label>
+<input
+type="file"
+id="video"
+accept="video/*">
 
-                <input
-                    type="file"
-                    id="video"
-                    accept="video/*">
+<div id="videoPreview"></div>
 
-                <div id="videoPreview"></div>
+</div>
 
-            </div>
+<div class="input-box">
 
-            <div class="input-box">
+<input
+type="text"
+id="title"
+placeholder="Video Title">
 
-                <input
-                    type="text"
-                    id="title"
-                    placeholder="Video Title">
+</div>
 
-            </div>
+<div class="input-box">
 
-            <div class="input-box">
+<textarea
+id="description"
+placeholder="Video Description"></textarea>
 
-                <textarea
-                    id="description"
-                    placeholder="Video Description"></textarea>
+</div>
 
-            </div>
+<div class="input-box">
 
-            <div class="input-box">
+<select id="category">
 
-                <select id="category">
+<option>For You</option>
 
-                    <option>For You</option>
+<option>Trending</option>
 
-                    <option>Trending</option>
+<option>Gaming</option>
 
-                    <option>Gaming</option>
+<option>Movies</option>
 
-                    <option>Movies</option>
+<option>Music</option>
 
-                    <option>Music</option>
+<option>AI</option>
 
-                    <option>AI</option>
+<option>News</option>
 
-                    <option>News</option>
+<option>Sports</option>
 
-                    <option>Sports</option>
+</select>
 
-                </select>
+</div>
 
-            </div>
-            <div class="input-box">
+<div class="input-box">
 
-                <input
-                    type="text"
-                    id="tags"
-                    placeholder="Tags (Example: gaming, shorts, AI)">
+<input
+type="text"
+id="tags"
+placeholder="Tags">
 
-            </div>
+</div>
 
-            <div class="input-box">
+<div class="input-box">
 
-                <select id="visibility">
+<select id="visibility">
 
-                    <option>Public</option>
+<option>Public</option>
 
-                    <option>Followers Only</option>
+<option>Followers Only</option>
 
-                    <option>Private</option>
+<option>Private</option>
 
-                </select>
+</select>
 
-            </div>
+</div>
 
-            <div class="action-buttons">
+<div class="action-buttons">
 
-                <button id="aiVideoBtn" class="secondary-btn">
+<button
+id="aiVideoBtn"
+class="secondary-btn">
 
-                    🤖 AI Generate
+🤖 AI Generate
 
-                </button>
+</button>
 
-                <button id="uploadBtn" class="primary-btn">
+<button
+id="uploadBtn"
+class="primary-btn">
 
-                    Upload Video
+Upload Video
 
-                </button>
+</button>
 
-            </div>
+</div>
 
-        </section>
-
-        <!-- REEL SECTION -->
-
-        <section id="reelSection" class="upload-section hidden">
-
-            <div class="upload-card">
-
-                <label>
-
-                    Cover Image
-
-                </label>
-
-                <input
-                    type="file"
-                    id="reelCover"
-                    accept="image/*">
-
-                <div id="coverPreview"></div>
-
-            </div>
-
-            <div class="upload-card">
-
-                <label>
-
-                    Reel Video
-
-                </label>
-
-                <input
-                    type="file"
-                    id="reelVideo"
-                    accept="video/*">
-
-                <div id="reelPreview"></div>
-
-            </div>
-
-            <div class="input-box">
-
-                <input
-                    type="text"
-                    id="reelTitle"
-                    placeholder="Reel Title">
-
-            </div>
-
-            <div class="input-box">
-
-                <textarea
-                    id="reelCaption"
-                    placeholder="Caption"></textarea>
-
-            </div>
-
-            <div class="input-box">
-
-                <select id="reelCategory">
-
-                    <option>Entertainment</option>
-
-                    <option>Gaming</option>
-
-                    <option>Music</option>
-
-                    <option>Comedy</option>
-
-                    <option>Education</option>
-
-                    <option>Technology</option>
-
-                </select>
-
-            </div>
-
-            <div class="action-buttons">
-
-                <button id="aiReelBtn" class="secondary-btn">
-
-                    🤖 AI Caption
-
-                </button>
-
-                <button id="uploadReelBtn" class="primary-btn">
-
-                    Upload Reel
-
-                </button>
-
-            </div>
-
-        </section>
-        <!-- LINK SECTION -->
-
-        <section id="linkSection" class="upload-section hidden">
-
-            <div class="input-box">
-
-                <input
-                    type="url"
-                    id="videoLink"
-                    placeholder="Paste Video Link">
-
-            </div>
-
-            <div class="input-box">
-
-                <input
-                    type="text"
-                    id="linkTitle"
-                    placeholder="Title (Optional)">
-
-            </div>
-
-            <div class="input-box">
-
-                <textarea
-                    id="linkDescription"
-                    placeholder="Description (Optional)"></textarea>
-
-            </div>
-
-            <div class="input-box">
-
-                <select id="linkCategory">
-
-                    <option>For You</option>
-
-                    <option>Trending</option>
-
-                    <option>Gaming</option>
-
-                    <option>Movies</option>
-
-                    <option>Music</option>
-
-                    <option>AI</option>
-
-                    <option>News</option>
-
-                    <option>Sports</option>
-
-                </select>
-
-            </div>
-
-            <div class="action-buttons">
-
-                <button id="fetchLinkBtn" class="secondary-btn">
-
-                    🔍 Fetch Details
-
-                </button>
-
-                <button id="uploadLinkBtn" class="primary-btn">
-
-                    Import Link
-
-                </button>
-
-            </div>
-
-        </section>
-
-        <!-- Upload Progress -->
-
-        <div class="progress-area">
-
-            <div class="progress-bar">
-
-                <div id="progressFill"></div>
-
-            </div>
-
-            <p id="progressText">
-
-                Waiting...
-
-            </p>
-
-        </div>
-
-        <div id="status"></div>
-
-    </main>
-
-</body>
-
-<script src="../js/upload.js"></script>
-
-</html>
+</section>
