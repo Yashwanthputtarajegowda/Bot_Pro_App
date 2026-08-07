@@ -1,397 +1,565 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>BOT PRO - Upload</title>
+    <title>
 
-<link rel="stylesheet" href="../css/upload.css">
+        Bot Pro - Upload
+
+    </title>
+
+    <link rel="stylesheet"
+          href="../css/upload.css">
 
 </head>
 
 <body>
 
-<header class="top-bar">
+<div class="upload-page">
 
-<button id="backBtn" class="back-btn">
-←
-</button>
+    <!-- Header -->
 
-<div class="logo">
+    <header class="upload-header">
 
-<span class="bot">BOT</span>
+        <button class="back-btn">
 
-<span class="pro">PRO</span>
+            <svg class="header-icon"
+                 viewBox="0 0 24 24">
+
+                <path d="M15 18L9 12L15 6"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+            </svg>
+
+        </button>
+
+        <h2>
+
+            Upload
+
+        </h2>
+
+        <button class="demo-btn">
+
+            Demo
+
+        </button>
+
+    </header>
+
+    <!-- Upload Type -->
+
+    <section class="upload-type">
+
+        <h3>
+
+            Choose Upload Type
+
+        </h3>
+
+        <div class="type-grid">
+
+            <button class="type-card active">
+
+                <svg class="type-icon"
+                     viewBox="0 0 24 24">
+
+                    <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15"
+                          fill="currentColor"/>
+
+                </svg>
+
+                <span>
+
+                    Video
+
+                </span>
+
+            </button>
+
+            <button class="type-card">
+
+                <svg class="type-icon"
+                     viewBox="0 0 24 24">
+
+                    <path d="M5 4L19 12L5 20V4Z"
+                          fill="currentColor"/>
+
+                </svg>
+
+                <span>
+
+                    Reel
+
+                </span>
+
+            </button>
+
+            <button class="type-card">
+
+                <svg class="type-icon"
+                     viewBox="0 0 24 24">
+
+                    <path d="M10 14L14 10M8 16L6 18C4.9 19.1 3.1 19.1 2 18C0.9 16.9 0.9 15.1 2 14L6 10M16 8L18 6C19.1 4.9 20.9 4.9 22 6C23.1 7.1 23.1 8.9 22 10L18 14"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          fill="none"/>
+
+                </svg>
+
+                <span>
+
+                    Link
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Upload Area -->
+
+    <section class="upload-box">
+
+        <div class="upload-select">
+
+            <svg class="upload-icon"
+                 viewBox="0 0 24 24">
+
+                <path d="M12 3V16M7 8L12 3L17 8M5 20H19"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+            </svg>
+
+            <h3>
+
+                Select Video
+
+            </h3>
+
+            <p>
+
+                MP4 • MOV • AVI • Max 2GB
+
+            </p>
+
+            <button class="select-btn">
+
+                Choose File
+
+            </button>
+
+        </div>
+
+        <div class="preview-card">
+
+            <div class="preview-image">
+
+                Preview
+
+            </div>
+
+            <button class="remove-btn">
+
+                Remove
+
+            </button>
+
+        </div>
+
+    </section>
+    <!-- Thumbnail -->
+
+    <section class="thumbnail-section">
+
+        <h3>
+
+            Thumbnail
+
+        </h3>
+
+        <div class="thumbnail-row">
+
+            <button class="thumb-upload">
+
+                Upload Thumbnail
+
+            </button>
+
+            <div class="thumb-preview">
+
+                Thumbnail Preview
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Details -->
+
+    <section class="details-section">
+
+        <h3>
+
+            Video Details
+
+        </h3>
+
+        <input
+            type="text"
+            class="title-input"
+            placeholder="Enter title">
+
+        <textarea
+            class="description-input"
+            placeholder="Write description..."></textarea>
+
+    </section>
+
+    <!-- Category -->
+
+    <section class="category-section">
+
+        <h3>
+
+            Category
+
+        </h3>
+
+        <select class="category-select">
+
+            <option>
+
+                Select Category
+
+            </option>
+
+            <option>
+
+                Gaming
+
+            </option>
+
+            <option>
+
+                Technology
+
+            </option>
+
+            <option>
+
+                Education
+
+            </option>
+
+            <option>
+
+                Music
+
+            </option>
+
+            <option>
+
+                Movies
+
+            </option>
+
+            <option>
+
+                AI
+
+            </option>
+
+            <option>
+
+                Entertainment
+
+            </option>
+
+            <option>
+
+                Sports
+
+            </option>
+
+            <option>
+
+                Other
+
+            </option>
+
+        </select>
+
+    </section>
+
+    <!-- Privacy -->
+
+    <section class="privacy-section">
+
+        <div class="option-box">
+
+            <label>
+
+                Privacy
+
+            </label>
+
+            <select>
+
+                <option>
+
+                    Public
+
+                </option>
+
+                <option>
+
+                    Private
+
+                </option>
+
+                <option>
+
+                    Followers Only
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="option-box">
+
+            <label>
+
+                Comments
+
+            </label>
+
+            <select>
+
+                <option>
+
+                    Allow
+
+                </option>
+
+                <option>
+
+                    Disable
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+    <!-- Link Upload -->
+
+    <section class="link-section">
+
+        <h3>
+
+            External Link (Optional)
+
+        </h3>
+
+        <input
+            type="url"
+            class="link-input"
+            placeholder="Paste YouTube, Website or Any URL">
+
+    </section>
+    <!-- Tags -->
+
+    <section class="tags-section">
+
+        <h3>
+
+            Tags
+
+        </h3>
+
+        <input
+            type="text"
+            class="tags-input"
+            placeholder="#technology #gaming #botpro">
+
+    </section>
+
+    <!-- Upload Status -->
+
+    <section class="upload-status">
+
+        <div class="progress-header">
+
+            <span>
+
+                Upload Progress
+
+            </span>
+
+            <span id="progressText">
+
+                0%
+
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+    </section>
+
+    <!-- Upload Button -->
+
+    <section class="upload-action">
+
+        <button class="upload-btn">
+
+            Upload Now
+
+        </button>
+
+    </section>
+
+    <!-- Rules -->
+
+    <section class="upload-rules">
+
+        <h3>
+
+            Upload Rules
+
+        </h3>
+
+        <ul>
+
+            <li>
+
+                Upload only original content.
+
+            </li>
+
+            <li>
+
+                Do not upload copyrighted videos.
+
+            </li>
+
+            <li>
+
+                Community Guidelines must be followed.
+
+            </li>
+
+        </ul>
+
+    </section>
 
 </div>
 
-<div class="header-right"></div>
+<nav class="bottom-nav">
 
-</header>
+    <a href="home.html">
 
-<main class="upload-page">
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
-<h2>Upload Content</h2>
+            <path d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
+                  fill="currentColor"/>
 
-<div class="tab-bar">
+        </svg>
 
-<button id="videoTab" class="tab active">
+        <span>
 
-🎥 Video
+            Home
 
-</button>
+        </span>
 
-<button id="reelTab" class="tab">
+    </a>
 
-🎬 Reel
+    <a href="message.html">
 
-</button>
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
-<button id="linkTab" class="tab">
+            <path d="M4 12L20 4L16 20L11 13L4 12Z"
+                  fill="currentColor"/>
 
-🔗 Link
+        </svg>
 
-</button>
+        <span>
 
-</div>
+            Messages
 
-<!-- VIDEO -->
+        </span>
 
-<section id="videoSection" class="upload-section">
+    </a>
 
-<div class="upload-card">
+    <a href="reels.html">
 
-<label>
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
-Thumbnail
+            <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
+                  fill="currentColor"/>
 
-</label>
+        </svg>
 
-<input
-type="file"
-id="thumbnail"
-accept="image/*">
+        <span>
 
-<div id="thumbnailPreview"></div>
+            Reels
 
-</div>
+        </span>
 
-<div class="upload-card">
+    </a>
 
-<label>
+    <a href="profile.html">
 
-Video File
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
-</label>
+            <path d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
+                  fill="currentColor"/>
 
-<input
-type="file"
-id="video"
-accept="video/*">
+        </svg>
 
-<div id="videoPreview"></div>
+        <span>
 
-</div>
+            Profile
 
-<div class="input-box">
+        </span>
 
-<input
-type="text"
-id="title"
-placeholder="Video Title">
+    </a>
 
-</div>
+</nav>
 
-<div class="input-box">
-
-<textarea
-id="description"
-placeholder="Video Description"></textarea>
-
-</div>
-
-<div class="input-box">
-
-<select id="category">
-
-<option>For You</option>
-
-<option>Trending</option>
-
-<option>Gaming</option>
-
-<option>Movies</option>
-
-<option>Music</option>
-
-<option>AI</option>
-
-<option>News</option>
-
-<option>Sports</option>
-
-</select>
-
-</div>
-
-<div class="input-box">
-
-<input
-type="text"
-id="tags"
-placeholder="Tags">
-
-</div>
-
-<div class="input-box">
-
-<select id="visibility">
-
-<option>Public</option>
-
-<option>Followers Only</option>
-
-<option>Private</option>
-
-</select>
-
-</div>
-
-<div class="action-buttons">
-
-<button
-id="aiVideoBtn"
-class="secondary-btn">
-
-🤖 AI Generate
-
-</button>
-
-<button
-id="uploadBtn"
-class="primary-btn">
-
-Upload Video
-
-</button>
-
-</div>
-
-</section>
-<!-- REEL SECTION -->
-
-<section id="reelSection" class="upload-section hidden">
-
-<div class="upload-card">
-
-<label>
-
-Cover Image
-
-</label>
-
-<input
-type="file"
-id="reelCover"
-accept="image/*">
-
-<div id="coverPreview"></div>
-
-</div>
-
-<div class="upload-card">
-
-<label>
-
-Reel Video
-
-</label>
-
-<input
-type="file"
-id="reelVideo"
-accept="video/*">
-
-<div id="reelPreview"></div>
-
-</div>
-
-<div class="input-box">
-
-<input
-type="text"
-id="reelTitle"
-placeholder="Reel Title">
-
-</div>
-
-<div class="input-box">
-
-<textarea
-id="reelCaption"
-placeholder="Write Caption"></textarea>
-
-</div>
-
-<div class="input-box">
-
-<select id="reelCategory">
-
-<option>Entertainment</option>
-
-<option>Gaming</option>
-
-<option>Music</option>
-
-<option>Comedy</option>
-
-<option>Education</option>
-
-<option>Technology</option>
-
-</select>
-
-</div>
-
-<div class="input-box">
-
-<select id="reelVisibility">
-
-<option>Public</option>
-
-<option>Followers Only</option>
-
-<option>Private</option>
-
-</select>
-
-</div>
-
-<div class="action-buttons">
-
-<button
-id="aiReelBtn"
-class="secondary-btn">
-
-🤖 AI Caption
-
-</button>
-
-<button
-id="uploadReelBtn"
-class="primary-btn">
-
-Upload Reel
-
-</button>
-
-</div>
-
-</section>
-
-<!-- LINK SECTION -->
-
-<section id="linkSection" class="upload-section hidden">
-
-<div class="input-box">
-
-<input
-type="url"
-id="videoLink"
-placeholder="Paste Video Link">
-
-</div>
-
-<div class="input-box">
-
-<input
-type="text"
-id="linkTitle"
-placeholder="Title (Optional)">
-
-</div>
-
-<div class="input-box">
-
-<textarea
-id="linkDescription"
-placeholder="Description"></textarea>
-
-</div>
-
-<div class="input-box">
-
-<select id="linkCategory">
-
-<option>For You</option>
-
-<option>Trending</option>
-
-<option>Gaming</option>
-
-<option>Movies</option>
-
-<option>Music</option>
-
-<option>AI</option>
-
-<option>News</option>
-
-<option>Sports</option>
-
-</select>
-
-</div>
-
-<div class="action-buttons">
-
-<button
-id="fetchLinkBtn"
-class="secondary-btn">
-
-🔍 Fetch Details
-
-</button>
-
-<button
-id="uploadLinkBtn"
-class="primary-btn">
-
-Import Link
-
-</button>
-
-</div>
-
-</section>
-<!-- UPLOAD PROGRESS -->
-
-<div class="progress-area">
-
-    <div class="progress-bar">
-
-        <div id="progressFill"></div>
-
-    </div>
-
-    <p id="progressText">
-
-        Waiting for upload...
-
-    </p>
-
-</div>
-
-<div id="status"></div>
-
-</main>
-
-<script src="../js/upload.js"></script>
+<script type="module"
+        src="../js/upload.js"></script>
 
 </body>
 
-</html>
+</html>    
