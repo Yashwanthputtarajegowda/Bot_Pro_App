@@ -3,57 +3,113 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<title>Bot Pro - Login</title>
+    <title>BOT PRO - Login</title>
 
-<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/login.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="login-container">
+    <div class="container">
 
-<h1 class="login-logo">
-BOT PRO
-</h1>
+        <!-- Logo -->
 
-<p>Welcome Back</p>
+        <div class="logo">
 
-<input
-id="email"
-type="email"
-placeholder="Email">
+            <span class="bot">
+                BOT
+            </span>
 
-<input
-id="password"
-type="password"
-placeholder="Password">
+            <span class="pro">
+                PRO
+            </span>
 
-<button id="loginBtn">
+        </div>
 
-Login
+        <h2>
 
-</button>
+            Welcome Back
 
-<p>
+        </h2>
 
-Don't have an account?
+        <!-- Login Form -->
 
-<a href="register.html">
+        <form id="loginForm">
 
-Register
+            <div class="input-box">
 
-</a>
+                <span class="material-icons">
 
-</p>
+                    email
 
-</div>
+                </span>
 
-<script type="module" src="../firebase/login.js"></script>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required>
+
+            </div>
+
+            <div class="input-box">
+
+                <span class="material-icons">
+
+                    lock
+
+                </span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required>
+
+                <span
+                    class="material-icons eye"
+                    id="togglePassword">
+
+                    visibility
+
+                </span>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <div class="register">
+
+            Don't have an account?
+
+            <a href="register.html">
+
+                Register
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="../js/login.js"></script>
 
 </body>
 
