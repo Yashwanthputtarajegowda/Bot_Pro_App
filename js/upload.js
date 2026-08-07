@@ -1,248 +1,268 @@
-const videoTab = document.getElementById("videoTab");
-const reelTab = document.getElementById("reelTab");
-const linkTab = document.getElementById("linkTab");
+// =========================================
+// Bot Pro Upload JS
+// Final Version - Part 1
+// =========================================
 
-const videoSection = document.getElementById("videoSection");
-const reelSection = document.getElementById("reelSection");
-const linkSection = document.getElementById("linkSection");
+// Elements
 
-const backBtn = document.getElementById("backBtn");
+const uploadTypes =
+document.querySelectorAll(".type-card");
 
-backBtn.addEventListener("click", () => {
+const chooseFileBtn =
+document.querySelector(".select-btn");
 
-    window.location.href = "home.html";
+const removeBtn =
+document.querySelector(".remove-btn");
 
-});
+const uploadPreview =
+document.querySelector(".preview-image");
 
-function hideAllSections(){
+const uploadTitle =
+document.querySelector(".upload-select h3");
 
-    videoSection.classList.add("hidden");
-    reelSection.classList.add("hidden");
-    linkSection.classList.add("hidden");
+// =========================================
+// Upload Type
+// =========================================
 
-    videoTab.classList.remove("active");
-    reelTab.classList.remove("active");
-    linkTab.classList.remove("active");
+uploadTypes.forEach((card)=>{
 
-}
+    card.addEventListener("click",()=>{
 
-videoTab.addEventListener("click",()=>{
+        uploadTypes.forEach((item)=>{
 
-    hideAllSections();
-
-    videoSection.classList.remove("hidden");
-
-    videoTab.classList.add("active");
-
-});
-
-reelTab.addEventListener("click",()=>{
-
-    hideAllSections();
-
-    reelSection.classList.remove("hidden");
-
-    reelTab.classList.add("active");
-
-});
-
-linkTab.addEventListener("click",()=>{
-
-    hideAllSections();
-
-    linkSection.classList.remove("hidden");
-
-    linkTab.classList.add("active");
-
-});
-
-const thumbnailInput=document.getElementById("thumbnail");
-const videoInput=document.getElementById("video");
-
-const reelCover=document.getElementById("reelCover");
-const reelVideo=document.getElementById("reelVideo");
-
-const thumbnailPreview=document.getElementById("thumbnailPreview");
-const videoPreview=document.getElementById("videoPreview");
-
-const coverPreview=document.getElementById("coverPreview");
-const reelPreview=document.getElementById("reelPreview");
-function imagePreview(input, preview){
-
-    preview.innerHTML="";
-
-    if(input.files.length===0) return;
-
-    const img=document.createElement("img");
-
-    img.src=URL.createObjectURL(input.files[0]);
-
-    preview.appendChild(img);
-
-}
-
-function videoPreviewShow(input, preview){
-
-    preview.innerHTML="";
-
-    if(input.files.length===0) return;
-
-    const video=document.createElement("video");
-
-    video.src=URL.createObjectURL(input.files[0]);
-
-    video.controls=true;
-
-    preview.appendChild(video);
-
-}
-
-thumbnailInput.addEventListener("change",()=>{
-
-    imagePreview(thumbnailInput,thumbnailPreview);
-
-});
-
-videoInput.addEventListener("change",()=>{
-
-    videoPreviewShow(videoInput,videoPreview);
-
-});
-
-reelCover.addEventListener("change",()=>{
-
-    imagePreview(reelCover,coverPreview);
-
-});
-
-reelVideo.addEventListener("change",()=>{
-
-    videoPreviewShow(reelVideo,reelPreview);
-
-});
-
-const progressFill=document.getElementById("progressFill");
-const progressText=document.getElementById("progressText");
-const status=document.getElementById("status");
-
-function updateProgress(percent,text){
-
-    progressFill.style.width=percent+"%";
-
-    progressText.innerHTML=text;
-
-}
-const uploadBtn=document.getElementById("uploadBtn");
-
-if(uploadBtn){
-
-uploadBtn.addEventListener("click",async()=>{
-
-    const title=document.getElementById("title").value.trim();
-    const description=document.getElementById("description").value.trim();
-    const category=document.getElementById("category").value;
-    const visibility=document.getElementById("visibility").value;
-    const video=document.getElementById("video").files[0];
-    const thumbnail=document.getElementById("thumbnail").files[0];
-
-    if(!title || !description || !video){
-
-        status.innerHTML="⚠ Please fill all required fields.";
-        return;
-
-    }
-
-    uploadBtn.disabled=true;
-
-    updateProgress(10,"Preparing Upload...");
-
-    const formData=new FormData();
-
-    formData.append("title",title);
-    formData.append("description",description);
-    formData.append("category",category);
-    formData.append("visibility",visibility);
-    formData.append("video",video);
-
-    if(thumbnail){
-
-        formData.append("thumbnail",thumbnail);
-
-    }
-
-    try{
-
-        updateProgress(50,"Uploading...");
-
-        const response=await fetch("/api/upload",{
-
-            method:"POST",
-            body:formData
+            item.classList.remove("active");
 
         });
 
-        const result=await response.json();
+        card.classList.add("active");
 
-        if(result.success){
+        const type =
+        card.querySelector("span").textContent;
 
-            updateProgress(100,"Upload Complete");
+        uploadTitle.textContent =
+        "Select " + type;
 
-            status.innerHTML="✅ Video Uploaded Successfully";
+    });
 
-        }else{
+});
 
-            updateProgress(0,"Upload Failed");
+// =========================================
+// Choose File
+// =========================================
 
-            status.innerHTML=result.message || "Upload Failed";
+chooseFileBtn.addEventListener("click",()=>{
+
+    alert(
+        "File Picker Coming Soon"
+    );
+
+});
+
+// =========================================
+// Remove Preview
+// =========================================
+
+removeBtn.addEventListener("click",()=>{
+
+    uploadPreview.textContent =
+    "Preview";
+
+    alert(
+        "Preview Removed"
+    );
+
+});
+
+// =========================================
+// Page Ready
+// =========================================
+
+window.addEventListener("load",()=>{
+
+    console.log(
+        "Bot Pro Upload Loaded"
+    );
+
+});
+// =========================================
+// Thumbnail
+// =========================================
+
+const thumbnailButton =
+document.querySelector(".thumb-upload");
+
+const thumbnailPreview =
+document.querySelector(".thumb-preview");
+
+thumbnailButton.addEventListener("click",()=>{
+
+    alert(
+        "Thumbnail Picker Coming Soon"
+    );
+
+});
+
+// =========================================
+// Upload Progress
+// =========================================
+
+const uploadButton =
+document.querySelector(".upload-btn");
+
+const progressFill =
+document.querySelector(".progress-fill");
+
+const progressText =
+document.querySelector("#progressText");
+
+uploadButton.addEventListener("click",()=>{
+
+    let progress = 0;
+
+    progressFill.style.width = "0%";
+
+    progressText.textContent = "0%";
+
+    const uploadInterval = setInterval(()=>{
+
+        progress += 5;
+
+        progressFill.style.width =
+        progress + "%";
+
+        progressText.textContent =
+        progress + "%";
+
+        if(progress >= 100){
+
+            clearInterval(uploadInterval);
+
+            alert(
+                "Upload Complete (Demo)"
+            );
 
         }
 
-    }catch(error){
-
-        updateProgress(0,"Network Error");
-
-        status.innerHTML="❌ Network Error";
-
-    }
-
-    uploadBtn.disabled=false;
+    },120);
 
 });
 
-}
+// =========================================
+// Category
+// =========================================
 
-const fetchLinkBtn=document.getElementById("fetchLinkBtn");
+const category =
+document.querySelector(".category-select");
 
-if(fetchLinkBtn){
+category.addEventListener("change",()=>{
 
-fetchLinkBtn.addEventListener("click",()=>{
+    console.log(
 
-    alert("Link Import will be connected with backend.");
+        "Category :",
 
-});
+        category.value
 
-}
-
-const aiVideoBtn=document.getElementById("aiVideoBtn");
-
-if(aiVideoBtn){
-
-aiVideoBtn.addEventListener("click",()=>{
-
-    alert("AI Title & Description feature coming soon.");
+    );
 
 });
 
-}
+// =========================================
+// Link Input
+// =========================================
 
-const aiReelBtn=document.getElementById("aiReelBtn");
+const linkInput =
+document.querySelector(".link-input");
 
-if(aiReelBtn){
+linkInput.addEventListener("input",()=>{
 
-aiReelBtn.addEventListener("click",()=>{
+    console.log(
 
-    alert("AI Caption feature coming soon.");
+        "Link :", 
+
+        linkInput.value
+
+    );
 
 });
 
-}
+// =========================================
+// Tags
+// =========================================
+
+const tagsInput =
+document.querySelector(".tags-input");
+
+tagsInput.addEventListener("change",()=>{
+
+    console.log(
+
+        "Tags :",
+
+        tagsInput.value
+
+    );
+
+});
+// =========================================
+// Bot Pro Upload JS
+// Final Version - Part 3
+// =========================================
+
+// Back Button
+
+const backButton =
+document.querySelector(".back-btn");
+
+backButton.addEventListener("click",()=>{
+
+    window.history.back();
+
+});
+
+// =========================================
+// Bottom Navigation
+// =========================================
+
+const navLinks =
+document.querySelectorAll(".bottom-nav a");
+
+navLinks.forEach((link)=>{
+
+    link.addEventListener("click",()=>{
+
+        navLinks.forEach((item)=>{
+
+            item.classList.remove("active");
+
+        });
+
+        link.classList.add("active");
+
+    });
+
+});
+
+// =========================================
+// Future Integrations
+// =========================================
+
+// Firebase Upload
+// Telegram Storage Upload
+// Video Compression
+// Reel Processing
+// Thumbnail Generation
+// Link Preview Generation
+// Upload Resume
+// Upload History
+// Content Moderation
+// Creator Analytics
+
+// =========================================
+// Ready
+// =========================================
+
+console.log(
+
+    "Bot Pro Upload Ready"
+
+);
