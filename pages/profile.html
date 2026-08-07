@@ -90,7 +90,8 @@
 
         <div class="profile-left">
 
-            <div class="profile-avatar">
+            <div class="profile-avatar"
+                 id="profileAvatar">
 
                 BP
 
@@ -106,9 +107,9 @@
 
         <div class="profile-center">
 
-            <h2>
+            <h2 id="profileName">
 
-                Bot Pro
+                Loading...
 
                 <span class="verified">
 
@@ -118,9 +119,10 @@
 
             </h2>
 
-            <p class="username">
+            <p class="username"
+               id="profileUsername">
 
-                @botpro_official
+                @loading...
 
             </p>
 
@@ -134,9 +136,9 @@
 
                 <div>
 
-                    <strong>
+                    <strong id="postCount">
 
-                        245
+                        0
 
                     </strong>
 
@@ -150,9 +152,9 @@
 
                 <div>
 
-                    <strong>
+                    <strong id="followersCount">
 
-                        12.4K
+                        0
 
                     </strong>
 
@@ -166,9 +168,9 @@
 
                 <div>
 
-                    <strong>
+                    <strong id="followingCount">
 
-                        128
+                        0
 
                     </strong>
 
@@ -181,11 +183,11 @@
                 </div>
 
             </div>
-            <p class="bio">
 
-                🚀 Build. Create. Inspire.<br>
+            <p class="bio"
+               id="profileBio">
 
-                Official Bot Pro Creator Account.
+                Welcome to Bot Pro 🚀
 
             </p>
 
@@ -208,7 +210,6 @@
         </div>
 
     </section>
-
     <!-- Premium Card -->
 
     <section class="premium-card">
@@ -247,9 +248,9 @@
 
             </h4>
 
-            <span>
+            <span id="videoCount">
 
-                245
+                0
 
             </span>
 
@@ -263,9 +264,9 @@
 
             </h4>
 
-            <span>
+            <span id="reelCount">
 
-                87
+                0
 
             </span>
 
@@ -279,9 +280,9 @@
 
             </h4>
 
-            <span>
+            <span id="savedCount">
 
-                58
+                0
 
             </span>
 
@@ -295,9 +296,9 @@
 
             </h4>
 
-            <span>
+            <span id="likesCount">
 
-                4.8K
+                0
 
             </span>
 
@@ -311,7 +312,7 @@
 
             </h4>
 
-            <span>
+            <span id="earningsCount">
 
                 ₹0.00
 
@@ -369,7 +370,9 @@
 
     <!-- Video Grid -->
 
-    <section class="video-grid">
+    <section class="video-grid"
+             id="profileVideoGrid">
+
         <div class="video-card">
 
             <div class="video-thumb">
@@ -380,7 +383,7 @@
 
             <span>
 
-                ▶ 12.4K
+                ▶ Loading...
 
             </span>
 
@@ -396,7 +399,7 @@
 
             <span>
 
-                ▶ 8.2K
+                ▶ Loading...
 
             </span>
 
@@ -412,7 +415,7 @@
 
             <span>
 
-                ▶ 21K
+                ▶ Loading...
 
             </span>
 
@@ -428,7 +431,7 @@
 
             <span>
 
-                ▶ 5.4K
+                ▶ Loading...
 
             </span>
 
@@ -444,7 +447,7 @@
 
             <span>
 
-                ▶ 19K
+                ▶ Loading...
 
             </span>
 
@@ -460,31 +463,30 @@
 
             <span>
 
-                ▶ 31K
+                ▶ Loading...
 
             </span>
 
         </div>
 
     </section>
-
     <!-- Settings -->
 
     <section class="settings-card">
 
-        <button>
+        <button class="settings-btn">
 
             Settings
 
         </button>
 
-        <button>
+        <button class="privacy-btn">
 
             Privacy
 
         </button>
 
-        <button>
+        <button class="support-btn">
 
             Help & Support
 
@@ -500,58 +502,80 @@
 
 </div>
 
+<!-- Bottom Navigation -->
+
 <nav class="bottom-nav">
 
     <a href="home.html">
 
-        <svg class="nav-icon" viewBox="0 0 24 24">
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
             <path d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
                   fill="currentColor"/>
 
         </svg>
 
-        <span>Home</span>
+        <span>
+
+            Home
+
+        </span>
 
     </a>
 
     <a href="message.html">
 
-        <svg class="nav-icon" viewBox="0 0 24 24">
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
             <path d="M4 12L20 4L16 20L11 13L4 12Z"
                   fill="currentColor"/>
 
         </svg>
 
-        <span>Messages</span>
+        <span>
+
+            Messages
+
+        </span>
 
     </a>
 
     <a href="reels.html">
 
-        <svg class="nav-icon" viewBox="0 0 24 24">
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
             <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
                   fill="currentColor"/>
 
         </svg>
 
-        <span>Reels</span>
+        <span>
+
+            Reels
+
+        </span>
 
     </a>
 
     <a href="profile.html"
        class="active">
 
-        <svg class="nav-icon" viewBox="0 0 24 24">
+        <svg class="nav-icon"
+             viewBox="0 0 24 24">
 
             <path d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
                   fill="currentColor"/>
 
         </svg>
 
-        <span>Profile</span>
+        <span>
+
+            Profile
+
+        </span>
 
     </a>
 
@@ -562,4 +586,4 @@
 
 </body>
 
-</html>      
+</html>    
