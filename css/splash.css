@@ -1,1 +1,156 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
+body{
+
+    background:#0d0d0d;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+
+.splash-container{
+
+    text-align:center;
+
+}
+
+.logo{
+
+    font-size:64px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+    animation:zoomIn 1s ease;
+
+}
+
+.bot{
+
+    color:#ffffff;
+
+}
+
+.pro{
+
+    color:#8A2BE2;
+
+    margin-left:8px;
+
+}
+
+h2{
+
+    color:#bfbfbf;
+
+    font-weight:400;
+
+    margin-bottom:35px;
+
+    animation:fadeIn 1.5s ease;
+
+}
+
+.loader{
+
+    width:260px;
+
+    height:8px;
+
+    background:#222;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:auto;
+
+}
+
+.loader-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(90deg,#6A00FF,#A020F0);
+
+    animation:loading 2.5s linear forwards;
+
+}
+
+.version{
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+@keyframes loading{
+
+    from{
+
+        width:0%;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        transform:scale(.5);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
