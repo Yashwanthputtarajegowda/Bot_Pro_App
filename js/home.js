@@ -61,7 +61,7 @@ document.addEventListener("click",(event)=>{
 // Notification
 // =========================================
 
-notificationButton.addEventListener("click",()=>{
+notificationBtn.addEventListener("click",()=>{
 
     window.location.href = "notifications.html";
 
