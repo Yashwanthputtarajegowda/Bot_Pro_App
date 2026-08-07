@@ -3,30 +3,93 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Upload Video</title>
+    <title>BOT PRO - Upload</title>
 
-<link rel="stylesheet" href="../css/upload.css">
+    <link rel="stylesheet" href="../css/upload.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="upload-container">
+<div class="container">
 
-<h1>Upload Video</h1>
+<div class="logo">
+
+<span class="bot">BOT</span>
+
+<span class="pro">PRO</span>
+
+</div>
+
+<h2>Upload Content</h2>
+
+<div class="upload-type">
+
+<button class="type-btn active" id="videoTab">
+
+🎥 Video
+
+</button>
+
+<button class="type-btn" id="reelTab">
+
+🎬 Reel
+
+</button>
+
+<button class="type-btn" id="linkTab">
+
+🔗 Link
+
+</button>
+
+</div>
+
+<div id="videoSection">
+
+<div class="input-box">
+
+<input
+type="file"
+id="thumbnail"
+accept="image/*">
+
+</div>
+
+<div class="input-box">
+
+<input
+type="file"
+id="video"
+accept="video/*">
+
+</div>
+
+<div class="input-box">
 
 <input
 type="text"
 id="title"
 placeholder="Video Title">
 
+</div>
+
+<div class="input-box">
+
 <textarea
 id="description"
 placeholder="Video Description"></textarea>
+
+</div>
+
+<div class="input-box">
 
 <select id="category">
 
@@ -48,16 +111,31 @@ placeholder="Video Description"></textarea>
 
 </select>
 
-<input
-type="file"
-id="video"
-accept="video/*">
+</div>
 
-<button id="uploadBtn">
+<div class="input-box">
+
+<select id="visibility">
+
+<option>Public</option>
+
+<option>Private</option>
+
+<option>Followers Only</option>
+
+</select>
+
+</div>
+
+<button
+id="uploadBtn"
+class="upload-btn">
 
 Upload Video
 
 </button>
+
+</div>
 
 <div id="status"></div>
 
