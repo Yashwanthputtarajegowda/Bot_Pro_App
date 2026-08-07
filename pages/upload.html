@@ -272,3 +272,102 @@
             </div>
 
         </section>
+        <!-- LINK SECTION -->
+
+        <section id="linkSection" class="upload-section hidden">
+
+            <div class="input-box">
+
+                <input
+                    type="url"
+                    id="videoLink"
+                    placeholder="Paste Video Link">
+
+            </div>
+
+            <div class="input-box">
+
+                <input
+                    type="text"
+                    id="linkTitle"
+                    placeholder="Title (Optional)">
+
+            </div>
+
+            <div class="input-box">
+
+                <textarea
+                    id="linkDescription"
+                    placeholder="Description (Optional)"></textarea>
+
+            </div>
+
+            <div class="input-box">
+
+                <select id="linkCategory">
+
+                    <option>For You</option>
+
+                    <option>Trending</option>
+
+                    <option>Gaming</option>
+
+                    <option>Movies</option>
+
+                    <option>Music</option>
+
+                    <option>AI</option>
+
+                    <option>News</option>
+
+                    <option>Sports</option>
+
+                </select>
+
+            </div>
+
+            <div class="action-buttons">
+
+                <button id="fetchLinkBtn" class="secondary-btn">
+
+                    🔍 Fetch Details
+
+                </button>
+
+                <button id="uploadLinkBtn" class="primary-btn">
+
+                    Import Link
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Upload Progress -->
+
+        <div class="progress-area">
+
+            <div class="progress-bar">
+
+                <div id="progressFill"></div>
+
+            </div>
+
+            <p id="progressText">
+
+                Waiting...
+
+            </p>
+
+        </div>
+
+        <div id="status"></div>
+
+    </main>
+
+</body>
+
+<script src="../js/upload.js"></script>
+
+</html>
