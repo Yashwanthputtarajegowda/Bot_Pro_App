@@ -261,3 +261,173 @@ body{
     font-weight:bold;
 
 }
+#thumbnailPreview img,
+#coverPreview img{
+
+    width:100%;
+    max-height:220px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-top:12px;
+    border:2px solid #333;
+
+}
+
+#videoPreview video,
+#reelPreview video{
+
+    width:100%;
+    max-height:300px;
+    border-radius:12px;
+    margin-top:12px;
+    background:#000;
+    border:2px solid #333;
+
+}
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#8A2BE2;
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#a64dff;
+
+}
+
+button{
+
+    transition:all .3s ease;
+
+}
+
+input,
+textarea,
+select{
+
+    transition:all .3s ease;
+
+}
+
+.upload-card,
+.input-box{
+
+    animation:fadeIn .35s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .upload-page{
+
+        padding:18px;
+
+    }
+
+    .logo{
+
+        font-size:30px;
+
+    }
+
+    .upload-page h2{
+
+        font-size:28px;
+
+    }
+
+    .tab-bar{
+
+        flex-direction:column;
+
+    }
+
+    .action-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .primary-btn,
+    .secondary-btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .top-bar{
+
+        padding:0 12px;
+
+    }
+
+    .back-btn{
+
+        width:40px;
+        height:40px;
+
+    }
+
+    .logo{
+
+        font-size:26px;
+
+    }
+
+    .upload-page{
+
+        margin:20px auto;
+
+    }
+
+    .upload-page h2{
+
+        font-size:24px;
+
+    }
+
+    .tab{
+
+        font-size:15px;
+        padding:13px;
+
+    }
+
+}
