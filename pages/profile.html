@@ -1,94 +1,565 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Bot Pro Profile</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../style.css">
+    <title>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        Bot Pro - Profile
+
+    </title>
+
+    <link rel="stylesheet"
+          href="../css/profile.css">
 
 </head>
 
 <body>
 
-<div class="profile-container">
+<div class="profile-page">
 
-<img src="https://via.placeholder.com/120" class="profile-image">
+    <!-- Header -->
 
-<h2>Bot Pro User</h2>
+    <header class="profile-header">
 
-<p>@botprouser</p>
+        <button class="menu-btn">
 
-<div class="profile-stats">
+            <svg class="header-icon"
+                 viewBox="0 0 24 24">
 
-<div>
-<h3>120</h3>
-<p>Videos</p>
-</div>
+                <path d="M3 6H21M3 12H21M3 18H21"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
 
-<div>
-<h3>2.5K</h3>
-<p>Followers</p>
-</div>
+            </svg>
 
-<div>
-<h3>350</h3>
-<p>Following</p>
-</div>
+        </button>
 
-</div>
+        <div class="header-actions">
 
-<button>Edit Profile</button>
+            <button class="icon-btn">
 
-<button>Your Videos</button>
+                <svg class="header-icon"
+                     viewBox="0 0 24 24">
 
-<button>Saved Videos</button>
+                    <path d="M4 4H10V10H4ZM14 4H20V10H14ZM4 14H10V20H4ZM14 14H20V20H14"
+                          fill="currentColor"/>
 
-<button>Settings</button>
+                </svg>
+
+            </button>
+
+            <button class="icon-btn">
+
+                <svg class="header-icon"
+                     viewBox="0 0 24 24">
+
+                    <path d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.36 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5S10.5 3.17 10.5 4V4.68C7.64 5.36 6 7.93 6 11V16L4 18V19H20V18L18 16Z"
+                          fill="currentColor"/>
+
+                </svg>
+
+            </button>
+
+            <button class="icon-btn">
+
+                <svg class="header-icon"
+                     viewBox="0 0 24 24">
+
+                    <path d="M12 8A4 4 0 1 0 12 16A4 4 0 0 0 12 8ZM4 12A8 8 0 1 1 20 12A8 8 0 0 1 4 12Z"
+                          fill="currentColor"/>
+
+                </svg>
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Profile Card -->
+
+    <section class="profile-card">
+
+        <div class="profile-left">
+
+            <div class="profile-avatar">
+
+                BP
+
+                <span class="edit-avatar">
+
+                    ✎
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="profile-center">
+
+            <h2>
+
+                Bot Pro
+
+                <span class="verified">
+
+                    ✓
+
+                </span>
+
+            </h2>
+
+            <p class="username">
+
+                @botpro_official
+
+            </p>
+
+            <span class="premium-tag">
+
+                Premium Member
+
+            </span>
+
+            <div class="stats">
+
+                <div>
+
+                    <strong>
+
+                        245
+
+                    </strong>
+
+                    <span>
+
+                        Posts
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+
+                        12.4K
+
+                    </strong>
+
+                    <span>
+
+                        Followers
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+
+                        128
+
+                    </strong>
+
+                    <span>
+
+                        Following
+
+                    </span>
+
+                </div>
+
+            </div>
+            <p class="bio">
+
+                🚀 Build. Create. Inspire.<br>
+
+                Official Bot Pro Creator Account.
+
+            </p>
+
+            <div class="profile-buttons">
+
+                <button class="edit-profile">
+
+                    Edit Profile
+
+                </button>
+
+                <button class="share-profile">
+
+                    Share Profile
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Premium Card -->
+
+    <section class="premium-card">
+
+        <h3>
+
+            Bot Pro Premium
+
+        </h3>
+
+        <p>
+
+            Unlock advanced creator tools,
+            analytics, monetization and
+            exclusive features.
+
+        </p>
+
+        <button>
+
+            Manage Plan
+
+        </button>
+
+    </section>
+
+    <!-- Dashboard -->
+
+    <section class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Videos
+
+            </h4>
+
+            <span>
+
+                245
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Reels
+
+            </h4>
+
+            <span>
+
+                87
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Saved
+
+            </h4>
+
+            <span>
+
+                58
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Likes
+
+            </h4>
+
+            <span>
+
+                4.8K
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Earnings
+
+            </h4>
+
+            <span>
+
+                ₹0.00
+
+            </span>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h4>
+
+                Analytics
+
+            </h4>
+
+            <span>
+
+                View
+
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- Content Tabs -->
+
+    <section class="content-tabs">
+
+        <button class="active">
+
+            Videos
+
+        </button>
+
+        <button>
+
+            Reels
+
+        </button>
+
+        <button>
+
+            Saved
+
+        </button>
+
+        <button>
+
+            Liked
+
+        </button>
+
+    </section>
+
+    <!-- Video Grid -->
+
+    <section class="video-grid">
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 12.4K
+
+            </span>
+
+        </div>
+
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 8.2K
+
+            </span>
+
+        </div>
+
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 21K
+
+            </span>
+
+        </div>
+
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 5.4K
+
+            </span>
+
+        </div>
+
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 19K
+
+            </span>
+
+        </div>
+
+        <div class="video-card">
+
+            <div class="video-thumb">
+
+                VIDEO
+
+            </div>
+
+            <span>
+
+                ▶ 31K
+
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- Settings -->
+
+    <section class="settings-card">
+
+        <button>
+
+            Settings
+
+        </button>
+
+        <button>
+
+            Privacy
+
+        </button>
+
+        <button>
+
+            Help & Support
+
+        </button>
+
+        <button class="logout-btn">
+
+            Log Out
+
+        </button>
+
+    </section>
 
 </div>
 
 <nav class="bottom-nav">
 
-<div>
+    <a href="home.html">
 
-<span class="material-icons">home</span>
+        <svg class="nav-icon" viewBox="0 0 24 24">
 
-<p>Home</p>
+            <path d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
+                  fill="currentColor"/>
 
-</div>
+        </svg>
 
-<div>
+        <span>Home</span>
 
-<span class="material-icons">smart_display</span>
+    </a>
 
-<p>Reels</p>
+    <a href="message.html">
 
-</div>
+        <svg class="nav-icon" viewBox="0 0 24 24">
 
-<div>
+            <path d="M4 12L20 4L16 20L11 13L4 12Z"
+                  fill="currentColor"/>
 
-<span class="material-icons">cloud_upload</span>
+        </svg>
 
-<p>Upload</p>
+        <span>Messages</span>
 
-</div>
+    </a>
 
-<div style="color:#1976D2;">
+    <a href="reels.html">
 
-<span class="material-icons">person</span>
+        <svg class="nav-icon" viewBox="0 0 24 24">
 
-<p>Profile</p>
+            <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
+                  fill="currentColor"/>
 
-</div>
+        </svg>
+
+        <span>Reels</span>
+
+    </a>
+
+    <a href="profile.html"
+       class="active">
+
+        <svg class="nav-icon" viewBox="0 0 24 24">
+
+            <path d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
+                  fill="currentColor"/>
+
+        </svg>
+
+        <span>Profile</span>
+
+    </a>
 
 </nav>
 
+<script type="module"
+        src="../js/profile.js"></script>
+
 </body>
 
-</html>
+</html>      
