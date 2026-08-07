@@ -11,138 +11,131 @@
 
     <link rel="stylesheet" href="../css/upload.css">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+    <header class="top-bar">
 
-<div class="logo">
+        <button id="backBtn" class="back-btn">
 
-<span class="bot">BOT</span>
+            <span class="material-icons">arrow_back</span>
 
-<span class="pro">PRO</span>
+        </button>
 
-</div>
+        <div class="logo">
 
-<h2>Upload Content</h2>
+            <span class="bot">BOT</span>
 
-<div class="upload-type">
+            <span class="pro">PRO</span>
 
-<button class="type-btn active" id="videoTab">
+        </div>
 
-🎥 Video
+    </header>
 
-</button>
+    <main class="upload-page">
 
-<button class="type-btn" id="reelTab">
+        <h2>Upload Content</h2>
 
-🎬 Reel
+        <div class="tab-bar">
 
-</button>
+            <button class="tab active" id="videoTab">
 
-<button class="type-btn" id="linkTab">
+                🎥 Video
 
-🔗 Link
+            </button>
 
-</button>
+            <button class="tab" id="reelTab">
 
-</div>
+                🎬 Reel
 
-<div id="videoSection">
+            </button>
 
-<div class="input-box">
+            <button class="tab" id="linkTab">
 
-<input
-type="file"
-id="thumbnail"
-accept="image/*">
+                🔗 Link
 
-</div>
+            </button>
 
-<div class="input-box">
+        </div>
 
-<input
-type="file"
-id="video"
-accept="video/*">
+        <!-- VIDEO SECTION -->
 
-</div>
+        <section id="videoSection" class="upload-section">
 
-<div class="input-box">
+            <div class="upload-card">
 
-<input
-type="text"
-id="title"
-placeholder="Video Title">
+                <label>
 
-</div>
+                    Thumbnail
 
-<div class="input-box">
+                </label>
 
-<textarea
-id="description"
-placeholder="Video Description"></textarea>
+                <input
+                    type="file"
+                    id="thumbnail"
+                    accept="image/*">
 
-</div>
+                <div id="thumbnailPreview"></div>
 
-<div class="input-box">
+            </div>
 
-<select id="category">
+            <div class="upload-card">
 
-<option>For You</option>
+                <label>
 
-<option>Trending</option>
+                    Video File
 
-<option>Gaming</option>
+                </label>
 
-<option>Movies</option>
+                <input
+                    type="file"
+                    id="video"
+                    accept="video/*">
 
-<option>Music</option>
+                <div id="videoPreview"></div>
 
-<option>AI</option>
+            </div>
 
-<option>News</option>
+            <div class="input-box">
 
-<option>Sports</option>
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Video Title">
 
-</select>
+            </div>
 
-</div>
+            <div class="input-box">
 
-<div class="input-box">
+                <textarea
+                    id="description"
+                    placeholder="Video Description"></textarea>
 
-<select id="visibility">
+            </div>
 
-<option>Public</option>
+            <div class="input-box">
 
-<option>Private</option>
+                <select id="category">
 
-<option>Followers Only</option>
+                    <option>For You</option>
 
-</select>
+                    <option>Trending</option>
 
-</div>
+                    <option>Gaming</option>
 
-<button
-id="uploadBtn"
-class="upload-btn">
+                    <option>Movies</option>
 
-Upload Video
+                    <option>Music</option>
 
-</button>
+                    <option>AI</option>
 
-</div>
+                    <option>News</option>
 
-<div id="status"></div>
+                    <option>Sports</option>
 
-</div>
+                </select>
 
-<script src="../js/upload.js"></script>
-
-</body>
-
-</html>
+            </div>
