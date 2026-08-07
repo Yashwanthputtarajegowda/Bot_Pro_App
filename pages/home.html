@@ -13,16 +13,6 @@
     <link rel="stylesheet"
           href="../css/home.css">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-
 </head>
 
 <body>
@@ -45,19 +35,33 @@
 
     </div>
 
-    <div class="header-right">
+    <div class="header-actions">
 
         <button id="uploadBtn"
-                class="icon-btn">
+                class="header-btn">
 
-            ➕
+            <svg class="icon"
+                 viewBox="0 0 24 24">
+
+                <path d="M12 5V19M5 12H19"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
+
+            </svg>
 
         </button>
 
         <button id="notificationBtn"
-                class="icon-btn">
+                class="header-btn">
 
-            🔔
+            <svg class="icon"
+                 viewBox="0 0 24 24">
+
+                <path d="M12 22a2.5 2.5 0 0 0 2.5-2.5h-5A2.5 2.5 0 0 0 12 22ZM18 16V11A6 6 0 1 0 6 11V16L4 18V19H20V18Z"
+                      fill="currentColor"/>
+
+            </svg>
 
         </button>
 
@@ -69,11 +73,24 @@
 
     <div class="search-box">
 
-        <span class="search-icon">
+        <svg class="icon"
+             viewBox="0 0 24 24">
 
-            🔍
+            <circle cx="11"
+                    cy="11"
+                    r="7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"/>
 
-        </span>
+            <line x1="16.5"
+                  y1="16.5"
+                  x2="21"
+                  y2="21"
+                  stroke="currentColor"
+                  stroke-width="2"/>
+
+        </svg>
 
         <input type="text"
                id="searchInput"
@@ -91,65 +108,38 @@
 
 <section class="category-section">
 
-    <button class="category active">
+    <button class="category active">For You</button>
 
-        For You
+    <button class="category">Trending</button>
 
-    </button>
+    <button class="category">Gaming</button>
 
-    <button class="category">
+    <button class="category">Movies</button>
 
-        Trending
+    <button class="category">Music</button>
 
-    </button>
+    <button class="category">AI</button>
 
-    <button class="category">
+    <button class="category">News</button>
 
-        Gaming
-
-    </button>
-
-    <button class="category">
-
-        Movies
-
-    </button>
-
-    <button class="category">
-
-        Music
-
-    </button>
-
-    <button class="category">
-
-        AI
-
-    </button>
-
-    <button class="category">
-
-        News
-
-    </button>
-
-    <button class="category">
-
-        Sports
-
-    </button>
+    <button class="category">Sports</button>
 
 </section>
 
 <main class="feed">
 
-    <div id="videoContainer">
+<div id="videoContainer">
+        <!-- Video Card 1 -->
+
         <article class="video-card">
 
             <div class="thumbnail">
 
-                <img src="../assets/demo-thumbnail.jpg"
-                     alt="Video Thumbnail">
+                <div class="thumbnail-placeholder">
+
+                    VIDEO
+
+                </div>
 
                 <span class="duration">
 
@@ -161,10 +151,9 @@
 
             <div class="video-details">
 
-                <div class="channel-image">
+                <div class="channel-avatar">
 
-                    <img src="../assets/profile.png"
-                         alt="Channel">
+                    BP
 
                 </div>
 
@@ -190,25 +179,69 @@
 
                 <button>
 
-                    👍 Like
+                    <svg class="action-icon" viewBox="0 0 24 24">
+
+                        <path d="M7 10V21H3V10H7ZM22 11C22 9.9 21.1 9 20 9H14.3L15.2 4.7V4.4C15.2 4 15 3.6 14.7 3.3L13.6 2L7.6 8C7.2 8.4 7 8.9 7 9.4V19C7 20.1 7.9 21 9 21H18C18.8 21 19.5 20.5 19.8 19.8L22 12.5V11Z"
+                              fill="currentColor"/>
+
+                    </svg>
+
+                    <span>
+
+                        Like
+
+                    </span>
 
                 </button>
 
                 <button>
 
-                    💬 Comment
+                    <svg class="action-icon" viewBox="0 0 24 24">
+
+                        <path d="M4 4H20V16H6L4 18V4Z"
+                              fill="currentColor"/>
+
+                    </svg>
+
+                    <span>
+
+                        Comment
+
+                    </span>
 
                 </button>
 
                 <button>
 
-                    ↗ Share
+                    <svg class="action-icon" viewBox="0 0 24 24">
+
+                        <path d="M4 12L20 4L16 20L11 13L4 12Z"
+                              fill="currentColor"/>
+
+                    </svg>
+
+                    <span>
+
+                        Share
+
+                    </span>
 
                 </button>
 
                 <button>
 
-                    💾 Save
+                    <svg class="action-icon" viewBox="0 0 24 24">
+
+                        <path d="M6 3H18V21L12 17L6 21V3Z"
+                              fill="currentColor"/>
+
+                    </svg>
+
+                    <span>
+
+                        Save
+
+                    </span>
 
                 </button>
 
@@ -216,12 +249,17 @@
 
         </article>
 
+        <!-- Video Card 2 -->
+
         <article class="video-card">
 
             <div class="thumbnail">
 
-                <img src="../assets/demo-thumbnail2.jpg"
-                     alt="Video Thumbnail">
+                <div class="thumbnail-placeholder">
+
+                    VIDEO
+
+                </div>
 
                 <span class="duration">
 
@@ -233,10 +271,9 @@
 
             <div class="video-details">
 
-                <div class="channel-image">
+                <div class="channel-avatar">
 
-                    <img src="../assets/profile2.png"
-                         alt="Channel">
+                    BP
 
                 </div>
 
@@ -258,34 +295,6 @@
 
             </div>
 
-            <div class="video-actions">
-
-                <button>
-
-                    👍 Like
-
-                </button>
-
-                <button>
-
-                    💬 Comment
-
-                </button>
-
-                <button>
-
-                    ↗ Share
-
-                </button>
-
-                <button>
-
-                    💾 Save
-
-                </button>
-
-            </div>
-
         </article>
 
     </div>
@@ -293,11 +302,14 @@
 </main>
 
 <nav class="bottom-nav">
+    <a href="home.html" class="active">
 
-    <a href="home.html"
-       class="active">
+        <svg class="nav-icon" viewBox="0 0 24 24">
 
-        🏠
+            <path d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
+                  fill="currentColor"/>
+
+        </svg>
 
         <span>
 
@@ -309,18 +321,29 @@
 
     <a href="message.html">
 
-        💬
+        <svg class="nav-icon" viewBox="0 0 24 24">
+
+            <path d="M4 12L20 4L16 20L11 13L4 12Z"
+                  fill="currentColor"/>
+
+        </svg>
 
         <span>
 
-            Chat
+            Messages
 
         </span>
 
     </a>
+
     <a href="reels.html">
 
-        🎬
+        <svg class="nav-icon" viewBox="0 0 24 24">
+
+            <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
+                  fill="currentColor"/>
+
+        </svg>
 
         <span>
 
@@ -332,7 +355,12 @@
 
     <a href="profile.html">
 
-        👤
+        <svg class="nav-icon" viewBox="0 0 24 24">
+
+            <path d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
+                  fill="currentColor"/>
+
+        </svg>
 
         <span>
 
@@ -346,41 +374,36 @@
 
 <!-- Upload Popup -->
 
-<div id="uploadMenu" class="upload-menu hidden">
+<div id="uploadMenu"
+     class="upload-menu hidden">
 
     <button id="videoUpload">
 
-        📹 Upload Video
+        Upload Video
 
     </button>
 
     <button id="reelUpload">
 
-        🎬 Upload Reel
+        Upload Reel
 
     </button>
 
     <button id="photoUpload">
 
-        🖼 Upload Photo
+        Upload Photo
 
     </button>
 
     <button id="linkUpload">
 
-        🔗 Import Link
+        Import Link
 
     </button>
 
     <button id="aiCreate">
 
-        🤖 AI Create
-
-    </button>
-
-    <button id="draftBtn">
-
-        📁 Drafts
+        AI Generate
 
     </button>
 
@@ -391,4 +414,5 @@
 
 </body>
 
-</html>
+</html>    
+    
