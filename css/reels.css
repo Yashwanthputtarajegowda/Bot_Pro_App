@@ -1,1 +1,716 @@
+/* ==========================================
+   Bot Pro - Reels CSS
+   Final Version - Part 1
+========================================== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:#000000;
+
+    color:#FFFFFF;
+
+}
+
+.reels-container{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+
+/* ==========================
+   TOP BAR
+========================== */
+
+.top-bar{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    z-index:100;
+
+    background:linear-gradient(
+        rgba(0,0,0,.55),
+        transparent
+    );
+
+}
+
+.top-bar h2{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+}
+
+.top-tabs{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+.top-tabs button{
+
+    border:none;
+
+    background:none;
+
+    color:#A0A0A0;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.top-tabs button.active{
+
+    color:#FFFFFF;
+
+    border-bottom:3px solid #8A2BE2;
+
+    padding-bottom:6px;
+
+}
+
+.camera-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1C1C1C;
+
+    color:#FFFFFF;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.camera-btn:hover{
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+}
+
+.top-icon{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+/* ==========================
+   REEL
+========================== */
+
+.reel-card{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+
+.video-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        180deg,
+        #202020,
+        #000000
+    );
+
+    font-size:40px;
+
+    color:#555555;
+
+    font-weight:bold;
+
+}
+/* ==========================
+   RIGHT ACTIONS
+========================== */
+
+.right-actions{
+
+    position:absolute;
+
+    right:14px;
+
+    bottom:130px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:20px;
+
+    z-index:20;
+
+}
+
+/* ==========================
+   CREATOR
+========================== */
+
+.creator{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.creator-avatar{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#FFFFFF;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    border:3px solid #FFFFFF;
+
+}
+
+.follow-btn{
+
+    position:absolute;
+
+    bottom:-8px;
+
+    width:24px;
+
+    height:24px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#8A2BE2;
+
+    color:#FFFFFF;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+/* ==========================
+   ACTION BUTTONS
+========================== */
+
+.action-btn{
+
+    border:none;
+
+    background:none;
+
+    color:#FFFFFF;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:6px;
+
+    cursor:pointer;
+
+}
+
+.action-icon{
+
+    width:30px;
+
+    height:30px;
+
+}
+
+.action-btn span{
+
+    font-size:13px;
+
+    color:#FFFFFF;
+
+}
+
+/* ==========================
+   REEL INFO
+========================== */
+
+.reel-info{
+
+    position:absolute;
+
+    left:18px;
+
+    right:90px;
+
+    bottom:95px;
+
+    z-index:20;
+
+}
+
+.creator-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:10px;
+
+}
+
+.creator-name{
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+.follow{
+
+    border:none;
+
+    background:#8A2BE2;
+
+    color:#FFFFFF;
+
+    padding:6px 16px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.follow:hover{
+
+    background:#A020F0;
+
+}
+
+.caption{
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    margin-bottom:10px;
+
+}
+
+.hashtags{
+
+    color:#8A2BE2;
+
+    font-size:14px;
+
+    margin-bottom:12px;
+
+}
+
+.audio-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#DDDDDD;
+
+    font-size:13px;
+
+}
+
+.audio-icon{
+
+    width:18px;
+
+    height:18px;
+
+}
+/* ==========================
+   BOTTOM NAVIGATION
+========================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:74px;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(12px);
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.bottom-nav a{
+
+    flex:1;
+
+    text-decoration:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#8A8A8A;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a.active{
+
+    color:#8A2BE2;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#FFFFFF;
+
+}
+
+.nav-icon{
+
+    width:24px;
+
+    height:24px;
+
+}
+
+.bottom-nav span{
+
+    font-size:12px;
+
+    font-weight:500;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:0;
+
+}
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.reel-info{
+
+    animation:fadeUp .45s ease;
+
+}
+
+.right-actions{
+
+    animation:fadeUp .55s ease;
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:768px){
+
+    .top-bar{
+
+        padding:0 14px;
+
+    }
+
+    .top-bar h2{
+
+        font-size:30px;
+
+    }
+
+    .right-actions{
+
+        right:12px;
+
+        bottom:125px;
+
+    }
+
+    .reel-info{
+
+        left:14px;
+
+        right:82px;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:480px){
+
+    .top-bar{
+
+        height:66px;
+
+        padding:0 12px;
+
+    }
+
+    .top-bar h2{
+
+        font-size:26px;
+
+    }
+
+    .top-tabs{
+
+        gap:12px;
+
+    }
+
+    .top-tabs button{
+
+        font-size:14px;
+
+    }
+
+    .camera-btn{
+
+        width:40px;
+
+        height:40px;
+
+    }
+
+    .creator-avatar{
+
+        width:54px;
+
+        height:54px;
+
+        font-size:18px;
+
+    }
+
+    .action-icon{
+
+        width:28px;
+
+        height:28px;
+
+    }
+
+    .action-btn span{
+
+        font-size:12px;
+
+    }
+
+    .reel-info{
+
+        left:12px;
+
+        right:78px;
+
+        bottom:90px;
+
+    }
+
+    .caption{
+
+        font-size:14px;
+
+    }
+
+    .hashtags{
+
+        font-size:13px;
+
+    }
+
+    .audio-info{
+
+        font-size:12px;
+
+    }
+
+    .bottom-nav{
+
+        height:70px;
+
+    }
+
+    .nav-icon{
+
+        width:22px;
+
+        height:22px;
+
+    }
+
+    .bottom-nav span{
+
+        font-size:11px;
+
+    }
+
+}
