@@ -1,1 +1,567 @@
+/* ==========================================
+   Bot Pro Notifications CSS
+   Final Version - Part 1
+========================================== */
 
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:#0B0B0B;
+
+    color:#FFFFFF;
+
+    overflow-x:hidden;
+
+}
+
+.notifications-page{
+
+    padding:16px;
+
+    padding-bottom:95px;
+
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.notification-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.notification-header h2{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.settings-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1A1A1A;
+
+    color:#FFFFFF;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.settings-btn:hover{
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+}
+
+.header-icon{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+/* ==========================
+   FILTER TABS
+========================== */
+
+.filter-tabs{
+
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    margin-bottom:24px;
+
+}
+
+.filter-tabs::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.filter-tabs button{
+
+    border:none;
+
+    border-radius:22px;
+
+    background:#1A1A1A;
+
+    color:#BFBFBF;
+
+    padding:10px 18px;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.filter-tabs button.active{
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+    color:#FFFFFF;
+
+}
+
+/* ==========================
+   SECTION TITLE
+========================== */
+
+.notification-section{
+
+    margin-bottom:24px;
+
+}
+
+.notification-section h3{
+
+    font-size:18px;
+
+    margin-bottom:14px;
+
+    color:#FFFFFF;
+
+}
+/* ==========================
+   NOTIFICATION CARD
+========================== */
+
+.notification-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px;
+
+    margin-bottom:14px;
+
+    background:#181818;
+
+    border:1px solid #292929;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+.notification-card:hover{
+
+    border-color:#8A2BE2;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   USER AVATAR
+========================== */
+
+.user-avatar{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#FFFFFF;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.notification-content{
+
+    flex:1;
+
+}
+
+.notification-content h4{
+
+    font-size:15px;
+
+    margin-bottom:4px;
+
+}
+
+.notification-content p{
+
+    color:#CFCFCF;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+.notification-content span{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#8D8D8D;
+
+    font-size:12px;
+
+}
+
+/* ==========================
+   THUMBNAIL
+========================== */
+
+.notification-thumb{
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #2B2B2B,
+        #131313
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#7F7F7F;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.follow-back,
+.view-btn{
+
+    min-width:90px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #6A00FF,
+        #A020F0
+    );
+
+    color:#FFFFFF;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.follow-back:hover,
+.view-btn:hover{
+
+    opacity:.9;
+
+    transform:translateY(-2px);
+
+}
+/* ==========================
+   BOTTOM NAVIGATION
+========================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:72px;
+
+    background:#101010;
+
+    border-top:1px solid #252525;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.bottom-nav a{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    text-decoration:none;
+
+    color:#909090;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a.active{
+
+    color:#8A2BE2;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#FFFFFF;
+
+}
+
+.nav-icon{
+
+    width:24px;
+
+    height:24px;
+
+}
+
+.bottom-nav span{
+
+    font-size:12px;
+
+}
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.notification-card{
+
+    animation:fadeUp .45s ease;
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:480px){
+
+    .notifications-page{
+
+        padding:14px;
+
+        padding-bottom:90px;
+
+    }
+
+    .notification-header h2{
+
+        font-size:25px;
+
+    }
+
+    .notification-card{
+
+        gap:12px;
+
+        padding:12px;
+
+    }
+
+    .user-avatar{
+
+        width:46px;
+
+        height:46px;
+
+        font-size:16px;
+
+    }
+
+    .notification-thumb{
+
+        width:56px;
+
+        height:56px;
+
+        font-size:11px;
+
+    }
+
+    .follow-back,
+    .view-btn{
+
+        min-width:78px;
+
+        height:34px;
+
+        font-size:12px;
+
+    }
+
+    .notification-content h4{
+
+        font-size:14px;
+
+    }
+
+    .notification-content p{
+
+        font-size:13px;
+
+    }
+
+    .notification-content span{
+
+        font-size:11px;
+
+    }
+
+    .bottom-nav{
+
+        height:70px;
+
+    }
+
+    .nav-icon{
+
+        width:22px;
+
+        height:22px;
+
+    }
+
+    .bottom-nav span{
+
+        font-size:11px;
+
+    }
+
+}
