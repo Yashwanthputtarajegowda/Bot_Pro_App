@@ -400,3 +400,217 @@ body{
 .bottom-nav a:hover{
     color:#ffffff;
 }
+/* ==========================================
+   UPLOAD MENU
+========================================== */
+
+.upload-menu{
+    position:fixed;
+
+    top:80px;
+    right:20px;
+
+    width:220px;
+
+    background:#171717;
+
+    border:1px solid #2f2f2f;
+
+    border-radius:16px;
+
+    padding:10px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    z-index:1500;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.45);
+}
+
+.upload-menu.hidden{
+    display:none;
+}
+
+.upload-menu button{
+    width:100%;
+
+    border:none;
+
+    background:#202020;
+
+    color:#ffffff;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.3s;
+}
+
+.upload-menu button:hover{
+    background:#8A2BE2;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#8A2BE2;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#a855f7;
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.video-card{
+    animation:fadeUp .4s ease;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:768px){
+
+    .header{
+        padding:14px 16px;
+    }
+
+    .logo{
+        font-size:26px;
+    }
+
+    .search-section{
+        padding:16px;
+    }
+
+    .thumbnail{
+        height:200px;
+    }
+
+    .video-actions{
+        flex-wrap:wrap;
+    }
+
+    .video-actions button{
+        min-width:48%;
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .header{
+        padding:12px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .icon-btn{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .search-section{
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .ai-btn{
+        width:100%;
+    }
+
+    .category-section{
+        padding:0 12px 14px;
+    }
+
+    .feed{
+        padding:0 12px 95px;
+    }
+
+    .thumbnail{
+        height:180px;
+    }
+
+    .video-details{
+        gap:10px;
+    }
+
+    .channel-image img{
+        width:45px;
+        height:45px;
+    }
+
+    .video-info h3{
+        font-size:16px;
+    }
+
+    .video-info p{
+        font-size:13px;
+    }
+
+    .video-actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .bottom-nav{
+        height:70px;
+    }
+
+    .bottom-nav a{
+        font-size:20px;
+    }
+
+    .bottom-nav a span{
+        font-size:11px;
+    }
+
+}
