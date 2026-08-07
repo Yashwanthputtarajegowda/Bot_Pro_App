@@ -67,3 +67,68 @@ const videoPreview=document.getElementById("videoPreview");
 
 const coverPreview=document.getElementById("coverPreview");
 const reelPreview=document.getElementById("reelPreview");
+function imagePreview(input, preview){
+
+    preview.innerHTML="";
+
+    if(input.files.length===0) return;
+
+    const img=document.createElement("img");
+
+    img.src=URL.createObjectURL(input.files[0]);
+
+    preview.appendChild(img);
+
+}
+
+function videoPreviewShow(input, preview){
+
+    preview.innerHTML="";
+
+    if(input.files.length===0) return;
+
+    const video=document.createElement("video");
+
+    video.src=URL.createObjectURL(input.files[0]);
+
+    video.controls=true;
+
+    preview.appendChild(video);
+
+}
+
+thumbnailInput.addEventListener("change",()=>{
+
+    imagePreview(thumbnailInput,thumbnailPreview);
+
+});
+
+videoInput.addEventListener("change",()=>{
+
+    videoPreviewShow(videoInput,videoPreview);
+
+});
+
+reelCover.addEventListener("change",()=>{
+
+    imagePreview(reelCover,coverPreview);
+
+});
+
+reelVideo.addEventListener("change",()=>{
+
+    videoPreviewShow(reelVideo,reelPreview);
+
+});
+
+const progressFill=document.getElementById("progressFill");
+const progressText=document.getElementById("progressText");
+const status=document.getElementById("status");
+
+function updateProgress(percent,text){
+
+    progressFill.style.width=percent+"%";
+
+    progressText.innerHTML=text;
+
+}
