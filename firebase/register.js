@@ -1,77 +1,99 @@
+// ==========================================
+// Bot Pro Register
+// ==========================================
+
 import { auth, database } from "./config.js";
 
 import {
-  createUserWithEmailAndPassword
+    createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
-  ref,
-  set
+    ref,
+    set
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+// ==========================================
+// Register Button
+// ==========================================
 
 const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
 
-registerBtn.addEventListener("click", async () => {
+    registerBtn.addEventListener("click", async () => {
 
-const fullName = document.getElementById("fullName").value.trim();
+        const fullName =
+        document.getElementById("fullName").value.trim();
 
-const username = document.getElementById("username").value.trim();
+        const username =
+        document.getElementById("username").value.trim();
 
-const email = document.getElementById("email").value.trim();
+        const email =
+        document.getElementById("email").value.trim();
 
-const password = document.getElementById("password").value;
+        const password =
+        document.getElementById("password").value;
 
-const confirmPassword = document.getElementById("confirmPassword").value;
+        const confirmPassword =
+        document.getElementById("confirmPassword").value;
 
-if (
-!fullName ||
-!username ||
-!email ||
-!password ||
-!confirmPassword
-){
-alert("Please fill all fields");
-return;
-}
+        // Validation
 
-if(password !== confirmPassword){
-alert("Passwords do not match");
-return;
-}
+        if (
+            !fullName ||
+            !username ||
+            !email ||
+            !password ||
+            !confirmPassword
+        ) {
 
-try{
+            alert("Please fill all fields");
+            return;
 
-const userCredential =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+        }
 
-const user = userCredential.user;
+        if (password !== confirmPassword) {
 
-await set(
-ref(database,"users/"+user.uid),
-{
-fullName,
-username,
-email,
-createdAt:Date.now()
-}
-);
+            alert("Passwords do not match");
+            return;
 
-alert("Account Created Successfully");
+        }
 
-window.location.href="login.html";
+        try {
 
-}catch(error){
+            const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-alert(error.message);
+            const user = userCredential.user;
 
-}
+            await set(
+                ref(database, "users/" + user.uid),
+                {
+                    uid: user.uid,
+                    fullName: fullName,
+                    username: username,
+                    email: email,
+                    createdAt: Date.now()
+                }
+            );
 
-});
+            alert("Account Created Successfully!");
+
+            window.location.href = "login.html";
+
+        }
+
+        catch (error) {
+
+            alert(error.message);
+
+        }
+
+    });
 
 }
