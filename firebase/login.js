@@ -1,51 +1,92 @@
 import { auth } from "./config.js";
 
 import {
-
-signInWithEmailAndPassword
-
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-const loginBtn=document.getElementById("loginBtn");
+// Elements
+const loginBtn = document.getElementById("loginBtn");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
 
-if(loginBtn){
+// Password Show / Hide
+if (togglePassword) {
 
-loginBtn.addEventListener("click",async()=>{
+    togglePassword.addEventListener("click", () => {
 
-const email=document.getElementById("email").value.trim();
+        if (passwordInput.type === "password") {
 
-const password=document.getElementById("password").value;
+            passwordInput.type = "text";
+            togglePassword.textContent = "visibility_off";
 
-if(!email || !password){
+        } else {
 
-alert("Enter Email and Password");
+            passwordInput.type = "password";
+            togglePassword.textContent = "visibility";
 
-return;
+        }
+
+    });
+
+}
+
+// Login
+if (loginBtn) {
+
+    loginBtn.addEventListener("click", async () => {
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+
+            alert("Please enter Email and Password.");
+            return;
+
+        }
+
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Logging in...";
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            alert("Login Successful");
+
+            window.location.href = "home.html";
+
+        } catch (error) {
+
+            alert(error.message);
+
+        } finally {
+
+            loginBtn.disabled = false;
+            loginBtn.textContent = "Login";
+
+        }
+
+    });
 
 }
 
-try{
+// Enter Key Support
+document.addEventListener("keydown", (e) => {
 
-await signInWithEmailAndPassword(
+    if (e.key === "Enter") {
 
-auth,
+        if (loginBtn) {
 
-email,
+            loginBtn.click();
 
-password
+        }
 
-);
-
-alert("Login Successful");
-
-window.location.href="home.html";
-
-}catch(error){
-
-alert(error.message);
-
-}
+    }
 
 });
-
-}
