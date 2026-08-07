@@ -1,106 +1,220 @@
 // =========================================
 // Bot Pro Profile JS
-// Final Version - Part 1
+// Firebase Version - Part 1
 // =========================================
 
+import { auth, database } from "../firebase/config.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+    ref,
+    get
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+// =========================================
 // Elements
+// =========================================
 
-const editProfileBtn =
-document.querySelector(".edit-profile");
+const profileName =
+document.getElementById("profileName");
 
-const shareProfileBtn =
-document.querySelector(".share-profile");
+const profileUsername =
+document.getElementById("profileUsername");
 
-const managePlanBtn =
-document.querySelector(".premium-card button");
+const profileBio =
+document.getElementById("profileBio");
 
-const dashboardCards =
-document.querySelectorAll(".dashboard-card");
+const profileAvatar =
+document.getElementById("profileAvatar");
+
+const postCount =
+document.getElementById("postCount");
+
+const followersCount =
+document.getElementById("followersCount");
+
+const followingCount =
+document.getElementById("followingCount");
+
+const videoCount =
+document.getElementById("videoCount");
+
+const reelCount =
+document.getElementById("reelCount");
+
+const savedCount =
+document.getElementById("savedCount");
+
+const likesCount =
+document.getElementById("likesCount");
+
+const earningsCount =
+document.getElementById("earningsCount");
+
+const logoutButton =
+document.querySelector(".logout-btn");
+
+// =========================================
+// Load Current User
+// =========================================
+
+onAuthStateChanged(auth, async (user)=>{
+
+    if(!user){
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+    try{
+
+        const snapshot = await get(
+
+            ref(database,"users/" + user.uid)
+
+        );
+
+        if(snapshot.exists()){
+
+            const data = snapshot.val();
+
+            profileName.textContent =
+            data.fullName || "Bot Pro User";
+
+            profileUsername.textContent =
+            "@" + (data.username || "user");
+
+            profileBio.textContent =
+            data.bio ||
+            "Welcome to Bot Pro 🚀";
+
+            profileAvatar.textContent =
+            data.fullName
+            ? data.fullName.charAt(0).toUpperCase()
+            : "B";
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+});
+// =========================================
+// Dashboard Default Values
+// =========================================
+
+postCount.textContent = "0";
+
+followersCount.textContent = "0";
+
+followingCount.textContent = "0";
+
+videoCount.textContent = "0";
+
+reelCount.textContent = "0";
+
+savedCount.textContent = "0";
+
+likesCount.textContent = "0";
+
+earningsCount.textContent = "₹0.00";
 
 // =========================================
 // Edit Profile
 // =========================================
 
-editProfileBtn.addEventListener("click",()=>{
+const editProfileBtn =
+document.querySelector(".edit-profile");
 
-    alert(
-        "Edit Profile Coming Soon"
-    );
+if(editProfileBtn){
 
-});
+    editProfileBtn.addEventListener("click",()=>{
+
+        alert(
+            "Edit Profile Feature Coming Soon"
+        );
+
+    });
+
+}
 
 // =========================================
 // Share Profile
 // =========================================
 
-shareProfileBtn.addEventListener("click",()=>{
+const shareProfileBtn =
+document.querySelector(".share-profile");
 
-    if(navigator.share){
+if(shareProfileBtn){
 
-        navigator.share({
+    shareProfileBtn.addEventListener("click",async()=>{
 
-            title:"Bot Pro Profile",
+        if(navigator.share){
 
-            text:"Check out my Bot Pro profile!",
+            try{
 
-            url:window.location.href
+                await navigator.share({
 
-        });
+                    title:"Bot Pro",
 
-    }
+                    text:"Check out my Bot Pro profile!",
 
-    else{
+                    url:window.location.href
+
+                });
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+            }
+
+        }
+
+        else{
+
+            alert(
+                "Sharing is not supported on this device."
+            );
+
+        }
+
+    });
+
+}
+
+// =========================================
+// Premium Button
+// =========================================
+
+const premiumButton =
+document.querySelector(".premium-card button");
+
+if(premiumButton){
+
+    premiumButton.addEventListener("click",()=>{
 
         alert(
-            "Sharing is not supported on this device."
-        );
-
-    }
-
-});
-
-// =========================================
-// Premium
-// =========================================
-
-managePlanBtn.addEventListener("click",()=>{
-
-    alert(
-        "Premium Plans Coming Soon"
-    );
-
-});
-
-// =========================================
-// Dashboard Cards
-// =========================================
-
-dashboardCards.forEach((card)=>{
-
-    card.addEventListener("click",()=>{
-
-        const title =
-        card.querySelector("h4").textContent;
-
-        alert(
-            title + " Page Coming Soon"
+            "Premium Plans Coming Soon"
         );
 
     });
 
-});
+}
 
-// =========================================
-// Page Loaded
-// =========================================
-
-window.addEventListener("load",()=>{
-
-    console.log(
-        "Bot Pro Profile Loaded"
-    );
-
-});
 // =========================================
 // Content Tabs
 // =========================================
@@ -135,69 +249,68 @@ videoCards.forEach((card,index)=>{
 
     card.addEventListener("click",()=>{
 
-        alert(
-            "Opening Video " + (index + 1)
+        console.log(
+
+            "Open Video",
+
+            index + 1
+
         );
 
     });
 
 });
-
 // =========================================
-// Settings
+// Firebase Logout
 // =========================================
 
-const settingsButtons =
-document.querySelectorAll(".settings-card button");
+if(logoutButton){
 
-settingsButtons.forEach((button)=>{
+    logoutButton.addEventListener("click",async()=>{
 
-    button.addEventListener("click",()=>{
+        const confirmLogout = confirm(
 
-        const title =
-        button.textContent.trim();
+            "Are you sure you want to log out?"
 
-        if(title !== "Log Out"){
+        );
+
+        if(!confirmLogout){
+
+            return;
+
+        }
+
+        try{
+
+            await signOut(auth);
 
             alert(
-                title + " Coming Soon"
+
+                "Logged Out Successfully"
+
+            );
+
+            window.location.href = "login.html";
+
+        }
+
+        catch(error){
+
+            alert(
+
+                error.message
+
             );
 
         }
 
     });
 
-});
+}
 
 // =========================================
-// Logout
-// =========================================
-
-const logoutButton =
-document.querySelector(".logout-btn");
-
-logoutButton.addEventListener("click",()=>{
-
-    const confirmLogout =
-    confirm(
-        "Are you sure you want to log out?"
-    );
-
-    if(confirmLogout){
-
-        alert(
-            "Logged Out Successfully"
-        );
-
-    }
-
-});
-// =========================================
-// Bot Pro Profile JS
-// Final Version - Part 3
-// =========================================
-
 // Bottom Navigation
+// =========================================
 
 const navLinks =
 document.querySelectorAll(".bottom-nav a");
@@ -225,51 +338,46 @@ navLinks.forEach((link)=>{
 const animatedItems =
 document.querySelectorAll(
 
-    ".profile-card, .premium-card, .dashboard-card, .video-card"
+".profile-card,.premium-card,.dashboard-card,.video-card"
 
 );
 
 animatedItems.forEach((item,index)=>{
 
-    item.style.opacity="0";
+    item.style.opacity = "0";
 
     setTimeout(()=>{
 
-        item.style.transition="opacity .4s ease";
+        item.style.transition =
 
-        item.style.opacity="1";
+        "opacity .4s ease";
 
-    },index*80);
+        item.style.opacity = "1";
+
+    },index * 80);
 
 });
 
 // =========================================
-// Future Firebase Features
+// Future Telegram Integration
 // =========================================
 
-// Load User Profile
-// Load Followers
-// Load Following
+// Load Telegram Profile Photo
 // Load User Videos
 // Load User Reels
-// Load Saved Items
+// Load Saved Posts
+// Load Followers
+// Load Following
 // Load Earnings
 // Update Profile
-// Upload Profile Photo
-
-// =========================================
-// Future Features
-// =========================================
-
-// Creator Verification
-// Referral System
-// Wallet
-// Analytics
-// Monetization
-// Deep Link Share
+// Upload Avatar
 
 // =========================================
 // Ready
 // =========================================
 
-console.log("Bot Pro Profile Ready");
+console.log(
+
+    "Bot Pro Firebase Profile Ready"
+
+);
