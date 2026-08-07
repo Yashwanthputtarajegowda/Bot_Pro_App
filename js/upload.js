@@ -132,3 +132,117 @@ function updateProgress(percent,text){
     progressText.innerHTML=text;
 
 }
+const uploadBtn=document.getElementById("uploadBtn");
+
+if(uploadBtn){
+
+uploadBtn.addEventListener("click",async()=>{
+
+    const title=document.getElementById("title").value.trim();
+    const description=document.getElementById("description").value.trim();
+    const category=document.getElementById("category").value;
+    const visibility=document.getElementById("visibility").value;
+    const video=document.getElementById("video").files[0];
+    const thumbnail=document.getElementById("thumbnail").files[0];
+
+    if(!title || !description || !video){
+
+        status.innerHTML="⚠ Please fill all required fields.";
+        return;
+
+    }
+
+    uploadBtn.disabled=true;
+
+    updateProgress(10,"Preparing Upload...");
+
+    const formData=new FormData();
+
+    formData.append("title",title);
+    formData.append("description",description);
+    formData.append("category",category);
+    formData.append("visibility",visibility);
+    formData.append("video",video);
+
+    if(thumbnail){
+
+        formData.append("thumbnail",thumbnail);
+
+    }
+
+    try{
+
+        updateProgress(50,"Uploading...");
+
+        const response=await fetch("/api/upload",{
+
+            method:"POST",
+            body:formData
+
+        });
+
+        const result=await response.json();
+
+        if(result.success){
+
+            updateProgress(100,"Upload Complete");
+
+            status.innerHTML="✅ Video Uploaded Successfully";
+
+        }else{
+
+            updateProgress(0,"Upload Failed");
+
+            status.innerHTML=result.message || "Upload Failed";
+
+        }
+
+    }catch(error){
+
+        updateProgress(0,"Network Error");
+
+        status.innerHTML="❌ Network Error";
+
+    }
+
+    uploadBtn.disabled=false;
+
+});
+
+}
+
+const fetchLinkBtn=document.getElementById("fetchLinkBtn");
+
+if(fetchLinkBtn){
+
+fetchLinkBtn.addEventListener("click",()=>{
+
+    alert("Link Import will be connected with backend.");
+
+});
+
+}
+
+const aiVideoBtn=document.getElementById("aiVideoBtn");
+
+if(aiVideoBtn){
+
+aiVideoBtn.addEventListener("click",()=>{
+
+    alert("AI Title & Description feature coming soon.");
+
+});
+
+}
+
+const aiReelBtn=document.getElementById("aiReelBtn");
+
+if(aiReelBtn){
+
+aiReelBtn.addEventListener("click",()=>{
+
+    alert("AI Caption feature coming soon.");
+
+});
+
+}
