@@ -1,9 +1,32 @@
 // =========================================
 // Bot Pro Upload JS
-// Final Version - Part 1
+// Railway Version - Part 1
 // =========================================
 
+// =========================================
+// Backend API
+// =========================================
+
+const API_URL =
+"https://bot-pro-backend-production.up.railway.app";
+
+// =========================================
+// File Input
+// =========================================
+
+const fileInput =
+document.createElement("input");
+
+fileInput.type = "file";
+
+fileInput.accept =
+"video/*,image/*";
+
+let selectedFile = null;
+
+// =========================================
 // Elements
+// =========================================
 
 const uploadTypes =
 document.querySelectorAll(".type-card");
@@ -52,36 +75,42 @@ uploadTypes.forEach((card)=>{
 
 chooseFileBtn.addEventListener("click",()=>{
 
-    alert(
-        "File Picker Coming Soon"
-    );
+    fileInput.click();
 
 });
 
 // =========================================
-// Remove Preview
+// File Selected
+// =========================================
+
+fileInput.addEventListener("change",()=>{
+
+    if(fileInput.files.length===0){
+
+        return;
+
+    }
+
+    selectedFile =
+    fileInput.files[0];
+
+    uploadPreview.textContent =
+    selectedFile.name;
+
+});
+
+// =========================================
+// Remove File
 // =========================================
 
 removeBtn.addEventListener("click",()=>{
 
+    selectedFile = null;
+
+    fileInput.value = "";
+
     uploadPreview.textContent =
     "Preview";
-
-    alert(
-        "Preview Removed"
-    );
-
-});
-
-// =========================================
-// Page Ready
-// =========================================
-
-window.addEventListener("load",()=>{
-
-    console.log(
-        "Bot Pro Upload Loaded"
-    );
 
 });
 // =========================================
@@ -97,7 +126,7 @@ document.querySelector(".thumb-preview");
 thumbnailButton.addEventListener("click",()=>{
 
     alert(
-        "Thumbnail Picker Coming Soon"
+        "Thumbnail Upload Coming Soon"
     );
 
 });
@@ -115,35 +144,122 @@ document.querySelector(".progress-fill");
 const progressText =
 document.querySelector("#progressText");
 
-uploadButton.addEventListener("click",()=>{
+// =========================================
+// Upload Button
+// =========================================
 
-    let progress = 0;
+uploadButton.addEventListener("click",async()=>{
+
+    if(!selectedFile){
+
+        alert("Please select a file.");
+
+        return;
+
+    }
+
+    uploadButton.disabled = true;
+
+    uploadButton.textContent = "Uploading...";
 
     progressFill.style.width = "0%";
 
     progressText.textContent = "0%";
 
-    const uploadInterval = setInterval(()=>{
+    const formData = new FormData();
 
-        progress += 5;
+    formData.append(
 
-        progressFill.style.width =
-        progress + "%";
+        "video",
 
-        progressText.textContent =
-        progress + "%";
+        selectedFile
 
-        if(progress >= 100){
+    );
 
-            clearInterval(uploadInterval);
+    try{
+
+        let progress = 0;
+
+        const animation = setInterval(()=>{
+
+            if(progress < 90){
+
+                progress += 5;
+
+                progressFill.style.width =
+                progress + "%";
+
+                progressText.textContent =
+                progress + "%";
+
+            }
+
+        },150);
+
+        const response = await fetch(
+
+            API_URL + "/api/upload/video",
+
+            {
+
+                method:"POST",
+
+                body:formData
+
+            }
+
+        );
+
+        clearInterval(animation);
+
+        const result =
+        await response.json();
+
+        if(result.success){
+
+            progressFill.style.width =
+            "100%";
+
+            progressText.textContent =
+            "100%";
 
             alert(
-                "Upload Complete (Demo)"
+
+                "Video Uploaded Successfully!"
+
             );
 
         }
 
-    },120);
+        else{
+
+            alert(
+
+                result.error ||
+
+                "Upload Failed"
+
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+
+            "Unable to connect to the server."
+
+        );
+
+    }
+
+    uploadButton.disabled = false;
+
+    uploadButton.textContent = "Upload";
 
 });
 
@@ -177,7 +293,7 @@ linkInput.addEventListener("input",()=>{
 
     console.log(
 
-        "Link :", 
+        "Link :",
 
         linkInput.value
 
@@ -204,20 +320,21 @@ tagsInput.addEventListener("change",()=>{
 
 });
 // =========================================
-// Bot Pro Upload JS
-// Final Version - Part 3
-// =========================================
-
 // Back Button
+// =========================================
 
 const backButton =
 document.querySelector(".back-btn");
 
-backButton.addEventListener("click",()=>{
+if(backButton){
 
-    window.history.back();
+    backButton.addEventListener("click",()=>{
 
-});
+        window.history.back();
+
+    });
+
+}
 
 // =========================================
 // Bottom Navigation
@@ -243,26 +360,90 @@ navLinks.forEach((link)=>{
 });
 
 // =========================================
-// Future Integrations
+// Reset Upload Form
 // =========================================
 
-// Firebase Upload
-// Telegram Storage Upload
-// Video Compression
-// Reel Processing
-// Thumbnail Generation
-// Link Preview Generation
-// Upload Resume
-// Upload History
-// Content Moderation
-// Creator Analytics
+function resetUploadForm(){
+
+    selectedFile = null;
+
+    fileInput.value = "";
+
+    uploadPreview.textContent = "Preview";
+
+    progressFill.style.width = "0%";
+
+    progressText.textContent = "0%";
+
+}
 
 // =========================================
-// Ready
+// Upload Success
+// =========================================
+
+function uploadSuccess(){
+
+    alert("✅ Upload completed successfully!");
+
+    resetUploadForm();
+
+}
+
+// =========================================
+// Future Firebase Integration
+// =========================================
+
+// Save Telegram file_id
+// Save Upload Details
+// Save Caption
+// Save Category
+// Save Tags
+// Save Thumbnail
+
+// =========================================
+// Future Home Feed
+// =========================================
+
+// Load Uploaded Videos
+// Load Uploaded Reels
+// Load Uploaded Images
+
+// =========================================
+// Future Profile
+// =========================================
+
+// Show User Uploads
+// Show Total Uploads
+// Show Analytics
+
+// =========================================
+// Future AI
+// =========================================
+
+// AI Caption Generator
+// AI Thumbnail Generator
+// AI Hashtag Generator
+
+// =========================================
+// Page Ready
+// =========================================
+
+window.addEventListener("load",()=>{
+
+    console.log(
+
+        "🚀 Bot Pro Upload Ready"
+
+    );
+
+});
+
+// =========================================
+// Console
 // =========================================
 
 console.log(
 
-    "Bot Pro Upload Ready"
+    "✅ Railway Upload Integration Loaded"
 
 );
