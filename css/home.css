@@ -1,164 +1,163 @@
-/* =========================
-   BOT PRO HOME
+/* ===================================================
+   Bot Pro - Home CSS
    Part 1
-========================= */
+=================================================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#0d0d0d;
+    font-family:'Poppins',sans-serif;
+    background:#0b0b0b;
     color:#ffffff;
-    padding-bottom:90px;
+    overflow-x:hidden;
 }
 
 /* HEADER */
 
 .header{
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:18px;
-
-    background:#111111;
-
     position:sticky;
     top:0;
-    z-index:999;
+    z-index:1000;
 
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 20px;
+
+    background:#111111;
+    border-bottom:1px solid #242424;
 }
 
 .logo{
+    display:flex;
+    align-items:center;
+    gap:6px;
 
-    font-size:34px;
+    font-size:30px;
     font-weight:700;
-    letter-spacing:2px;
-
 }
 
 .bot{
-
     color:#ffffff;
-
 }
 
 .pro{
-
     color:#8A2BE2;
-
 }
 
-.header-icons{
-
+.header-right{
     display:flex;
     align-items:center;
-    gap:18px;
-
+    gap:12px;
 }
 
-.header-icons .material-icons{
+.icon-btn{
+    width:46px;
+    height:46px;
 
+    border:none;
+    outline:none;
+
+    border-radius:50%;
+
+    background:#1b1b1b;
     color:#ffffff;
-    font-size:30px;
-    cursor:pointer;
-    transition:.3s;
 
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
 }
 
-.header-icons .material-icons:hover{
-
-    color:#8A2BE2;
-
+.icon-btn:hover{
+    background:#8A2BE2;
+    transform:scale(1.05);
 }
 
 /* SEARCH */
 
-.search-ai{
-
+.search-section{
     display:flex;
     align-items:center;
     gap:12px;
 
     padding:18px;
-
 }
 
 .search-box{
-
     flex:1;
 
     display:flex;
     align-items:center;
 
-    background:#1b1b1b;
+    background:#181818;
+
+    border:1px solid #2b2b2b;
 
     border-radius:30px;
 
-    height:50px;
+    padding:0 18px;
 
-    padding:0 16px;
-
+    height:52px;
 }
 
-.search-box .material-icons{
-
-    color:#888;
-
+.search-icon{
+    font-size:18px;
 }
 
 .search-box input{
-
     flex:1;
 
-    margin-left:10px;
+    margin-left:12px;
 
-    background:none;
     border:none;
     outline:none;
+
+    background:transparent;
 
     color:#ffffff;
 
     font-size:15px;
-
 }
 
 .search-box input::placeholder{
-
-    color:#777;
-
+    color:#888888;
 }
 
 .ai-btn{
-
     border:none;
 
-    height:50px;
+    width:72px;
+    height:52px;
 
-    padding:0 20px;
+    border-radius:28px;
 
-    border-radius:30px;
-
-    background:linear-gradient(135deg,#6A00FF,#B000FF);
+    background:linear-gradient(135deg,#6A00FF,#A020F0);
 
     color:#ffffff;
 
-    font-weight:bold;
+    font-size:15px;
+    font-weight:600;
 
     cursor:pointer;
 
+    transition:.3s;
 }
-/* =========================
-   CATEGORIES
-========================= */
 
-.categories{
+.ai-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(138,43,226,.35);
+}
 
+/* CATEGORY */
+
+.category-section{
     display:flex;
     gap:12px;
 
@@ -167,340 +166,34 @@ body{
     padding:0 18px 18px;
 
     scrollbar-width:none;
-
 }
 
-.categories::-webkit-scrollbar{
-
+.category-section::-webkit-scrollbar{
     display:none;
-
 }
 
-.categories button{
-
+.category{
     border:none;
 
-    background:#1f1f1f;
+    padding:11px 18px;
 
-    color:#ffffff;
-
-    padding:11px 20px;
-
-    border-radius:30px;
-
-    white-space:nowrap;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.categories button:hover{
-
-    background:#8A2BE2;
-
-}
-
-.categories .active{
-
-    background:#8A2BE2;
-
-}
-
-/* =========================
-   VIDEO FEED
-========================= */
-
-.feed{
-
-    padding:18px;
-
-}
-
-.video-card{
+    border-radius:25px;
 
     background:#1b1b1b;
 
-    border-radius:18px;
+    color:#ffffff;
 
-    overflow:hidden;
+    cursor:pointer;
 
-    margin-bottom:24px;
-
-    transition:.3s;
-
-}
-
-.video-card:hover{
-
-    transform:translateY(-4px);
-
-}
-
-.thumbnail{
-
-    width:100%;
-
-    height:230px;
-
-    background:linear-gradient(135deg,#333,#111);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    position:relative;
-
-    color:#666;
-
-    font-size:52px;
-
-    font-weight:bold;
-
-}
-
-.duration{
-
-    position:absolute;
-
-    right:12px;
-
-    bottom:12px;
-
-    background:#000;
-
-    color:#fff;
-
-    padding:5px 8px;
-
-    border-radius:6px;
-
-    font-size:13px;
-
-}
-
-.video-info{
-
-    padding:16px;
-
-}
-
-.video-info h3{
-
-    font-size:20px;
-
-    margin-bottom:8px;
-
-}
-
-.video-info p{
-
-    color:#9a9a9a;
-
-    font-size:14px;
-
-}
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
-
-.bottom-nav{
-
-    position:fixed;
-
-    bottom:0;
-    left:0;
-    right:0;
-
-    height:75px;
-
-    background:#111111;
-
-    border-top:1px solid #262626;
-
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-
-    z-index:999;
-
-}
-
-.bottom-nav a{
-
-    text-decoration:none;
-
-    color:#8d8d8d;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:4px;
+    white-space:nowrap;
 
     transition:.3s;
-
 }
 
-.bottom-nav a:hover{
-
-    color:#8A2BE2;
-
-}
-
-.bottom-nav a.active{
-
-    color:#8A2BE2;
-
-}
-
-.bottom-nav .material-icons{
-
-    font-size:28px;
-
-}
-
-.bottom-nav p{
-
-    font-size:12px;
-
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#111;
-
-}
-
-::-webkit-scrollbar-thumb{
-
+.category:hover{
     background:#8A2BE2;
-
-    border-radius:20px;
-
 }
 
-::-webkit-scrollbar-thumb:hover{
-
-    background:#B000FF;
-
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .header{
-
-        padding:16px;
-
-    }
-
-    .logo{
-
-        font-size:28px;
-
-    }
-
-    .search-ai{
-
-        padding:14px;
-
-        flex-direction:column;
-
-    }
-
-    .search-box{
-
-        width:100%;
-
-    }
-
-    .ai-btn{
-
-        width:100%;
-
-    }
-
-    .feed{
-
-        padding:14px;
-
-    }
-
-    .thumbnail{
-
-        height:200px;
-
-    }
-
-}
-
-@media(max-width:480px){
-
-    .logo{
-
-        font-size:26px;
-
-    }
-
-    .header-icons .material-icons{
-
-        font-size:26px;
-
-    }
-
-    .thumbnail{
-
-        height:180px;
-
-    }
-
-    .categories button{
-
-        padding:10px 16px;
-
-        font-size:14px;
-
-    }
-
-}
-
-/* =========================
-   FORCE FONT
-========================= */
-
-html,
-body,
-button,
-input,
-textarea,
-select,
-span,
-label,
-div,
-p,
-h1,
-h2,
-h3{
-
-    font-family:Arial,Helvetica,sans-serif !important;
-
+.category.active{
+    background:#8A2BE2;
 }
