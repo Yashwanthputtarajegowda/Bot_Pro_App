@@ -1,3 +1,7 @@
+// ==========================================
+// Bot Pro Login
+// ==========================================
+
 import { auth } from "./config.js";
 
 import {
@@ -5,7 +9,10 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-// User already logged in?
+// ==========================================
+// Auto Login Check
+// ==========================================
+
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
@@ -16,12 +23,22 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
+// ==========================================
+// Elements
+// ==========================================
+
 const loginBtn = document.getElementById("loginBtn");
+
 const emailInput = document.getElementById("email");
+
 const passwordInput = document.getElementById("password");
+
 const togglePassword = document.getElementById("togglePassword");
 
-// Password show / hide
+// ==========================================
+// Show / Hide Password
+// ==========================================
+
 if (togglePassword) {
 
     togglePassword.addEventListener("click", () => {
@@ -29,11 +46,15 @@ if (togglePassword) {
         if (passwordInput.type === "password") {
 
             passwordInput.type = "text";
+
             togglePassword.textContent = "visibility_off";
 
-        } else {
+        }
+
+        else {
 
             passwordInput.type = "password";
+
             togglePassword.textContent = "visibility";
 
         }
@@ -42,39 +63,58 @@ if (togglePassword) {
 
 }
 
+// ==========================================
 // Login
-loginBtn.addEventListener("click", async () => {
+// ==========================================
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+if (loginBtn) {
 
-    if (!email || !password) {
+    loginBtn.addEventListener("click", async () => {
 
-        alert("Enter Email and Password");
-        return;
+        const email = emailInput.value.trim();
 
-    }
+        const password = passwordInput.value;
 
-    loginBtn.disabled = true;
-    loginBtn.textContent = "Logging in...";
+        if (!email || !password) {
 
-    try {
+            alert("Please enter email and password.");
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+            return;
 
-        window.location.href = "home.html";
+        }
 
-    } catch (error) {
+        loginBtn.disabled = true;
 
-        alert(error.message);
+        loginBtn.textContent = "Logging in...";
 
-    }
+        try {
 
-    loginBtn.disabled = false;
-    loginBtn.textContent = "Login";
+            await signInWithEmailAndPassword(
 
-});
+                auth,
+
+                email,
+
+                password
+
+            );
+
+            alert("Login Successful!");
+
+            window.location.href = "home.html";
+
+        }
+
+        catch (error) {
+
+            alert(error.message);
+
+        }
+
+        loginBtn.disabled = false;
+
+        loginBtn.textContent = "Login";
+
+    });
+
+}
