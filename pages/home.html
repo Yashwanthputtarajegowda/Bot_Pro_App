@@ -2,189 +2,218 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOT PRO - Home</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
 
-<title>Bot Pro - Home</title>
-
-<link rel="stylesheet" href="../css/home.css">
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header">
+    <!-- HEADER -->
 
-<div class="logo">
-BOT PRO
-</div>
+    <header class="header">
 
-<div class="header-icons">
+        <div class="logo">
+            BOT PRO
+        </div>
 
-<span class="material-icons">
-chat
-</span>
+        <div class="header-icons">
 
-<span class="material-icons">
-notifications
-</span>
+            <span class="material-icons" id="uploadBtn">
+                add_circle
+            </span>
 
-</div>
+            <span class="material-icons" id="notificationBtn">
+                notifications
+            </span>
 
-</header>
+        </div>
 
-<div class="search">
+    </header>
 
-<input
-type="text"
-placeholder="Search videos, users, AI...">
+    <!-- SEARCH + AI -->
 
-</div>
+    <section class="search-ai">
 
-<div class="categories">
+        <div class="search-box">
 
-<button class="active">For You</button>
+            <span class="material-icons">
+                search
+            </span>
 
-<button>Trending</button>
+            <input
+                type="text"
+                placeholder="Search videos, reels, users...">
 
-<button>Gaming</button>
+        </div>
 
-<button>Movies</button>
+        <button class="ai-btn">
 
-<button>Music</button>
+            🤖 AI Assistant
 
-<button>AI</button>
+        </button>
 
-<button>News</button>
+    </section>
 
-<button>Sports</button>
+    <!-- CATEGORY -->
 
-</div>
+    <section class="categories">
 
-<div class="feed">
+        <button class="active">For You</button>
 
-<div class="video-card">
+        <button>Trending</button>
 
-<div class="thumbnail">
+        <button>Gaming</button>
 
-VIDEO
+        <button>Movies</button>
 
-</div>
+        <button>Music</button>
 
-<h2>
+        <button>AI</button>
 
-Welcome to Bot Pro
+        <button>News</button>
 
-</h2>
+        <button>Sports</button>
 
-<p>
+    </section>
 
-Official Bot Pro Channel
+    <!-- FEED -->
 
-</p>
+    <main class="feed">
 
-</div>
+        <div class="video-card">
 
-<div class="video-card">
+            <div class="thumbnail">
 
-<div class="thumbnail">
+                <span class="duration">
+                    12:35
+                </span>
 
-VIDEO
+            </div>
 
-</div>
+            <div class="video-info">
 
-<h2>
+                <h3>
+                    Welcome to BOT PRO
+                </h3>
 
-Trending Videos
+                <p>
+                    Official Channel • 10K Views
+                </p>
 
-</h2>
+            </div>
 
-<p>
+        </div>
 
-Latest videos will appear here.
+        <div class="video-card">
 
-</p>
+            <div class="thumbnail">
 
-</div>
+                <span class="duration">
+                    18:42
+                </span>
 
-<div class="video-card">
+            </div>
 
-<div class="thumbnail">
+            <div class="video-info">
 
-VIDEO
+                <h3>
+                    Trending Videos
+                </h3>
 
-</div>
+                <p>
+                    Trending • 52K Views
+                </p>
 
-<h2>
+            </div>
 
-Gaming Videos
+        </div>
 
-</h2>
+        <div class="video-card">
 
-<p>
+            <div class="thumbnail">
 
-Gaming category feed.
+                <span class="duration">
+                    08:10
+                </span>
 
-</p>
+            </div>
 
-</div>
+            <div class="video-info">
 
-</div>
+                <h3>
+                    Gaming Videos
+                </h3>
 
-<nav class="bottom-nav">
+                <p>
+                    Gaming • 7.5K Views
+                </p>
 
-<a href="home.html" class="active">
+            </div>
 
-<span class="material-icons">
+        </div>
 
-home
+    </main>
 
-</span>
+    <!-- BOTTOM NAV -->
 
-<p>Home</p>
+    <nav class="bottom-nav">
 
-</a>
+        <a href="home.html" class="active">
 
-<a href="reels.html">
+            <span class="material-icons">
+                home
+            </span>
 
-<span class="material-icons">
+            <p>
+                Home
+            </p>
 
-smart_display
+        </a>
 
-</span>
+        <a href="message.html">
 
-<p>Reels</p>
+            <span class="material-icons">
+                chat
+            </span>
 
-</a>
+            <p>
+                Message
+            </p>
 
-<a href="upload.html">
+        </a>
 
-<span class="material-icons">
+        <a href="reels.html">
 
-cloud_upload
+            <span class="material-icons">
+                smart_display
+            </span>
 
-</span>
+            <p>
+                Reels
+            </p>
 
-<p>Upload</p>
+        </a>
 
-</a>
+        <a href="profile.html">
 
-<a href="profile.html">
+            <span class="material-icons">
+                person
+            </span>
 
-<span class="material-icons">
+            <p>
+                Profile
+            </p>
 
-person
+        </a>
 
-</span>
+    </nav>
 
-<p>Profile</p>
-
-</a>
-
-</nav>
+    <script src="../js/script.js"></script>
 
 </body>
 
