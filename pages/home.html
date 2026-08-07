@@ -3,15 +3,25 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>BOT PRO - Home</title>
+    <title>Bot Pro</title>
 
-<link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet"
+          href="../css/home.css">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
 </head>
 
@@ -21,43 +31,53 @@
 
     <div class="logo">
 
-        <span class="bot">BOT</span>
+        <span class="bot">
 
-        <span class="pro">PRO</span>
+            Bot
+
+        </span>
+
+        <span class="pro">
+
+            Pro
+
+        </span>
 
     </div>
 
-    <div class="header-icons">
+    <div class="header-right">
 
-        <span class="material-icons">
+        <button id="uploadBtn"
+                class="icon-btn">
 
-            chat
+            ➕
 
-        </span>
+        </button>
 
-        <span class="material-icons">
+        <button id="notificationBtn"
+                class="icon-btn">
 
-            notifications
+            🔔
 
-        </span>
+        </button>
 
     </div>
 
 </header>
 
-<section class="search-ai">
+<section class="search-section">
 
     <div class="search-box">
 
-        <span class="material-icons">
+        <span class="search-icon">
 
-            search
+            🔍
 
         </span>
 
-        <input
-            type="text"
-            placeholder="Search videos, users, AI...">
+        <input type="text"
+               id="searchInput"
+               placeholder="Search videos, creators, AI...">
 
     </div>
 
@@ -69,51 +89,51 @@
 
 </section>
 
-<section class="categories">
+<section class="category-section">
 
-    <button class="active">
+    <button class="category active">
 
         For You
 
     </button>
 
-    <button>
+    <button class="category">
 
         Trending
 
     </button>
 
-    <button>
+    <button class="category">
 
         Gaming
 
     </button>
 
-    <button>
+    <button class="category">
 
         Movies
 
     </button>
 
-    <button>
+    <button class="category">
 
         Music
 
     </button>
 
-    <button>
+    <button class="category">
 
         AI
 
     </button>
 
-    <button>
+    <button class="category">
 
         News
 
     </button>
 
-    <button>
+    <button class="category">
 
         Sports
 
@@ -121,202 +141,6 @@
 
 </section>
 
-<section class="feed">
+<main class="feed">
 
-    <div class="video-card">
-
-        <div class="thumbnail">
-
-            VIDEO
-
-            <div class="duration">
-
-                10:25
-
-            </div>
-
-        </div>
-
-        <div class="video-info">
-
-            <h3>
-
-                Welcome to BOT PRO
-
-            </h3>
-
-            <p>
-
-                Official BOT PRO • 1.2K Views
-
-            </p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <div class="thumbnail">
-
-            VIDEO
-
-            <div class="duration">
-
-                08:42
-
-            </div>
-
-        </div>
-
-        <div class="video-info">
-
-            <h3>
-
-                Trending Videos
-
-            </h3>
-
-            <p>
-
-                Trending • 25K Views
-
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="thumbnail">
-
-            VIDEO
-
-            <div class="duration">
-
-                15:18
-
-            </div>
-
-        </div>
-
-        <div class="video-info">
-
-            <h3>
-
-                Gaming Highlights
-
-            </h3>
-
-            <p>
-
-                Gaming • 8.7K Views
-
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="thumbnail">
-
-            VIDEO
-
-            <div class="duration">
-
-                06:15
-
-            </div>
-
-        </div>
-
-        <div class="video-info">
-
-            <h3>
-
-                AI Technology
-
-            </h3>
-
-            <p>
-
-                AI • 14K Views
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<nav class="bottom-nav">
-
-    <a href="home.html" class="active">
-
-        <span class="material-icons">
-
-            home
-
-        </span>
-
-        <p>Home</p>
-
-    </a>
-
-    <a href="reels.html">
-
-        <span class="material-icons">
-
-            smart_display
-
-        </span>
-
-        <p>Reels</p>
-
-    </a>
-
-    <a href="upload.html">
-
-        <span class="material-icons">
-
-            add_circle
-
-        </span>
-
-        <p>Upload</p>
-
-    </a>
-    <a href="message.html">
-
-        <span class="material-icons">
-
-            chat
-
-        </span>
-
-        <p>Messages</p>
-
-    </a>
-
-    <a href="profile.html">
-
-        <span class="material-icons">
-
-            person
-
-        </span>
-
-        <p>Profile</p>
-
-    </a>
-
-</nav>
-
-<script type="module" src="../js/home.js"></script>
-
-</body>
-
-</html>
+    <div id="videoContainer">
