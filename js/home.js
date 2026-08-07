@@ -1,26 +1,41 @@
-// ==========================================
+// =========================================
 // Bot Pro Home JS
-// Part 1
-// ==========================================
+// Final Version - Part 1
+// =========================================
+
+// Header Buttons
 
 const uploadBtn = document.getElementById("uploadBtn");
-const uploadMenu = document.getElementById("uploadMenu");
 
 const notificationBtn = document.getElementById("notificationBtn");
 
-const aiBtn = document.querySelector(".ai-btn");
+const uploadMenu = document.getElementById("uploadMenu");
 
-const categories = document.querySelectorAll(".category");
+// Search
 
 const searchInput = document.getElementById("searchInput");
 
-// ==========================================
+// AI Button
+
+const aiBtn = document.querySelector(".ai-btn");
+
+// Categories
+
+const categoryButtons =
+document.querySelectorAll(".category");
+
+// Video Cards
+
+const videoCards =
+document.querySelectorAll(".video-card");
+
+// =========================================
 // Upload Menu
-// ==========================================
+// =========================================
 
-uploadBtn.addEventListener("click", (e) => {
+uploadBtn.addEventListener("click",(event)=>{
 
-    e.stopPropagation();
+    event.stopPropagation();
 
     uploadMenu.classList.toggle("hidden");
 
@@ -28,101 +43,13 @@ uploadBtn.addEventListener("click", (e) => {
 
 // Close Upload Menu
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click",(event)=>{
 
-    if (!uploadMenu.contains(e.target) &&
-        e.target !== uploadBtn) {
-
-        uploadMenu.classList.add("hidden");
-
-    }
-
-});
-
-// ==========================================
-// Notification
-// ==========================================
-
-notificationBtn.addEventListener("click", () => {
-
-    alert("Notifications feature coming soon.");
-
-});
-
-// ==========================================
-// AI Button
-// ==========================================
-
-aiBtn.addEventListener("click", () => {
-
-    alert("AI Assistant will be available soon.");
-
-});
-
-// ==========================================
-// Search
-// ==========================================
-
-searchInput.addEventListener("keyup", function () {
-
-    const value = this.value.toLowerCase();
-
-    const videos = document.querySelectorAll(".video-card");
-
-    videos.forEach((video) => {
-
-        const title = video
-            .querySelector("h3")
-            .textContent
-            .toLowerCase();
-
-        if (title.includes(value)) {
-
-            video.style.display = "block";
-
-        } else {
-
-            video.style.display = "none";
-
-        }
-
-    });
-
-});
-// ==========================================
-// Bot Pro Home JS
-// Part 1
-// ==========================================
-
-const uploadBtn = document.getElementById("uploadBtn");
-const uploadMenu = document.getElementById("uploadMenu");
-
-const notificationBtn = document.getElementById("notificationBtn");
-
-const aiBtn = document.querySelector(".ai-btn");
-
-const categories = document.querySelectorAll(".category");
-
-const searchInput = document.getElementById("searchInput");
-
-// ==========================================
-// Upload Menu
-// ==========================================
-
-uploadBtn.addEventListener("click", (e) => {
-
-    e.stopPropagation();
-
-    uploadMenu.classList.toggle("hidden");
-
-});
-
-// Close Upload Menu
-
-document.addEventListener("click", (e) => {
-
-    if (!uploadMenu.contains(e.target) &&
-        e.target !== uploadBtn) {
+    if(
+        !uploadMenu.contains(event.target)
+        &&
+        event.target!==uploadBtn
+    ){
 
         uploadMenu.classList.add("hidden");
 
@@ -130,87 +57,180 @@ document.addEventListener("click", (e) => {
 
 });
 
-// ==========================================
+// =========================================
 // Notification
-// ==========================================
+// =========================================
 
-notificationBtn.addEventListener("click", () => {
+notificationBtn.addEventListener("click",()=>{
 
-    alert("Notifications feature coming soon.");
-
-});
-
-// ==========================================
-// AI Button
-// ==========================================
-
-aiBtn.addEventListener("click", () => {
-
-    alert("AI Assistant will be available soon.");
+    alert("Notifications Coming Soon");
 
 });
 
-// ==========================================
+// =========================================
+// AI
+// =========================================
+
+aiBtn.addEventListener("click",()=>{
+
+    alert("AI Assistant Coming Soon");
+
+});
+
+// =========================================
 // Search
-// ==========================================
+// =========================================
 
-searchInput.addEventListener("keyup", function () {
+searchInput.addEventListener("keyup",()=>{
 
-    const value = this.value.toLowerCase();
+    const value =
+    searchInput.value.toLowerCase();
 
-    const videos = document.querySelectorAll(".video-card");
+    videoCards.forEach((card)=>{
 
-    videos.forEach((video) => {
+        const title =
+        card.querySelector("h3")
+        .textContent
+        .toLowerCase();
 
-        const title = video
-            .querySelector("h3")
-            .textContent
-            .toLowerCase();
+        if(title.includes(value)){
 
-        if (title.includes(value)) {
+            card.style.display="block";
 
-            video.style.display = "block";
+        }
 
-        } else {
+        else{
 
-            video.style.display = "none";
+            card.style.display="none";
 
         }
 
     });
 
 });
-// ==========================================
+// =========================================
+// Categories
+// =========================================
+
+categoryButtons.forEach((button)=>{
+
+    button.addEventListener("click",()=>{
+
+        categoryButtons.forEach((item)=>{
+
+            item.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+    });
+
+});
+
+// =========================================
+// Upload Menu Buttons
+// =========================================
+
+document
+.getElementById("videoUpload")
+.addEventListener("click",()=>{
+
+    window.location.href="upload.html";
+
+});
+
+document
+.getElementById("reelUpload")
+.addEventListener("click",()=>{
+
+    window.location.href="upload.html#reel";
+
+});
+
+document
+.getElementById("photoUpload")
+.addEventListener("click",()=>{
+
+    alert("Photo Upload Coming Soon");
+
+});
+
+document
+.getElementById("linkUpload")
+.addEventListener("click",()=>{
+
+    alert("Import Link Coming Soon");
+
+});
+
+document
+.getElementById("aiCreate")
+.addEventListener("click",()=>{
+
+    alert("AI Generator Coming Soon");
+
+});
+
+// =========================================
+// Bottom Navigation
+// =========================================
+
+const navLinks =
+document.querySelectorAll(".bottom-nav a");
+
+navLinks.forEach((link)=>{
+
+    link.addEventListener("click",()=>{
+
+        navLinks.forEach((item)=>{
+
+            item.classList.remove("active");
+
+        });
+
+        link.classList.add("active");
+
+    });
+
+});
+
+// =========================================
+// ESC Key Close Upload Menu
+// =========================================
+
+document.addEventListener("keydown",(event)=>{
+
+    if(event.key==="Escape"){
+
+        uploadMenu.classList.add("hidden");
+
+    }
+
+});
+// =========================================
 // Bot Pro Home JS
-// Part 3
-// ==========================================
+// Final Version - Part 3
+// =========================================
 
-// Page Loaded
+// Page Load
 
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
     console.log("Bot Pro Home Loaded");
 
 });
 
-// ==========================================
-// Firebase Ready
-// ==========================================
-
-// Future Firebase Video Feed
-// Future Firebase User Profile
-// Future Firebase Notifications
-// Future Firebase Search
-
-// ==========================================
+// =========================================
 // Upload Menu Auto Close
-// ==========================================
+// =========================================
 
-const uploadButtons = document.querySelectorAll("#uploadMenu button");
+const uploadButtons =
+document.querySelectorAll("#uploadMenu button");
 
-uploadButtons.forEach((button) => {
+uploadButtons.forEach((button)=>{
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",()=>{
 
         uploadMenu.classList.add("hidden");
 
@@ -218,58 +238,57 @@ uploadButtons.forEach((button) => {
 
 });
 
-// ==========================================
-// ESC Key Close
-// ==========================================
+// =========================================
+// Search Reset
+// =========================================
 
-document.addEventListener("keydown", (e) => {
+searchInput.addEventListener("search",()=>{
 
-    if (e.key === "Escape") {
+    videoCards.forEach((card)=>{
 
-        uploadMenu.classList.add("hidden");
-
-    }
-
-});
-
-// ==========================================
-// Search Clear
-// ==========================================
-
-searchInput.addEventListener("search", () => {
-
-    const videos = document.querySelectorAll(".video-card");
-
-    videos.forEach((video) => {
-
-        video.style.display = "block";
+        card.style.display="block";
 
     });
 
 });
 
-// ==========================================
-// Temporary Loading Effect
-// ==========================================
+// =========================================
+// Simple Fade Animation
+// =========================================
 
-const cards = document.querySelectorAll(".video-card");
+videoCards.forEach((card,index)=>{
 
-cards.forEach((card, index) => {
+    card.style.opacity="0";
 
-    card.style.opacity = "0";
+    setTimeout(()=>{
 
-    setTimeout(() => {
+        card.style.transition="opacity .35s ease";
 
-        card.style.transition = "0.4s ease";
+        card.style.opacity="1";
 
-        card.style.opacity = "1";
-
-    }, index * 150);
+    },index*120);
 
 });
 
-// ==========================================
+// =========================================
+// Future Firebase
+// =========================================
+
+// Load User
+// Load Feed
+// Load Notifications
+// Load Messages
+
+// =========================================
+// Future AI
+// =========================================
+
+// AI Search
+// AI Recommendations
+// AI Assistant
+
+// =========================================
 // Console
-// ==========================================
+// =========================================
 
 console.log("Bot Pro Home Ready");
