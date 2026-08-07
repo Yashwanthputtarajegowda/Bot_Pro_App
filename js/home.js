@@ -61,9 +61,11 @@ document.addEventListener("click",(event)=>{
 // Notification
 // =========================================
 
-notificationBtn.addEventListener("click",()=>{
+notificationButton.addEventListener("click",()=>{
 
-    alert("Notifications Coming Soon");
+    window.location.href = "notifications.html";
+
+});
 
 });
 
