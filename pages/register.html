@@ -3,72 +3,125 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bot Pro - Register</title>
+    <title>BOT PRO - Register</title>
 
-<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/register.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="login-container">
+    <div class="container">
 
-<h1 class="login-logo">
-BOT PRO
-</h1>
+        <!-- Logo -->
 
-<p>Create New Account</p>
+        <div class="logo">
 
-<input
-id="fullName"
-type="text"
-placeholder="Full Name">
+            <span class="bot">BOT</span>
 
-<input
-id="username"
-type="text"
-placeholder="Username">
+            <span class="pro">PRO</span>
 
-<input
-id="email"
-type="email"
-placeholder="Email">
+        </div>
 
-<input
-id="password"
-type="password"
-placeholder="Password">
+        <h2>Create New Account</h2>
 
-<input
-id="confirmPassword"
-type="password"
-placeholder="Confirm Password">
+        <!-- Register Form -->
 
-<button id="registerBtn">
-Create Account
-</button>
+        <form id="registerForm">
 
-<p>
+            <div class="input-box">
 
-Already have an account?
+                <span class="material-icons">person</span>
 
-<a href="login.html">
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Full Name"
+                    required>
 
-Login
+            </div>
 
-</a>
+            <div class="input-box">
 
-</p>
+                <span class="material-icons">alternate_email</span>
 
-</div>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    required>
 
-<!-- Firebase Register -->
+            </div>
 
-<script type="module" src="../firebase/register.js"></script>
+            <div class="input-box">
+
+                <span class="material-icons">email</span>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required>
+
+            </div>
+
+            <div class="input-box">
+
+                <span class="material-icons">lock</span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required>
+
+            </div>
+
+            <div class="input-box">
+
+                <span class="material-icons">lock</span>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    required>
+
+            </div>
+
+            <button
+                type="button"
+                id="registerBtn"
+                class="register-btn">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <div class="register">
+
+            Already have an account?
+
+            <a href="login.html">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="../firebase/register.js"></script>
 
 </body>
 
