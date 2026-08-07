@@ -196,6 +196,8 @@ uploadButton.addEventListener("click",async()=>{
 
         },150);
 
+        console.log(API_URL + "/api/upload/video");
+
         const response = await fetch(
 
             API_URL + "/api/upload/video",
