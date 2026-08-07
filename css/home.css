@@ -303,3 +303,204 @@ body{
     font-size:14px;
 
 }
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:75px;
+
+    background:#111111;
+
+    border-top:1px solid #262626;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.bottom-nav a{
+
+    text-decoration:none;
+
+    color:#8d8d8d;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#8A2BE2;
+
+}
+
+.bottom-nav a.active{
+
+    color:#8A2BE2;
+
+}
+
+.bottom-nav .material-icons{
+
+    font-size:28px;
+
+}
+
+.bottom-nav p{
+
+    font-size:12px;
+
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#8A2BE2;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#B000FF;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .header{
+
+        padding:16px;
+
+    }
+
+    .logo{
+
+        font-size:28px;
+
+    }
+
+    .search-ai{
+
+        padding:14px;
+
+        flex-direction:column;
+
+    }
+
+    .search-box{
+
+        width:100%;
+
+    }
+
+    .ai-btn{
+
+        width:100%;
+
+    }
+
+    .feed{
+
+        padding:14px;
+
+    }
+
+    .thumbnail{
+
+        height:200px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .logo{
+
+        font-size:26px;
+
+    }
+
+    .header-icons .material-icons{
+
+        font-size:26px;
+
+    }
+
+    .thumbnail{
+
+        height:180px;
+
+    }
+
+    .categories button{
+
+        padding:10px 16px;
+
+        font-size:14px;
+
+    }
+
+}
+
+/* =========================
+   FORCE FONT
+========================= */
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+span,
+label,
+div,
+p,
+h1,
+h2,
+h3{
+
+    font-family:Arial,Helvetica,sans-serif !important;
+
+}
