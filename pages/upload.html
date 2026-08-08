@@ -19,9 +19,12 @@
 
 </head>
 
+
 <body>
 
+
 <div class="upload-page">
+
 
     <!-- ==========================================
          HEADER
@@ -29,7 +32,9 @@
 
     <header class="upload-header">
 
-        <button class="back-btn">
+        <button
+            type="button"
+            class="back-btn">
 
             <svg
                 class="header-icon"
@@ -46,15 +51,219 @@
 
         </button>
 
+
         <h2>
             Upload
         </h2>
 
-        <button class="demo-btn">
-            Demo
+
+        <!-- UPLOAD SETTINGS BUTTON -->
+
+        <button
+            type="button"
+            class="demo-btn"
+            id="uploadSettingsBtn">
+
+            ⚙ Upload Settings
+
         </button>
 
     </header>
+
+
+    <!-- ==========================================
+         UPLOAD SETTINGS
+    ========================================== -->
+
+    <section
+        class="upload-settings"
+        id="uploadSettingsPanel"
+        style="display:none;">
+
+        <div class="settings-header">
+
+            <div>
+
+                <h3>
+                    Upload Settings
+                </h3>
+
+                <p>
+                    Manage your upload preferences
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="settings-close"
+                id="uploadSettingsClose">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="settings-list">
+
+
+            <!-- QUALITY -->
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Upload Quality
+                    </strong>
+
+                    <span>
+                        Choose your preferred quality
+                    </span>
+
+                </div>
+
+
+                <select id="uploadQuality">
+
+                    <option value="auto">
+                        Auto
+                    </option>
+
+                    <option value="1080">
+                        1080p
+                    </option>
+
+                    <option value="720">
+                        720p
+                    </option>
+
+                    <option value="480">
+                        480p
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRIVACY -->
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Default Privacy
+                    </strong>
+
+                    <span>
+                        Privacy for new uploads
+                    </span>
+
+                </div>
+
+
+                <select id="defaultPrivacy">
+
+                    <option value="public">
+                        Public
+                    </option>
+
+                    <option value="private">
+                        Private
+                    </option>
+
+                    <option value="followers">
+                        Followers Only
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- COMMENTS -->
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Comments
+                    </strong>
+
+                    <span>
+                        Allow comments on uploads
+                    </span>
+
+                </div>
+
+
+                <select id="defaultComments">
+
+                    <option value="allow">
+                        Allow
+                    </option>
+
+                    <option value="disable">
+                        Disable
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CUSTOM THUMBNAIL -->
+
+            <div class="setting-item">
+
+                <div class="setting-info">
+
+                    <strong>
+                        Custom Thumbnail
+                    </strong>
+
+                    <span>
+                        Use custom thumbnail when available
+                    </span>
+
+                </div>
+
+
+                <label class="setting-switch">
+
+                    <input
+                        type="checkbox"
+                        id="customThumbnailSetting"
+                        checked>
+
+                    <span class="switch-slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <!-- SAVE -->
+
+            <button
+                type="button"
+                class="save-settings-btn"
+                id="saveUploadSettings">
+
+                Save Settings
+
+            </button>
+
+
+        </div>
+
+    </section>
 
 
     <!-- ==========================================
@@ -67,7 +276,11 @@
             Choose Upload Type
         </h3>
 
+
         <div class="type-grid">
+
+
+            <!-- VIDEO -->
 
             <button class="type-card active">
 
@@ -81,12 +294,15 @@
 
                 </svg>
 
+
                 <span>
                     Video
                 </span>
 
             </button>
 
+
+            <!-- REEL -->
 
             <button class="type-card">
 
@@ -100,12 +316,15 @@
 
                 </svg>
 
+
                 <span>
                     Reel
                 </span>
 
             </button>
 
+
+            <!-- LINK -->
 
             <button class="type-card">
 
@@ -121,11 +340,13 @@
 
                 </svg>
 
+
                 <span>
                     Link
                 </span>
 
             </button>
+
 
         </div>
 
@@ -137,6 +358,7 @@
     ========================================== -->
 
     <section class="upload-box">
+
 
         <div
             class="upload-select"
@@ -216,6 +438,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -261,6 +484,7 @@
 
                     </button>
 
+
                 </div>
 
 
@@ -274,9 +498,11 @@
 
                 </button>
 
+
             </div>
 
         </div>
+
 
     </section>
 
@@ -369,11 +595,13 @@
 
     <section class="privacy-section">
 
+
         <div class="option-box">
 
             <label>
                 Privacy
             </label>
+
 
             <select>
 
@@ -400,6 +628,7 @@
                 Comments
             </label>
 
+
             <select>
 
                 <option>
@@ -414,6 +643,7 @@
 
         </div>
 
+
     </section>
 
 
@@ -426,6 +656,7 @@
         <h3>
             External Link (Optional)
         </h3>
+
 
         <input
             type="url"
@@ -444,6 +675,7 @@
         <h3>
             Tags
         </h3>
+
 
         <input
             type="text"
@@ -504,6 +736,7 @@
             Upload Rules
         </h3>
 
+
         <ul>
 
             <li>
@@ -522,6 +755,7 @@
 
     </section>
 
+
 </div>
 
 
@@ -530,6 +764,7 @@
 ========================================== -->
 
 <nav class="bottom-nav">
+
 
     <a href="home.html">
 
@@ -606,6 +841,7 @@
 
     </a>
 
+
 </nav>
 
 
@@ -613,6 +849,7 @@
     type="module"
     src="../js/upload.js">
 </script>
+
 
 </body>
 
