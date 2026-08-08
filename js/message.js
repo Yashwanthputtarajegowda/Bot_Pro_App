@@ -1,938 +1,6 @@
 // =========================================
-// Bot Pro Message JS
-// Full Version
-// Real-Time + Seen + Eye Status
-// =========================================
-
-
-// =========================================
-// Backend API
-// =========================================
-
-const API_URL =
-    "https://bot-pro-backend-production.up.railway.app";
-
-
-// =========================================
-// Current User
-// =========================================
-
-const CURRENT_USER_ID =
-    "Yashu";
-
-let currentChatId = "";
-
-let currentReceiverId = "";
-
-let messageStream = null;
-
-
-// =========================================
-// Elements
-// =========================================
-
-const messagePage =
-    document.getElementById("messagePage");
-
-const chatScreen =
-    document.getElementById("chatScreen");
-
-const searchInput =
-    document.getElementById("messageSearch");
-
-const chatItems =
-    document.querySelectorAll(".chat-item");
-
-const stories =
-    document.querySelectorAll(".story");
-
-const chatUserName =
-    document.getElementById("chatUserName");
-
-const chatUserAvatar =
-    document.getElementById("chatUserAvatar");
-
-const chatUserStatus =
-    document.getElementById("chatUserStatus");
-
-const chatMessages =
-    document.getElementById("chatMessages");
-
-const chatInput =
-    document.getElementById("chatInput");
-
-const chatSendBtn =
-    document.getElementById("chatSendBtn");
-
-
-// =========================================
-// Message Status Style
-// =========================================
-
-const messageStatusStyle =
-    document.createElement("style");
-
-messageStatusStyle.textContent = `
-
-.message-status {
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-left:7px;
-
-    font-size:13px;
-
-    line-height:1;
-
-    vertical-align:middle;
-
-    user-select:none;
-
-}
-
-.message-status.not-seen {
-
-    color:#BDBDBD;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-}
-
-.message-status.seen {
-
-    color:#A020F0;
-
-    font-size:14px;
-
-    filter:
-        drop-shadow(
-            0 0 3px
-            rgba(160,32,240,.45)
-        );
-
-}
-
-`;
-
-document.head.appendChild(
-    messageStatusStyle
-);
-
-
-// =========================================
-// Create Chat ID
-// =========================================
-
-function createChatId(
-    user1,
-    user2
-) {
-
-    return [
-        user1,
-        user2
-    ]
-        .sort()
-        .join("_")
-        .replace(/\s+/g, "-");
-
-}
-
-
-// =========================================
-// Search Messages
-// =========================================
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "keyup",
-        () => {
-
-            const value =
-                searchInput.value
-                    .toLowerCase()
-                    .trim();
-
-
-            chatItems.forEach(
-                (chat) => {
-
-                    const name =
-                        chat.querySelector("h3")
-                            ?.textContent
-                            .toLowerCase() || "";
-
-
-                    const message =
-                        chat.querySelector("p")
-                            ?.textContent
-                            .toLowerCase() || "";
-
-
-                    if (
-                        name.includes(value) ||
-                        message.includes(value)
-                    ) {
-
-                        chat.style.display =
-                            "flex";
-
-                    }
-
-                    else {
-
-                        chat.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-// =========================================
-// Open Chat
-// Event Delegation
-// =========================================
-
-document.addEventListener(
-    "click",
-    (event) => {
-
-        const chat =
-            event.target.closest(
-                ".chat-item"
-            );
-
-
-        if (!chat) {
-
-            return;
-
-        }
-
-
-        console.log(
-            "✅ Chat Item Clicked"
-        );
-
-
-        const nameElement =
-            chat.querySelector("h3");
-
-
-        const userName =
-            nameElement
-                ? nameElement.textContent.trim()
-                : "";
-
-
-        if (!userName) {
-
-            console.error(
-                "❌ User name not found"
-            );
-
-            return;
-
-        }
-
-
-        const avatarElement =
-            chat.querySelector(
-                ".chat-avatar"
-            );
-
-
-        let avatar = "";
-
-
-        if (avatarElement) {
-
-            avatar =
-                avatarElement.textContent
-                    .trim()
-                    .charAt(0);
-
-        }
-
-
-        if (!avatar) {
-
-            avatar =
-                userName.charAt(0);
-
-        }
-
-
-        openChat(
-            userName,
-            avatar
-        );
-
-    },
-    true
-);
-
-
-// =========================================
-// Open Chat
-// =========================================
-
-function openChat(
-    userName,
-    avatar
-) {
-
-    console.log(
-        "🚀 Opening:",
-        userName
-    );
-
-
-    const page =
-        document.getElementById(
-            "messagePage"
-        );
-
-
-    const screen =
-        document.getElementById(
-            "chatScreen"
-        );
-
-
-    const name =
-        document.getElementById(
-            "chatUserName"
-        );
-
-
-    const userAvatar =
-        document.getElementById(
-            "chatUserAvatar"
-        );
-
-
-    const status =
-        document.getElementById(
-            "chatUserStatus"
-        );
-
-
-    const messages =
-        document.getElementById(
-            "chatMessages"
-        );
-
-
-    const input =
-        document.getElementById(
-            "chatInput"
-        );
-
-
-    if (!screen) {
-
-        console.error(
-            "❌ chatScreen NOT FOUND"
-        );
-
-
-        alert(
-            "Chat screen not found."
-        );
-
-
-        return;
-
-    }
-
-
-    // =====================================
-    // Stop Previous Stream
-    // =====================================
-
-    stopRealtimeMessages();
-
-
-    // =====================================
-    // Hide Message Page
-    // =====================================
-
-    if (page) {
-
-        page.style.display =
-            "none";
-
-    }
-
-
-    // =====================================
-    // Show Chat Screen
-    // =====================================
-
-    screen.style.display =
-        "flex";
-
-
-    // =====================================
-    // Current Chat
-    // =====================================
-
-    currentReceiverId =
-        userName;
-
-
-    currentChatId =
-        createChatId(
-            CURRENT_USER_ID,
-            currentReceiverId
-        );
-
-
-    console.log(
-        "Firebase Chat ID:",
-        currentChatId
-    );
-
-
-    // =====================================
-    // Header
-    // =====================================
-
-    if (name) {
-
-        name.textContent =
-            userName;
-
-    }
-
-
-    if (userAvatar) {
-
-        userAvatar.textContent =
-            avatar;
-
-    }
-
-
-    if (status) {
-
-        status.textContent =
-            "Online";
-
-    }
-
-
-    // =====================================
-    // Clear Input
-    // =====================================
-
-    if (input) {
-
-        input.value =
-            "";
-
-    }
-
-
-    // =====================================
-    // Clear Messages
-    // =====================================
-
-    if (messages) {
-
-        messages.innerHTML =
-            "";
-
-    }
-
-
-    // =====================================
-    // Load Messages
-    // =====================================
-
-    loadMessages();
-
-
-    // =====================================
-    // Start Real-Time
-    // =====================================
-
-    startRealtimeMessages();
-
-
-    // =====================================
-    // Focus Input
-    // =====================================
-
-    setTimeout(
-        () => {
-
-            const currentInput =
-                document.getElementById(
-                    "chatInput"
-                );
-
-
-            if (currentInput) {
-
-                currentInput.focus();
-
-            }
-
-        },
-        200
-    );
-
-
-    scrollChatToBottom();
-
-}
-
-
-// =========================================
-// Load Existing Messages
-// =========================================
-
-async function loadMessages() {
-
-    if (
-        !currentChatId ||
-        !chatMessages
-    ) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const response =
-            await fetch(
-
-                API_URL +
-                "/api/messages/" +
-                encodeURIComponent(
-                    currentChatId
-                )
-
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            !response.ok ||
-            !result.success
-        ) {
-
-            console.error(
-                "Message Load Failed:",
-                result
-            );
-
-            return;
-
-        }
-
-
-        chatMessages.innerHTML =
-            "";
-
-
-        result.messages.forEach(
-            (message) => {
-
-                addMessageToScreen(
-                    message
-                );
-
-            }
-        );
-
-
-        scrollChatToBottom();
-
-
-        // =================================
-        // Mark Incoming Messages Seen
-        // =================================
-
-        await markMessagesAsSeen();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Message Load Error:",
-            error
-        );
-
-    }
-
-}
-// =========================================
-// MARK MESSAGES AS SEEN
-// =========================================
-
-async function markMessagesAsSeen() {
-
-    if (!currentChatId) {
-
-        return;
-
-    }
-
-
-    if (!CURRENT_USER_ID) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const response =
-            await fetch(
-
-                API_URL +
-                "/api/messages/seen/" +
-                encodeURIComponent(
-                    currentChatId
-                ),
-
-                {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify({
-
-                            receiverId:
-                                CURRENT_USER_ID
-
-                        })
-
-                }
-
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            !response.ok ||
-            !result.success
-        ) {
-
-            console.error(
-                "❌ Mark Seen Failed:",
-                result
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "👁️ Messages marked as seen:",
-            result.updated
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Mark Seen Error:",
-            error
-        );
-
-    }
-
-}
-
-
-// =========================================
-// REAL-TIME MESSAGE STREAM
-// =========================================
-
-function startRealtimeMessages() {
-
-    // =====================================
-    // Close Old Stream
-    // =====================================
-
-    stopRealtimeMessages();
-
-
-    if (!currentChatId) {
-
-        console.log(
-            "❌ No chat selected"
-        );
-
-        return;
-
-    }
-
-
-    // =====================================
-    // Stream URL
-    // =====================================
-
-    const streamUrl =
-        API_URL +
-        "/api/messages/stream/" +
-        encodeURIComponent(
-            currentChatId
-        );
-
-
-    console.log(
-        "🟢 Starting stream:",
-        streamUrl
-    );
-
-
-    // =====================================
-    // EventSource
-    // =====================================
-
-    messageStream =
-        new EventSource(
-            streamUrl
-        );
-
-
-    // =====================================
-    // Connected
-    // =====================================
-
-    messageStream.addEventListener(
-        "connected",
-        (event) => {
-
-            try {
-
-                const data =
-                    JSON.parse(
-                        event.data
-                    );
-
-
-                console.log(
-                    "🟢 Real-time connected:",
-                    data.chatId
-                );
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Stream data error:",
-                    error
-                );
-
-            }
-
-        }
-    );
-
-
-    // =====================================
-    // Messages Updated
-    // =====================================
-
-    messageStream.addEventListener(
-        "messages",
-        async (event) => {
-
-            try {
-
-                const data =
-                    JSON.parse(
-                        event.data
-                    );
-
-
-                if (!data.success) {
-
-                    return;
-
-                }
-
-
-                if (
-                    data.chatId !==
-                    currentChatId
-                ) {
-
-                    return;
-
-                }
-
-
-                // =============================
-                // Render Messages
-                // =============================
-
-                renderRealtimeMessages(
-                    data.messages || []
-                );
-
-
-                // =============================
-                // Mark Incoming As Seen
-                // =============================
-
-                await markMessagesAsSeen();
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Real-time error:",
-                    error
-                );
-
-            }
-
-        }
-    );
-
-
-    // =====================================
-    // Connection Open
-    // =====================================
-
-    messageStream.onopen =
-        () => {
-
-            console.log(
-                "✅ Real-time connection active"
-            );
-
-        };
-
-
-    // =====================================
-    // Connection Error
-    // =====================================
-
-    messageStream.onerror =
-        () => {
-
-            console.log(
-                "⚠️ Real-time connection error"
-            );
-
-        };
-
-}
-
-
-// =========================================
-// Render Real-Time Messages
-// =========================================
-
-function renderRealtimeMessages(
-    messages
-) {
-
-    if (!chatMessages) {
-
-        return;
-
-    }
-
-
-    chatMessages.innerHTML =
-        "";
-
-
-    messages.sort(
-        (a, b) =>
-            a.createdAt -
-            b.createdAt
-    );
-
-
-    messages.forEach(
-        (message) => {
-
-            addMessageToScreen(
-                message
-            );
-
-        }
-    );
-
-
-    scrollChatToBottom();
-
-}
-
-
-// =========================================
-// Stop Real-Time Messages
-// =========================================
-
-function stopRealtimeMessages() {
-
-    if (messageStream) {
-
-        console.log(
-            "🔴 Closing message stream"
-        );
-
-
-        messageStream.close();
-
-
-        messageStream =
-            null;
-
-    }
-
-}
-
-
-// =========================================
 // ADD MESSAGE TO SCREEN
-// With ✓ / 👁 Status
+// With Seen + Delete Support
 // =========================================
 
 function addMessageToScreen(
@@ -940,6 +8,24 @@ function addMessageToScreen(
 ) {
 
     if (!chatMessages) {
+
+        return;
+
+    }
+
+
+    // =====================================
+    // Check Deleted For Current User
+    // =====================================
+
+    const deletedFor =
+        message.deletedFor || {};
+
+
+    if (
+        deletedFor[CURRENT_USER_ID] ===
+        true
+    ) {
 
         return;
 
@@ -956,8 +42,12 @@ function addMessageToScreen(
         );
 
 
+    messageRow.className =
+        "message-row";
+
+
     // =====================================
-    // Check Sent / Received
+    // Sent / Received
     // =====================================
 
     const isSent =
@@ -967,15 +57,17 @@ function addMessageToScreen(
 
     if (isSent) {
 
-        messageRow.className =
-            "message-row sent";
+        messageRow.classList.add(
+            "sent"
+        );
 
     }
 
     else {
 
-        messageRow.className =
-            "message-row received";
+        messageRow.classList.add(
+            "received"
+        );
 
     }
 
@@ -1018,7 +110,8 @@ function addMessageToScreen(
 
 
     // =====================================
-    // Sent Message Status
+    // ✓ / 👁 Status
+    // Only Sent Messages
     // =====================================
 
     if (isSent) {
@@ -1033,12 +126,9 @@ function addMessageToScreen(
             "message-status";
 
 
-        // =================================
-        // Seen
-        // =================================
-
         if (
-            message.seen === true
+            message.seen ===
+            true
         ) {
 
             messageStatus.textContent =
@@ -1054,11 +144,6 @@ function addMessageToScreen(
                 "Seen";
 
         }
-
-
-        // =================================
-        // Not Seen
-        // =================================
 
         else {
 
@@ -1094,6 +179,14 @@ function addMessageToScreen(
 
 
     // =====================================
+    // Message ID
+    // =====================================
+
+    messageRow.dataset.messageId =
+        message.id;
+
+
+    // =====================================
     // Add To Chat
     // =====================================
 
@@ -1101,138 +194,384 @@ function addMessageToScreen(
         messageRow
     );
 
+
+    // =====================================
+    // Delete Menu Support
+    // =====================================
+
+    setupMessageDeleteMenu(
+        messageRow,
+        message
+    );
+
+}
+// =========================================
+// DELETE MENU STYLE
+// =========================================
+
+const deleteMenuStyle =
+    document.createElement(
+        "style"
+    );
+
+
+deleteMenuStyle.textContent = `
+
+.message-delete-menu {
+
+    position:fixed;
+
+    z-index:99999;
+
+    min-width:190px;
+
+    padding:8px;
+
+    background:#1B1B1B;
+
+    border:1px solid #333;
+
+    border-radius:14px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.55);
+
+    display:none;
+
 }
 
+.message-delete-menu button {
 
-// =========================================
-// Back To Messages
-// =========================================
+    width:100%;
 
-document.addEventListener(
-    "click",
-    (event) => {
+    border:none;
 
-        const button =
-            event.target.closest(
-                "#chatBackBtn"
-            );
+    background:transparent;
 
+    color:#FFFFFF;
 
-        if (!button) {
+    padding:12px;
 
-            return;
+    text-align:left;
 
-        }
+    border-radius:10px;
 
+    cursor:pointer;
 
-        const page =
-            document.getElementById(
-                "messagePage"
-            );
+    font-size:14px;
 
+}
 
-        const screen =
-            document.getElementById(
-                "chatScreen"
-            );
+.message-delete-menu button:hover {
 
+    background:#292929;
 
-        // =====================================
-        // Stop Stream
-        // =====================================
+}
 
-        stopRealtimeMessages();
+.message-delete-menu .delete-everyone {
 
+    color:#FF5C5C;
 
-        // =====================================
-        // Hide Chat
-        // =====================================
+}
 
-        if (screen) {
+.message-delete-menu .cancel-delete {
 
-            screen.style.display =
-                "none";
+    color:#AAAAAA;
 
-        }
+}
 
+`;
 
-        // =====================================
-        // Show Message List
-        // =====================================
-
-        if (page) {
-
-            page.style.display =
-                "block";
-
-        }
-
-
-        currentChatId =
-            "";
-
-
-        currentReceiverId =
-            "";
-
-
-        console.log(
-            "⬅️ Back to Messages"
-        );
-
-    },
-    true
+document.head.appendChild(
+    deleteMenuStyle
 );
 
 
 // =========================================
-// SEND MESSAGE
+// CREATE DELETE MENU
 // =========================================
 
-async function sendMessage() {
-
-    if (
-        !chatInput ||
-        !chatMessages
-    ) {
-
-        return;
-
-    }
+const deleteMenu =
+    document.createElement(
+        "div"
+    );
 
 
-    const text =
-        chatInput.value.trim();
+deleteMenu.className =
+    "message-delete-menu";
 
 
-    if (!text) {
+deleteMenu.innerHTML = `
 
-        return;
+    <button
+        class="delete-for-me">
+        Delete for me
+    </button>
 
-    }
+    <button
+        class="delete-for-everyone">
+        Delete for everyone
+    </button>
+
+    <button
+        class="cancel-delete">
+        Cancel
+    </button>
+
+`;
 
 
-    if (
-        !currentChatId ||
-        !currentReceiverId
-    ) {
+document.body.appendChild(
+    deleteMenu
+);
 
-        alert(
-            "Please open a chat first."
+
+// =========================================
+// Current Delete Message
+// =========================================
+
+let selectedDeleteMessage =
+    null;
+
+
+// =========================================
+// Setup Delete Menu
+// =========================================
+
+function setupMessageDeleteMenu(
+    messageRow,
+    message
+) {
+
+
+    // =====================================
+    // Right Click
+    // =====================================
+
+    messageRow.addEventListener(
+        "contextmenu",
+        (event) => {
+
+            event.preventDefault();
+
+
+            openDeleteMenu(
+                event.clientX,
+                event.clientY,
+                message
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // Long Press
+    // =====================================
+
+    let pressTimer =
+        null;
+
+
+    messageRow.addEventListener(
+        "touchstart",
+        (event) => {
+
+            const touch =
+                event.touches[0];
+
+
+            pressTimer =
+                setTimeout(
+                    () => {
+
+                        openDeleteMenu(
+                            touch.clientX,
+                            touch.clientY,
+                            message
+                        );
+
+                    },
+                    600
+                );
+
+        },
+        {
+            passive:true
+        }
+    );
+
+
+    messageRow.addEventListener(
+        "touchend",
+        () => {
+
+            clearTimeout(
+                pressTimer
+            );
+
+        }
+    );
+
+
+    messageRow.addEventListener(
+        "touchmove",
+        () => {
+
+            clearTimeout(
+                pressTimer
+            );
+
+        }
+    );
+
+}
+
+
+// =========================================
+// Open Delete Menu
+// =========================================
+
+function openDeleteMenu(
+    x,
+    y,
+    message
+) {
+
+    selectedDeleteMessage =
+        message;
+
+
+    // =====================================
+    // Delete For Everyone
+    // Only Sender
+    // =====================================
+
+    const deleteEveryoneBtn =
+        deleteMenu.querySelector(
+            ".delete-for-everyone"
         );
 
 
+    if (
+        message.senderId ===
+        CURRENT_USER_ID
+    ) {
+
+        deleteEveryoneBtn.style.display =
+            "block";
+
+    }
+
+    else {
+
+        deleteEveryoneBtn.style.display =
+            "none";
+
+    }
+
+
+    // =====================================
+    // Position
+    // =====================================
+
+    deleteMenu.style.display =
+        "block";
+
+
+    const menuWidth =
+        190;
+
+
+    const menuHeight =
+        150;
+
+
+    let left =
+        x;
+
+
+    let top =
+        y;
+
+
+    if (
+        left + menuWidth >
+        window.innerWidth
+    ) {
+
+        left =
+            window.innerWidth -
+            menuWidth -
+            10;
+
+    }
+
+
+    if (
+        top + menuHeight >
+        window.innerHeight
+    ) {
+
+        top =
+            window.innerHeight -
+            menuHeight -
+            10;
+
+    }
+
+
+    deleteMenu.style.left =
+        Math.max(
+            10,
+            left
+        ) + "px";
+
+
+    deleteMenu.style.top =
+        Math.max(
+            10,
+            top
+        ) + "px";
+
+}
+
+
+// =========================================
+// Close Delete Menu
+// =========================================
+
+function closeDeleteMenu() {
+
+    deleteMenu.style.display =
+        "none";
+
+
+    selectedDeleteMessage =
+        null;
+
+}
+// =========================================
+// DELETE FOR ME
+// =========================================
+
+async function deleteMessageForMe() {
+
+    if (
+        !selectedDeleteMessage ||
+        !currentChatId
+    ) {
+
+        closeDeleteMenu();
+
         return;
 
     }
 
 
-    if (chatSendBtn) {
-
-        chatSendBtn.disabled =
-            true;
-
-    }
+    const message =
+        selectedDeleteMessage;
 
 
     try {
@@ -1241,7 +580,7 @@ async function sendMessage() {
             await fetch(
 
                 API_URL +
-                "/api/messages/send",
+                "/api/messages/delete-for-me",
 
                 {
 
@@ -1261,14 +600,11 @@ async function sendMessage() {
                             chatId:
                                 currentChatId,
 
-                            senderId:
-                                CURRENT_USER_ID,
+                            messageId:
+                                message.id,
 
-                            receiverId:
-                                currentReceiverId,
-
-                            text:
-                                text
+                            userId:
+                                CURRENT_USER_ID
 
                         })
 
@@ -1290,57 +626,44 @@ async function sendMessage() {
 
                 result.error ||
                 result.message ||
-                "Message send failed"
+                "Delete failed"
 
             );
 
         }
 
 
-        // =================================
-        // Clear Input
-        // =================================
-
-        chatInput.value =
-            "";
-
-
         console.log(
-            "✅ Message saved:",
-            result.data
+            "🗑️ Message deleted for me"
         );
 
 
-        /*
-         * Real-time stream automatically
-         * updates the message screen.
-         */
+        closeDeleteMenu();
+
+
+        // =================================
+        // Refresh Current Messages
+        // =================================
+
+        await loadMessages();
+
 
     }
 
     catch (error) {
 
         console.error(
-            "Message Send Error:",
+            "Delete For Me Error:",
             error
         );
 
 
         alert(
-            "Unable to send message."
+            "Unable to delete message."
         );
 
-    }
 
-
-    finally {
-
-        if (chatSendBtn) {
-
-            chatSendBtn.disabled =
-                false;
-
-        }
+        closeDeleteMenu();
 
     }
 
@@ -1348,27 +671,243 @@ async function sendMessage() {
 
 
 // =========================================
-// SEND BUTTON
+// DELETE FOR EVERYONE
+// =========================================
+
+async function deleteMessageForEveryone() {
+
+    if (
+        !selectedDeleteMessage ||
+        !currentChatId
+    ) {
+
+        closeDeleteMenu();
+
+        return;
+
+    }
+
+
+    const message =
+        selectedDeleteMessage;
+
+
+    // =====================================
+    // Sender Check
+    // =====================================
+
+    if (
+        message.senderId !==
+        CURRENT_USER_ID
+    ) {
+
+        alert(
+            "Only your messages can be deleted for everyone."
+        );
+
+
+        closeDeleteMenu();
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_URL +
+                "/api/messages/delete-for-everyone",
+
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            chatId:
+                                currentChatId,
+
+                            messageId:
+                                message.id,
+
+                            userId:
+                                CURRENT_USER_ID
+
+                        })
+
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+
+                result.error ||
+                result.message ||
+                "Delete failed"
+
+            );
+
+        }
+
+
+        console.log(
+            "🗑️ Message deleted for everyone"
+        );
+
+
+        closeDeleteMenu();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Delete For Everyone Error:",
+            error
+        );
+
+
+        alert(
+            "Unable to delete message."
+        );
+
+
+        closeDeleteMenu();
+
+    }
+
+}
+// =========================================
+// DELETE MENU BUTTON ACTIONS
+// =========================================
+
+
+// =========================================
+// Delete For Me Button
+// =========================================
+
+const deleteForMeButton =
+    deleteMenu.querySelector(
+        ".delete-for-me"
+    );
+
+
+if (deleteForMeButton) {
+
+    deleteForMeButton.addEventListener(
+        "click",
+        async () => {
+
+            await deleteMessageForMe();
+
+        }
+    );
+
+}
+
+
+// =========================================
+// Delete For Everyone Button
+// =========================================
+
+const deleteForEveryoneButton =
+    deleteMenu.querySelector(
+        ".delete-for-everyone"
+    );
+
+
+if (deleteForEveryoneButton) {
+
+    deleteForEveryoneButton.addEventListener(
+        "click",
+        async () => {
+
+            await deleteMessageForEveryone();
+
+        }
+    );
+
+}
+
+
+// =========================================
+// Cancel Button
+// =========================================
+
+const cancelDeleteButton =
+    deleteMenu.querySelector(
+        ".cancel-delete"
+    );
+
+
+if (cancelDeleteButton) {
+
+    cancelDeleteButton.addEventListener(
+        "click",
+        () => {
+
+            closeDeleteMenu();
+
+        }
+    );
+
+}
+
+
+// =========================================
+// Close Menu Outside
 // =========================================
 
 document.addEventListener(
     "click",
     (event) => {
 
-        const button =
-            event.target.closest(
-                "#chatSendBtn"
-            );
+        if (
+            !deleteMenu.contains(
+                event.target
+            )
+        ) {
 
-
-        if (!button) {
-
-            return;
+            closeDeleteMenu();
 
         }
 
+    }
+);
 
-        sendMessage();
+
+// =========================================
+// Close Menu On Scroll
+// =========================================
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        closeDeleteMenu();
 
     },
     true
@@ -1376,217 +915,21 @@ document.addEventListener(
 
 
 // =========================================
-// ENTER TO SEND
+// Close Menu On Resize
 // =========================================
 
-if (chatInput) {
+window.addEventListener(
+    "resize",
+    () => {
 
-    chatInput.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Enter" &&
-                !event.shiftKey
-            ) {
-
-                event.preventDefault();
-
-
-                sendMessage();
-
-            }
-
-        }
-    );
-
-}
-
-
-// =========================================
-// Scroll Chat
-// =========================================
-
-function scrollChatToBottom() {
-
-    if (!chatMessages) {
-
-        return;
-
-    }
-
-
-    setTimeout(
-        () => {
-
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-
-        },
-        50
-    );
-
-}
-// =========================================
-// STORIES
-// =========================================
-
-stories.forEach(
-    (story) => {
-
-        story.addEventListener(
-            "click",
-            () => {
-
-                const storyName =
-                    story.querySelector("p")
-                        ?.textContent
-                        ?.trim();
-
-
-                if (!storyName) {
-
-                    return;
-
-                }
-
-
-                if (
-                    storyName ===
-                    "Your Story"
-                ) {
-
-                    alert(
-                        "Add your story"
-                    );
-
-
-                    return;
-
-                }
-
-
-                alert(
-                    storyName +
-                    " Story"
-                );
-
-            }
-        );
+        closeDeleteMenu();
 
     }
 );
 
 
 // =========================================
-// CHAT PRESS EFFECT
-// =========================================
-
-chatItems.forEach(
-    (chat) => {
-
-        chat.addEventListener(
-            "mousedown",
-            () => {
-
-                chat.style.transform =
-                    "scale(.98)";
-
-            }
-        );
-
-
-        chat.addEventListener(
-            "mouseup",
-            () => {
-
-                chat.style.transform =
-                    "scale(1)";
-
-            }
-        );
-
-
-        chat.addEventListener(
-            "mouseleave",
-            () => {
-
-                chat.style.transform =
-                    "scale(1)";
-
-            }
-        );
-
-    }
-);
-
-
-// =========================================
-// BOTTOM NAVIGATION
-// =========================================
-
-const navLinks =
-    document.querySelectorAll(
-        ".bottom-nav a"
-    );
-
-
-navLinks.forEach(
-    (link) => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                navLinks.forEach(
-                    (item) => {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                link.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-// =========================================
-// SEARCH RESET
-// =========================================
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "search",
-        () => {
-
-            chatItems.forEach(
-                (chat) => {
-
-                    chat.style.display =
-                        "flex";
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-// =========================================
-// ESC KEY
+// Escape To Close Menu
 // =========================================
 
 document.addEventListener(
@@ -1594,42 +937,155 @@ document.addEventListener(
     (event) => {
 
         if (
-            event.key !==
+            event.key ===
             "Escape"
         ) {
+
+            closeDeleteMenu();
+
+        }
+
+    }
+);
+// =========================================
+// DELETE SYSTEM FINAL CLEANUP
+// =========================================
+
+
+// =========================================
+// Refresh Messages After Delete
+// =========================================
+
+async function refreshMessagesAfterDelete() {
+
+    if (!currentChatId) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_URL +
+                "/api/messages/" +
+                encodeURIComponent(
+                    currentChatId
+                )
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            console.error(
+                "Refresh Messages Failed:",
+                result
+            );
 
             return;
 
         }
 
 
-        if (
-            chatScreen &&
-            chatScreen.style.display !==
-                "none"
-        ) {
+        // =====================================
+        // Clear Current Messages
+        // =====================================
 
-            const backButton =
-                document.getElementById(
-                    "chatBackBtn"
-                );
+        if (chatMessages) {
 
-
-            if (backButton) {
-
-                backButton.click();
-
-            }
+            chatMessages.innerHTML =
+                "";
 
         }
 
-        else {
 
-            if (searchInput) {
+        // =====================================
+        // Render Again
+        // =====================================
 
-                searchInput.blur();
+        result.messages.forEach(
+            (message) => {
+
+                addMessageToScreen(
+                    message
+                );
 
             }
+        );
+
+
+        scrollChatToBottom();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Refresh After Delete Error:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================
+// Delete Menu Protection
+// =========================================
+
+document.addEventListener(
+    "contextmenu",
+    (event) => {
+
+        const messageRow =
+            event.target.closest(
+                ".message-row"
+            );
+
+
+        if (!messageRow) {
+
+            return;
+
+        }
+
+
+        // Prevent browser menu
+        event.preventDefault();
+
+    }
+);
+
+
+// =========================================
+// Prevent Text Selection On Long Press
+// =========================================
+
+document.addEventListener(
+    "selectstart",
+    (event) => {
+
+        const messageRow =
+            event.target.closest(
+                ".message-row"
+            );
+
+
+        if (messageRow) {
+
+            event.preventDefault();
 
         }
 
@@ -1638,107 +1094,70 @@ document.addEventListener(
 
 
 // =========================================
-// ONLINE DOT ANIMATION
+// Delete Menu On Chat Close
 // =========================================
 
-const onlineDots =
-    document.querySelectorAll(
-        ".online-dot"
-    );
+function closeChatDeleteSystem() {
+
+    closeDeleteMenu();
+
+}
 
 
-setInterval(
-    () => {
+// =========================================
+// Back Button Cleanup
+// =========================================
 
-        onlineDots.forEach(
-            (dot) => {
+document.addEventListener(
+    "click",
+    (event) => {
 
-                dot.style.opacity =
-                    "0.4";
+        const backButton =
+            event.target.closest(
+                "#chatBackBtn"
+            );
 
 
-                setTimeout(
-                    () => {
+        if (!backButton) {
 
-                        dot.style.opacity =
-                            "1";
+            return;
 
-                    },
-                    500
-                );
+        }
 
-            }
-        );
+
+        closeChatDeleteSystem();
 
     },
-    1000
+    true
 );
 
 
 // =========================================
-// CHAT FADE ANIMATION
-// =========================================
-
-chatItems.forEach(
-    (chat, index) => {
-
-        chat.style.opacity =
-            "0";
-
-
-        setTimeout(
-            () => {
-
-                chat.style.transition =
-                    "opacity .35s ease";
-
-
-                chat.style.opacity =
-                    "1";
-
-            },
-            index * 80
-        );
-
-    }
-);
-
-
-// =========================================
-// PAGE LOAD
+// Page Change Cleanup
 // =========================================
 
 window.addEventListener(
-    "load",
+    "beforeunload",
     () => {
 
-        console.log(
-            "🚀 Bot Pro Messages Ready"
-        );
+        closeDeleteMenu();
 
     }
 );
 
 
 // =========================================
-// CONSOLE
+// Delete System Ready
 // =========================================
 
 console.log(
-    "✅ Bot Pro Message JS Loaded"
+    "🗑️ Delete Message System Ready"
 );
 
-
 console.log(
-    "🟢 Real-Time Message System Ready"
+    "👤 Delete For Me Ready"
 );
 
-
 console.log(
-    "👁️ Seen / Read System Ready"
-);
-
-
-console.log(
-    "✓ / 👁 Message Status Ready"
+    "🌎 Delete For Everyone Ready"
 );
