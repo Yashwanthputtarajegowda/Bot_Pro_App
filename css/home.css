@@ -1,17 +1,31 @@
 /* ==================================================
    Bot Pro - Home CSS
-   Final Version - Part 1
+   Final Version
+   Existing Design + Video Player
 ================================================== */
 
+
+/* =========================================
+   GLOBAL
+========================================= */
+
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
 }
+
 
 body{
 
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:#0B0B0B;
 
@@ -21,9 +35,10 @@ body{
 
 }
 
-/* ===========================
+
+/* =========================================
    HEADER
-=========================== */
+========================================= */
 
 .header{
 
@@ -49,6 +64,7 @@ body{
 
 }
 
+
 .logo{
 
     display:flex;
@@ -63,17 +79,20 @@ body{
 
 }
 
+
 .bot{
 
     color:#FFFFFF;
 
 }
 
+
 .pro{
 
     color:#8A2BE2;
 
 }
+
 
 .header-actions{
 
@@ -84,6 +103,7 @@ body{
     gap:12px;
 
 }
+
 
 .header-btn{
 
@@ -113,15 +133,18 @@ body{
 
 }
 
+
 .header-btn:hover{
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
 }
+
 
 .icon{
 
@@ -131,9 +154,10 @@ body{
 
 }
 
-/* ===========================
+
+/* =========================================
    SEARCH
-=========================== */
+========================================= */
 
 .search-section{
 
@@ -146,6 +170,7 @@ body{
     padding:18px;
 
 }
+
 
 .search-box{
 
@@ -169,6 +194,7 @@ body{
 
 }
 
+
 .search-box input{
 
     width:100%;
@@ -185,11 +211,13 @@ body{
 
 }
 
+
 .search-box input::placeholder{
 
     color:#888888;
 
 }
+
 
 .ai-btn{
 
@@ -203,11 +231,12 @@ body{
 
     border-radius:28px;
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
     color:#FFFFFF;
 
@@ -221,17 +250,22 @@ body{
 
 }
 
+
 .ai-btn:hover{
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
 
-    box-shadow:0 0 15px rgba(138,43,226,.4);
+    box-shadow:
+        0 0 15px
+        rgba(138,43,226,.4);
 
 }
 
-/* ===========================
+
+/* =========================================
    CATEGORY
-=========================== */
+========================================= */
 
 .category-section{
 
@@ -247,11 +281,13 @@ body{
 
 }
 
+
 .category-section::-webkit-scrollbar{
 
     display:none;
 
 }
+
 
 .category{
 
@@ -273,30 +309,43 @@ body{
 
 }
 
+
 .category:hover{
 
     background:#8A2BE2;
 
 }
 
+
 .category.active{
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
 }
-/* ===========================
+
+
+/* =========================================
    FEED
-=========================== */
+========================================= */
 
 .feed{
 
-    padding:0 18px 100px;
+    padding:
+        0
+        18px
+        100px;
 
 }
+
+
+/* =========================================
+   VIDEO CARD
+========================================= */
 
 .video-card{
 
@@ -314,17 +363,20 @@ body{
 
 }
 
+
 .video-card:hover{
 
-    transform:translateY(-3px);
+    transform:
+        translateY(-3px);
 
     border-color:#8A2BE2;
 
 }
 
-/* ===========================
-   THUMBNAIL
-=========================== */
+
+/* =========================================
+   VIDEO PLAYER / THUMBNAIL
+========================================= */
 
 .thumbnail{
 
@@ -336,7 +388,49 @@ body{
 
     background:#202020;
 
+    overflow:hidden;
+
 }
+
+
+/* =========================================
+   ACTUAL VIDEO
+========================================= */
+
+.thumbnail video{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    background:#111111;
+
+}
+
+
+/*
+   Keep video controls inside
+   the existing card.
+*/
+
+.thumbnail video::-webkit-media-controls-panel{
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.8)
+        );
+
+}
+
+
+/* =========================================
+   Video Placeholder
+========================================= */
 
 .thumbnail-placeholder{
 
@@ -350,11 +444,12 @@ body{
 
     align-items:center;
 
-    background:linear-gradient(
-        135deg,
-        #2D2D2D,
-        #111111
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #2D2D2D,
+            #111111
+        );
 
     color:#777777;
 
@@ -366,6 +461,11 @@ body{
 
 }
 
+
+/* =========================================
+   Duration
+========================================= */
+
 .duration{
 
     position:absolute;
@@ -374,7 +474,8 @@ body{
 
     bottom:12px;
 
-    background:rgba(0,0,0,.8);
+    background:
+        rgba(0,0,0,.8);
 
     color:#FFFFFF;
 
@@ -384,11 +485,14 @@ body{
 
     font-size:13px;
 
+    pointer-events:none;
+
 }
 
-/* ===========================
+
+/* =========================================
    VIDEO DETAILS
-=========================== */
+========================================= */
 
 .video-details{
 
@@ -400,6 +504,7 @@ body{
 
 }
 
+
 .channel-avatar{
 
     width:52px;
@@ -408,11 +513,12 @@ body{
 
     border-radius:50%;
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
     display:flex;
 
@@ -430,11 +536,15 @@ body{
 
 }
 
+
 .video-info{
 
     flex:1;
 
+    min-width:0;
+
 }
+
 
 .video-info h3{
 
@@ -446,7 +556,10 @@ body{
 
     margin-bottom:8px;
 
+    word-break:break-word;
+
 }
+
 
 .video-info p{
 
@@ -456,23 +569,31 @@ body{
 
     line-height:1.5;
 
+    word-break:break-word;
+
 }
 
-/* ===========================
+
+/* =========================================
    ACTION BUTTONS
-=========================== */
+========================================= */
 
 .video-actions{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap:10px;
 
-    padding:0 16px 18px;
+    padding:
+        0
+        16px
+        18px;
 
 }
+
 
 .video-actions button{
 
@@ -500,15 +621,18 @@ body{
 
 }
 
+
 .video-actions button:hover{
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
 }
+
 
 .action-icon{
 
@@ -518,14 +642,17 @@ body{
 
 }
 
+
 .video-actions span{
 
     font-size:13px;
 
 }
-/* ===========================
+
+
+/* =========================================
    BOTTOM NAVIGATION
-=========================== */
+========================================= */
 
 .bottom-nav{
 
@@ -553,6 +680,7 @@ body{
 
 }
 
+
 .bottom-nav a{
 
     flex:1;
@@ -575,17 +703,20 @@ body{
 
 }
 
+
 .bottom-nav a.active{
 
     color:#8A2BE2;
 
 }
 
+
 .bottom-nav a:hover{
 
     color:#FFFFFF;
 
 }
+
 
 .nav-icon{
 
@@ -595,6 +726,7 @@ body{
 
 }
 
+
 .bottom-nav span{
 
     font-size:12px;
@@ -603,9 +735,10 @@ body{
 
 }
 
-/* ===========================
+
+/* =========================================
    UPLOAD POPUP
-=========================== */
+========================================= */
 
 .upload-menu{
 
@@ -633,15 +766,19 @@ body{
 
     z-index:2000;
 
-    box-shadow:0 12px 30px rgba(0,0,0,.45);
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.45);
 
 }
+
 
 .hidden{
 
     display:none;
 
 }
+
 
 .upload-menu button{
 
@@ -665,19 +802,22 @@ body{
 
 }
 
+
 .upload-menu button:hover{
 
-    background:linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
 }
 
-/* ===========================
+
+/* =========================================
    SCROLLBAR
-=========================== */
+========================================= */
 
 ::-webkit-scrollbar{
 
@@ -685,11 +825,13 @@ body{
 
 }
 
+
 ::-webkit-scrollbar-track{
 
     background:#111111;
 
 }
+
 
 ::-webkit-scrollbar-thumb{
 
@@ -699,15 +841,17 @@ body{
 
 }
 
+
 ::-webkit-scrollbar-thumb:hover{
 
     background:#A020F0;
 
 }
 
-/* ===========================
+
+/* =========================================
    ANIMATION
-=========================== */
+========================================= */
 
 @keyframes fadeUp{
 
@@ -715,7 +859,8 @@ body{
 
         opacity:0;
 
-        transform:translateY(20px);
+        transform:
+            translateY(20px);
 
     }
 
@@ -723,21 +868,25 @@ body{
 
         opacity:1;
 
-        transform:translateY(0);
+        transform:
+            translateY(0);
 
     }
 
 }
 
+
 .video-card{
 
-    animation:fadeUp .4s ease;
+    animation:
+        fadeUp .4s ease;
 
 }
 
-/* ===========================
+
+/* =========================================
    TABLET
-=========================== */
+========================================= */
 
 @media(max-width:768px){
 
@@ -747,17 +896,20 @@ body{
 
     }
 
+
     .logo{
 
         font-size:27px;
 
     }
 
+
     .search-box{
 
         width:80%;
 
     }
+
 
     .ai-btn{
 
@@ -767,17 +919,20 @@ body{
 
     }
 
+
     .video-actions{
 
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
 
     }
 
 }
 
-/* ===========================
+
+/* =========================================
    MOBILE
-=========================== */
+========================================= */
 
 @media(max-width:480px){
 
@@ -789,11 +944,13 @@ body{
 
     }
 
+
     .logo{
 
         font-size:24px;
 
     }
+
 
     .header-btn{
 
@@ -802,6 +959,7 @@ body{
         height:42px;
 
     }
+
 
     .search-section{
 
@@ -817,6 +975,7 @@ body{
 
     }
 
+
     .search-box{
 
         width:80%;
@@ -824,6 +983,7 @@ body{
         height:48px;
 
     }
+
 
     .ai-btn{
 
@@ -837,11 +997,20 @@ body{
 
     }
 
+
     .thumbnail{
 
         height:190px;
 
     }
+
+
+    .thumbnail video{
+
+        object-fit:cover;
+
+    }
+
 
     .video-details{
 
@@ -849,11 +1018,13 @@ body{
 
     }
 
+
     .video-info h3{
 
         font-size:16px;
 
     }
+
 
     .video-info p{
 
@@ -861,17 +1032,21 @@ body{
 
     }
 
+
     .video-actions{
 
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
 
     }
+
 
     .bottom-nav{
 
         height:70px;
 
     }
+
 
     .nav-icon{
 
@@ -880,6 +1055,7 @@ body{
         height:22px;
 
     }
+
 
     .bottom-nav span{
 
