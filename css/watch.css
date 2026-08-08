@@ -1,7 +1,7 @@
 /* ==========================================
-   Bot Pro Watch Page CSS
-   Part 2
-   Dark + Purple App Design
+   Bot Pro - Watch Page CSS
+   Compact Version
+   No Zoom
 ========================================== */
 
 
@@ -10,29 +10,23 @@
 ========================================== */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
+    width: 100%;
+    overflow-x: hidden;
 }
 
-
 body {
-
+    width: 100%;
     min-height: 100vh;
+    margin: 0;
 
     background: #0B0B0B;
-
     color: #FFFFFF;
 
     font-family:
@@ -41,7 +35,6 @@ body {
         sans-serif;
 
     overflow-x: hidden;
-
 }
 
 
@@ -50,49 +43,38 @@ body {
 ========================================== */
 
 .watch-header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
 
-    height: 68px;
+    width: 100%;
+    height: 62px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    padding: 0 16px;
+    padding: 0 14px;
 
     background: #111111;
 
     border-bottom:
         1px solid #242424;
-
 }
 
 
 .watch-header-btn {
-
-    width: 44px;
-
-    height: 44px;
+    width: 40px;
+    height: 40px;
 
     border: none;
-
     border-radius: 50%;
 
     background: #1B1B1B;
-
     color: #FFFFFF;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     cursor: pointer;
@@ -100,78 +82,58 @@ body {
     transition:
         background .25s ease,
         transform .25s ease;
-
 }
 
 
 .watch-header-btn:hover {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
 .watch-header-btn:active {
-
-    transform:
-        scale(.94);
-
+    transform: scale(.94);
 }
 
 
 .header-icon {
-
-    width: 23px;
-
-    height: 23px;
-
+    width: 21px;
+    height: 21px;
 }
 
 
 .more-dots {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    gap: 3px;
+    gap: 2px;
 
-    font-size: 18px;
-
+    font-size: 16px;
     line-height: 1;
-
 }
 
 
 .watch-logo {
-
-    font-size: 27px;
+    font-size: 24px;
 
     font-weight: 700;
 
     letter-spacing: -.5px;
-
 }
 
 
 .watch-logo .bot {
-
     color: #FFFFFF;
-
 }
 
 
 .watch-logo .pro {
-
     color: #8A2BE2;
-
 }
 
 
@@ -180,33 +142,27 @@ body {
 ========================================== */
 
 .watch-page {
-
     width: 100%;
-
-    max-width: 1000px;
+    max-width: 900px;
 
     margin: 0 auto;
 
-    padding-bottom: 50px;
-
+    padding-bottom: 40px;
 }
 
 
 /* ==========================================
-   VIDEO SECTION
+   VIDEO
 ========================================== */
 
 .watch-video-section {
-
     width: 100%;
 
     background: #000000;
-
 }
 
 
 .watch-video-container {
-
     position: relative;
 
     width: 100%;
@@ -216,14 +172,11 @@ body {
     background: #000000;
 
     overflow: hidden;
-
 }
 
 
 .watch-video {
-
     width: 100%;
-
     height: 100%;
 
     display: block;
@@ -231,16 +184,14 @@ body {
     object-fit: contain;
 
     background: #000000;
-
 }
 
 
 /* ==========================================
-   VIDEO LOADING
+   LOADING
 ========================================== */
 
 .video-loading {
-
     position: absolute;
 
     inset: 0;
@@ -248,7 +199,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background:
@@ -256,15 +206,13 @@ body {
 
     color: #FFFFFF;
 
-    font-size: 15px;
+    font-size: 14px;
 
     pointer-events: none;
-
 }
 
 
 .video-error {
-
     position: absolute;
 
     inset: 0;
@@ -272,10 +220,9 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    padding: 20px;
+    padding: 18px;
 
     text-align: center;
 
@@ -283,15 +230,12 @@ body {
 
     color: #FF6B6B;
 
-    font-size: 15px;
-
+    font-size: 14px;
 }
 
 
 .hidden {
-
     display: none !important;
-
 }
 
 
@@ -300,26 +244,25 @@ body {
 ========================================== */
 
 .watch-information {
-
-    padding: 20px 18px 0;
-
+    padding:
+        16px
+        15px
+        0;
 }
 
 
 .watch-title {
-
     color: #FFFFFF;
 
-    font-size: 24px;
+    font-size: 20px;
 
     line-height: 1.35;
 
     font-weight: 700;
 
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 
     word-break: break-word;
-
 }
 
 
@@ -328,23 +271,19 @@ body {
 ========================================== */
 
 .channel-row {
-
     display: flex;
 
     align-items: center;
 
-    gap: 13px;
+    gap: 10px;
 
-    margin-bottom: 13px;
-
+    margin-bottom: 10px;
 }
 
 
 .channel-avatar {
-
-    width: 50px;
-
-    height: 50px;
+    width: 44px;
+    height: 44px;
 
     flex-shrink: 0;
 
@@ -353,7 +292,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background:
@@ -365,37 +303,30 @@ body {
 
     color: #FFFFFF;
 
-    font-size: 17px;
+    font-size: 15px;
 
     font-weight: 700;
-
 }
 
 
 .channel-info {
-
     min-width: 0;
-
 }
 
 
 .channel-info h3 {
-
     color: #FFFFFF;
 
-    font-size: 16px;
+    font-size: 15px;
 
-    margin-bottom: 5px;
-
+    margin-bottom: 3px;
 }
 
 
 .channel-info p {
-
     color: #929292;
 
-    font-size: 13px;
-
+    font-size: 12px;
 }
 
 
@@ -404,50 +335,47 @@ body {
 ========================================== */
 
 .video-meta {
-
     display: flex;
 
     align-items: center;
 
-    gap: 7px;
+    gap: 6px;
 
     color: #8F8F8F;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    margin-bottom: 18px;
-
+    margin-bottom: 14px;
 }
 
 
 /* ==========================================
-   ACTION BUTTONS
+   ACTIONS
 ========================================== */
 
 .watch-actions {
-
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4, minmax(0, 1fr));
 
-    gap: 10px;
+    gap: 8px;
 
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 
     border-bottom:
         1px solid #282828;
-
 }
 
 
 .watch-action-btn {
+    min-width: 0;
 
-    min-height: 48px;
+    min-height: 43px;
 
     border: none;
 
-    border-radius: 13px;
+    border-radius: 11px;
 
     background: #1B1B1B;
 
@@ -456,44 +384,36 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    gap: 8px;
+    gap: 6px;
 
     cursor: pointer;
 
-    font-size: 13px;
+    font-size: 12px;
 
     transition:
         background .25s ease,
         transform .2s ease;
-
 }
 
 
 .watch-action-btn:hover {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
 .watch-action-btn:active {
-
-    transform:
-        scale(.96);
-
+    transform: scale(.96);
 }
 
 
 .watch-action-btn.active {
-
     background:
         linear-gradient(
             135deg,
@@ -502,16 +422,14 @@ body {
         );
 
     color: #FFFFFF;
-
 }
 
 
 .action-icon {
+    width: 17px;
+    height: 17px;
 
-    width: 19px;
-
-    height: 19px;
-
+    flex-shrink: 0;
 }
 
 
@@ -520,49 +438,41 @@ body {
 ========================================== */
 
 .comments-section {
-
     padding:
-        22px
         18px
-        40px;
-
+        15px
+        35px;
 }
 
 
 .comments-header {
-
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
+    gap: 8px;
 
-    margin-bottom: 18px;
-
+    margin-bottom: 15px;
 }
 
 
 .comments-header h2 {
-
     color: #FFFFFF;
 
-    font-size: 19px;
-
+    font-size: 17px;
 }
 
 
 .comments-header span {
+    min-width: 24px;
 
-    min-width: 26px;
+    height: 24px;
 
-    height: 26px;
-
-    padding: 0 7px;
+    padding: 0 6px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     border-radius: 20px;
@@ -571,10 +481,9 @@ body {
 
     color: #A020F0;
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 600;
-
 }
 
 
@@ -583,23 +492,19 @@ body {
 ========================================== */
 
 .comment-input-row {
-
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    margin-bottom: 22px;
-
+    margin-bottom: 18px;
 }
 
 
 .comment-avatar {
-
-    width: 38px;
-
-    height: 38px;
+    width: 36px;
+    height: 36px;
 
     flex-shrink: 0;
 
@@ -608,7 +513,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background:
@@ -620,58 +524,51 @@ body {
 
     color: #FFFFFF;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 700;
-
 }
 
 
 .comment-input-row input {
-
     flex: 1;
 
     min-width: 0;
 
-    height: 44px;
+    height: 40px;
 
-    padding: 0 15px;
+    padding:
+        0
+        13px;
 
     border:
         1px solid #2D2D2D;
 
     outline: none;
 
-    border-radius: 24px;
+    border-radius: 22px;
 
     background: #181818;
 
     color: #FFFFFF;
 
-    font-size: 14px;
-
+    font-size: 13px;
 }
 
 
 .comment-input-row input::placeholder {
-
     color: #777777;
-
 }
 
 
 .comment-input-row input:focus {
-
     border-color: #8A2BE2;
-
 }
 
 
 .comment-send-btn {
-
-    width: 42px;
-
-    height: 42px;
+    width: 38px;
+    height: 38px;
 
     flex-shrink: 0;
 
@@ -682,7 +579,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background:
@@ -695,16 +591,12 @@ body {
     color: #FFFFFF;
 
     cursor: pointer;
-
 }
 
 
 .comment-send-btn svg {
-
-    width: 18px;
-
-    height: 18px;
-
+    width: 17px;
+    height: 17px;
 }
 
 
@@ -713,30 +605,24 @@ body {
 ========================================== */
 
 .comments-list {
-
     display: flex;
 
     flex-direction: column;
 
-    gap: 18px;
-
+    gap: 15px;
 }
 
 
 .comment-item {
-
     display: flex;
 
-    gap: 11px;
-
+    gap: 9px;
 }
 
 
 .comment-user-avatar {
-
-    width: 38px;
-
-    height: 38px;
+    width: 36px;
+    height: 36px;
 
     flex-shrink: 0;
 
@@ -745,63 +631,53 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     background: #292929;
 
     color: #FFFFFF;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 600;
-
 }
 
 
 .comment-content {
-
     flex: 1;
 
     min-width: 0;
-
 }
 
 
 .comment-user-name {
-
     color: #FFFFFF;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 600;
 
-    margin-bottom: 5px;
-
+    margin-bottom: 4px;
 }
 
 
 .comment-text {
-
     color: #C0C0C0;
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.5;
+    line-height: 1.45;
 
     word-break: break-word;
-
 }
 
 
 .comment-time {
-
     color: #777777;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    margin-top: 5px;
-
+    margin-top: 4px;
 }
 
 
@@ -810,42 +686,38 @@ body {
 ========================================== */
 
 .more-menu {
-
     position: fixed;
 
-    top: 62px;
-
-    right: 15px;
+    top: 57px;
+    right: 12px;
 
     z-index: 2000;
 
-    width: 200px;
+    width: 185px;
 
-    padding: 8px;
+    padding: 7px;
 
     background: #171717;
 
     border:
         1px solid #303030;
 
-    border-radius: 14px;
+    border-radius: 12px;
 
     box-shadow:
         0 12px 35px
         rgba(0,0,0,.55);
-
 }
 
 
 .more-menu button {
-
     width: 100%;
 
-    height: 45px;
+    height: 42px;
 
     border: none;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     background: transparent;
 
@@ -853,26 +725,21 @@ body {
 
     text-align: left;
 
-    padding: 0 13px;
+    padding: 0 12px;
 
     cursor: pointer;
 
-    font-size: 14px;
-
+    font-size: 13px;
 }
 
 
 .more-menu button:hover {
-
     background: #252525;
-
 }
 
 
 .more-menu button:last-child {
-
     color: #FF6868;
-
 }
 
 
@@ -881,12 +748,10 @@ body {
 ========================================== */
 
 .toast {
-
     position: fixed;
 
     left: 50%;
-
-    bottom: 30px;
+    bottom: 25px;
 
     z-index: 3000;
 
@@ -894,16 +759,16 @@ body {
         translate(-50%, 20px);
 
     padding:
-        11px
-        18px;
+        9px
+        15px;
 
-    border-radius: 25px;
+    border-radius: 22px;
 
     background: #252525;
 
     color: #FFFFFF;
 
-    font-size: 13px;
+    font-size: 12px;
 
     opacity: 0;
 
@@ -912,17 +777,14 @@ body {
     transition:
         opacity .25s ease,
         transform .25s ease;
-
 }
 
 
 .toast.show {
-
     opacity: 1;
 
     transform:
         translate(-50%, 0);
-
 }
 
 
@@ -933,31 +795,26 @@ body {
 @media (max-width: 768px) {
 
     .watch-page {
-
         max-width: 100%;
-
     }
 
 
     .watch-title {
-
-        font-size: 21px;
-
+        font-size: 19px;
     }
 
 
     .watch-actions {
-
         grid-template-columns:
-            repeat(4, 1fr);
-
+            repeat(
+                4,
+                minmax(0, 1fr)
+            );
     }
 
 
     .watch-action-btn {
-
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 }
@@ -970,139 +827,133 @@ body {
 @media (max-width: 520px) {
 
     .watch-header {
+        height: 60px;
 
-        height: 64px;
-
-        padding: 0 12px;
-
+        padding:
+            0
+            10px;
     }
 
 
     .watch-header-btn {
-
-        width: 42px;
-
-        height: 42px;
-
+        width: 39px;
+        height: 39px;
     }
 
 
     .watch-logo {
-
-        font-size: 24px;
-
+        font-size: 22px;
     }
 
 
     .watch-video-container {
-
         aspect-ratio: 16 / 9;
-
     }
 
 
     .watch-information {
-
         padding:
-            17px
             14px
+            12px
             0;
-
     }
 
 
     .watch-title {
+        font-size: 17px;
 
-        font-size: 18px;
+        line-height: 1.35;
 
-        line-height: 1.4;
-
-        margin-bottom: 15px;
-
+        margin-bottom: 12px;
     }
 
 
     .channel-avatar {
+        width: 42px;
+        height: 42px;
 
-        width: 46px;
-
-        height: 46px;
-
+        font-size: 14px;
     }
 
 
     .channel-info h3 {
-
-        font-size: 15px;
-
+        font-size: 14px;
     }
 
 
     .channel-info p {
-
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 
     .video-meta {
+        font-size: 11px;
 
-        font-size: 12px;
-
+        margin-bottom: 12px;
     }
 
 
     .watch-actions {
-
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
-        gap: 8px;
+        gap: 7px;
 
+        padding-bottom: 13px;
     }
 
 
     .watch-action-btn {
+        min-height: 41px;
 
-        min-height: 46px;
+        font-size: 11px;
 
-        font-size: 12px;
-
+        gap: 5px;
     }
 
 
     .comments-section {
-
         padding:
-            20px
-            14px
-            35px;
+            17px
+            12px
+            30px;
+    }
 
+
+    .comments-header {
+        margin-bottom: 13px;
+    }
+
+
+    .comments-header h2 {
+        font-size: 16px;
     }
 
 
     .comment-input-row {
-
-        gap: 7px;
-
+        gap: 6px;
     }
 
 
     .comment-avatar {
+        width: 34px;
+        height: 34px;
+    }
 
-        width: 36px;
 
-        height: 36px;
+    .comment-input-row input {
+        height: 38px;
 
+        font-size: 12px;
     }
 
 
     .comment-send-btn {
-
-        width: 40px;
-
-        height: 40px;
-
+        width: 37px;
+        height: 37px;
     }
 
 }
@@ -1114,28 +965,37 @@ body {
 
 @media (max-width: 360px) {
 
-    .watch-action-btn {
-
-        gap: 5px;
-
-        font-size: 11px;
-
+    .watch-header {
+        height: 58px;
     }
 
 
-    .action-icon {
+    .watch-logo {
+        font-size: 21px;
+    }
 
-        width: 17px;
 
-        height: 17px;
-
+    .watch-header-btn {
+        width: 37px;
+        height: 37px;
     }
 
 
     .watch-title {
+        font-size: 16px;
+    }
 
-        font-size: 17px;
 
+    .watch-action-btn {
+        min-height: 39px;
+
+        font-size: 10px;
+    }
+
+
+    .action-icon {
+        width: 16px;
+        height: 16px;
     }
 
 }
