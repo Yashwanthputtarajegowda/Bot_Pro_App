@@ -1,9 +1,9 @@
 // =========================================
 // Bot Pro Home JS
-// Final Version
-// Existing Design + Uploaded Video Feed
+// Final Clean Version
+// Uploaded Video Feed
 // Watch Page Connection
-// Authenticated Home Feed
+// Firebase Authenticated Feed
 // =========================================
 
 
@@ -318,6 +318,8 @@ function formatDuration(
     );
 
 }
+
+
 // =========================================
 // Open Watch Page
 // =========================================
@@ -390,7 +392,7 @@ function createVideoCard(
 
 
     // =====================================
-    // Thumbnail / Video Area
+    // Thumbnail
     // =====================================
 
     const thumbnail =
@@ -401,6 +403,10 @@ function createVideoCard(
 
     thumbnail.className =
         "thumbnail";
+
+
+    thumbnail.style.position =
+        "relative";
 
 
     // =====================================
@@ -446,10 +452,6 @@ function createVideoCard(
         "nodownload"
     );
 
-
-    // =====================================
-    // Video Click
-    // =====================================
 
     video.addEventListener(
         "click",
@@ -577,17 +579,13 @@ function createVideoCard(
     );
 
 
-    thumbnail.style.position =
-        "relative";
-
-
     thumbnail.appendChild(
         watchOverlay
     );
 
 
     // =====================================
-    // Hide Overlay When Video Plays
+    // Hide Overlay After Play
     // =====================================
 
     video.addEventListener(
@@ -637,10 +635,6 @@ function createVideoCard(
         "video-details";
 
 
-    // =====================================
-    // Avatar
-    // =====================================
-
     const avatar =
         document.createElement(
             "div"
@@ -654,10 +648,6 @@ function createVideoCard(
     avatar.textContent =
         "BP";
 
-
-    // =====================================
-    // Info
-    // =====================================
 
     const info =
         document.createElement(
@@ -755,9 +745,7 @@ function createVideoCard(
 
         }
     );
-
-
-    // =====================================
+        // =====================================
     // Action Buttons
     // =====================================
 
@@ -817,7 +805,7 @@ function createVideoCard(
 
 
     // =====================================
-    // Share
+    // Share Button
     // =====================================
 
     const shareButton =
@@ -879,7 +867,7 @@ function createVideoCard(
                             "AbortError"
                         ) {
 
-                            console.log(
+                            console.error(
                                 "Share Error:",
                                 error
                             );
@@ -953,6 +941,10 @@ async function loadUploadedVideos() {
 
     if (!videoContainer) {
 
+        console.error(
+            "❌ videoContainer not found"
+        );
+
         return;
 
     }
@@ -966,9 +958,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // IMPORTANT:
-        // apiFetch automatically adds
-        // Firebase ID Token
+        // Authenticated API Request
         // =====================================
 
         const result =
@@ -981,13 +971,19 @@ async function loadUploadedVideos() {
             );
 
 
+        console.log(
+            "📦 Posts API response:",
+            result
+        );
+
+
         if (
             !result ||
             !result.success
         ) {
 
             console.error(
-                "Video Feed Error:",
+                "❌ Posts API failed:",
                 result
             );
 
@@ -1004,24 +1000,36 @@ async function loadUploadedVideos() {
                 : [];
 
 
+        console.log(
+            "📚 Total posts:",
+            posts.length
+        );
+
+
+        // =====================================
+        // Only Videos
+        // =====================================
+
         const videos =
             posts.filter(
                 (post) =>
+
                     post &&
                     post.type ===
                         "video" &&
                     post.url
+
             );
 
 
         console.log(
-            "🎬 Uploaded videos:",
+            "🎬 Videos found:",
             videos.length
         );
 
 
         // =====================================
-        // Remove Previous Dynamic Cards
+        // Remove Old Dynamic Videos
         // =====================================
 
         videoContainer
@@ -1038,7 +1046,24 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Add Uploaded Videos
+        // Empty Feed
+        // =====================================
+
+        if (
+            videos.length === 0
+        ) {
+
+            console.log(
+                "ℹ️ No uploaded videos found"
+            );
+
+            return;
+
+        }
+
+
+        // =====================================
+        // Add Videos
         // =====================================
 
         videos.forEach(
@@ -1081,7 +1106,6 @@ async function loadUploadedVideos() {
 
     }
 
-
     catch (error) {
 
         console.error(
@@ -1107,7 +1131,7 @@ function setupVideoSearch() {
     }
 
 
-    searchInput.onkeyup =
+    searchInput.oninput =
         () => {
 
             const value =
@@ -1118,7 +1142,7 @@ function setupVideoSearch() {
 
             const cards =
                 document.querySelectorAll(
-                    ".video-card"
+                    ".uploaded-video-card"
                 );
 
 
@@ -1134,26 +1158,14 @@ function setupVideoSearch() {
                         "";
 
 
-                    const description =
-                        card.querySelector(
-                            "p"
-                        )
-                            ?.textContent
-                            ?.toLowerCase() ||
-                        "";
-
-
                     if (
                         title.includes(
-                            value
-                        ) ||
-                        description.includes(
                             value
                         )
                     ) {
 
                         card.style.display =
-                            "block";
+                            "";
 
                     }
 
@@ -1184,13 +1196,13 @@ if (searchInput) {
 
             document
                 .querySelectorAll(
-                    ".video-card"
+                    ".uploaded-video-card"
                 )
                 .forEach(
                     (card) => {
 
                         card.style.display =
-                            "block";
+                            "";
 
                     }
                 );
@@ -1200,883 +1212,277 @@ if (searchInput) {
 
 }
 // =========================================
-// Open Watch Page
+// Categories
 // =========================================
 
-function openWatchPage(
-    post
-) {
+categoryButtons.forEach(
+    (button) => {
 
-    if (
-        !post ||
-        !post.id
-    ) {
-
-        console.error(
-            "❌ Video ID missing:",
-            post
-        );
-
-        return;
-
-    }
-
-
-    const watchUrl =
-        "watch.html?id=" +
-        encodeURIComponent(
-            String(post.id)
-        );
-
-
-    console.log(
-        "🎬 Opening Watch Page:",
-        watchUrl
-    );
-
-
-    window.location.href =
-        watchUrl;
-
-}
-
-
-// =========================================
-// Create Uploaded Video Card
-// =========================================
-
-function createVideoCard(
-    post
-) {
-
-    const card =
-        document.createElement(
-            "article"
-        );
-
-
-    card.className =
-        "video-card uploaded-video-card";
-
-
-    card.dataset.postId =
-        post.id || "";
-
-
-    card.dataset.title =
-        (
-            post.caption ||
-            "Uploaded Video"
-        ).toLowerCase();
-
-
-    // =====================================
-    // Thumbnail / Video Area
-    // =====================================
-
-    const thumbnail =
-        document.createElement(
-            "div"
-        );
-
-
-    thumbnail.className =
-        "thumbnail";
-
-
-    // =====================================
-    // Video
-    // =====================================
-
-    const video =
-        document.createElement(
-            "video"
-        );
-
-
-    video.src =
-        post.url;
-
-
-    video.controls =
-        true;
-
-
-    video.preload =
-        "metadata";
-
-
-    video.playsInline =
-        true;
-
-
-    video.setAttribute(
-        "playsinline",
-        ""
-    );
-
-
-    video.setAttribute(
-        "webkit-playsinline",
-        ""
-    );
-
-
-    video.setAttribute(
-        "controlsList",
-        "nodownload"
-    );
-
-
-    // =====================================
-    // Video Click
-    // =====================================
-
-    video.addEventListener(
-        "click",
-        (event) => {
-
-            event.stopPropagation();
-
-        }
-    );
-
-
-    // =====================================
-    // Duration
-    // =====================================
-
-    const duration =
-        document.createElement(
-            "span"
-        );
-
-
-    duration.className =
-        "duration";
-
-
-    duration.textContent =
-        "";
-
-
-    video.addEventListener(
-        "loadedmetadata",
-        () => {
-
-            duration.textContent =
-                formatDuration(
-                    video.duration
-                );
-
-        }
-    );
-
-
-    thumbnail.appendChild(
-        video
-    );
-
-
-    // =====================================
-    // Watch Page Overlay
-    // =====================================
-
-    const watchOverlay =
-        document.createElement(
-            "button"
-        );
-
-
-    watchOverlay.type =
-        "button";
-
-
-    watchOverlay.className =
-        "watch-poster-overlay";
-
-
-    watchOverlay.setAttribute(
-        "aria-label",
-        "Open video watch page"
-    );
-
-
-    watchOverlay.innerHTML =
-        '<span class="watch-poster-play">▶</span>';
-
-
-    watchOverlay.style.position =
-        "absolute";
-
-
-    watchOverlay.style.inset =
-        "0";
-
-
-    watchOverlay.style.display =
-        "flex";
-
-
-    watchOverlay.style.alignItems =
-        "center";
-
-
-    watchOverlay.style.justifyContent =
-        "center";
-
-
-    watchOverlay.style.border =
-        "0";
-
-
-    watchOverlay.style.background =
-        "transparent";
-
-
-    watchOverlay.style.cursor =
-        "pointer";
-
-
-    watchOverlay.style.zIndex =
-        "2";
-
-
-    watchOverlay.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-            openWatchPage(
-                post
-            );
-
-        }
-    );
-
-
-    thumbnail.style.position =
-        "relative";
-
-
-    thumbnail.appendChild(
-        watchOverlay
-    );
-
-
-    // =====================================
-    // Hide Overlay When Video Plays
-    // =====================================
-
-    video.addEventListener(
-        "play",
-        () => {
-
-            watchOverlay.style.display =
-                "none";
-
-        }
-    );
-
-
-    video.addEventListener(
-        "pause",
-        () => {
-
-            if (
-                video.currentTime === 0
-            ) {
-
-                watchOverlay.style.display =
-                    "flex";
-
-            }
-
-        }
-    );
-
-
-    thumbnail.appendChild(
-        duration
-    );
-
-
-    // =====================================
-    // Video Details
-    // =====================================
-
-    const details =
-        document.createElement(
-            "div"
-        );
-
-
-    details.className =
-        "video-details";
-
-
-    // =====================================
-    // Avatar
-    // =====================================
-
-    const avatar =
-        document.createElement(
-            "div"
-        );
-
-
-    avatar.className =
-        "channel-avatar";
-
-
-    avatar.textContent =
-        "BP";
-
-
-    // =====================================
-    // Info
-    // =====================================
-
-    const info =
-        document.createElement(
-            "div"
-        );
-
-
-    info.className =
-        "video-info";
-
-
-    const title =
-        document.createElement(
-            "h3"
-        );
-
-
-    title.textContent =
-        post.caption ||
-        "Uploaded Video";
-
-
-    const meta =
-        document.createElement(
-            "p"
-        );
-
-
-    meta.textContent =
-        "Bot Pro • " +
-        formatPostTime(
-            post.createdAt
-        );
-
-
-    info.appendChild(
-        title
-    );
-
-
-    info.appendChild(
-        meta
-    );
-
-
-    details.appendChild(
-        avatar
-    );
-
-
-    details.appendChild(
-        info
-    );
-
-
-    // =====================================
-    // Details → Watch Page
-    // =====================================
-
-    details.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-            openWatchPage(
-                post
-            );
-
-        }
-    );
-
-
-    // =====================================
-    // Title → Watch Page
-    // =====================================
-
-    title.style.cursor =
-        "pointer";
-
-
-    title.addEventListener(
-        "click",
-        (event) => {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-            openWatchPage(
-                post
-            );
-
-        }
-    );
-
-
-    // =====================================
-    // Action Buttons
-    // =====================================
-
-    const actions =
-        document.createElement(
-            "div"
-        );
-
-
-    actions.className =
-        "video-actions";
-
-
-    actions.innerHTML = `
-
-        <button
-            type="button">
-
-            <span>
-                Like
-            </span>
-
-        </button>
-
-
-        <button
-            type="button">
-
-            <span>
-                Comment
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="share-video-btn">
-
-            <span>
-                Share
-            </span>
-
-        </button>
-
-
-        <button
-            type="button">
-
-            <span>
-                Save
-            </span>
-
-        </button>
-
-    `;
-
-
-    // =====================================
-    // Share
-    // =====================================
-
-    const shareButton =
-        actions.querySelector(
-            ".share-video-btn"
-        );
-
-
-    if (shareButton) {
-
-        shareButton.addEventListener(
+        button.addEventListener(
             "click",
-            async (event) => {
+            () => {
 
-                event.preventDefault();
+                categoryButtons.forEach(
+                    (item) => {
 
-                event.stopPropagation();
+                        item.classList.remove(
+                            "active"
+                        );
 
-
-                const watchUrl =
-                    new URL(
-                        "watch.html",
-                        window.location.href
-                    );
-
-
-                watchUrl.searchParams.set(
-                    "id",
-                    post.id
+                    }
                 );
 
 
-                if (
-                    navigator.share
-                ) {
-
-                    try {
-
-                        await navigator.share({
-
-                            title:
-                                post.caption ||
-                                "Bot Pro Video",
-
-                            text:
-                                "Watch this video on Bot Pro",
-
-                            url:
-                                watchUrl.href
-
-                        });
-
-                    }
-
-                    catch (error) {
-
-                        if (
-                            error.name !==
-                            "AbortError"
-                        ) {
-
-                            console.log(
-                                "Share Error:",
-                                error
-                            );
-
-                        }
-
-                    }
-
-                }
-
-                else {
-
-                    try {
-
-                        await navigator.clipboard.writeText(
-                            watchUrl.href
-                        );
-
-
-                        alert(
-                            "Video link copied"
-                        );
-
-                    }
-
-                    catch (error) {
-
-                        alert(
-                            "Unable to share video"
-                        );
-
-                    }
-
-                }
+                button.classList.add(
+                    "active"
+                );
 
             }
         );
 
     }
+);
 
 
-    // =====================================
-    // Build Card
-    // =====================================
+// =========================================
+// Upload Menu Buttons
+// =========================================
 
-    card.appendChild(
-        thumbnail
+const videoUpload =
+    document.getElementById(
+        "videoUpload"
     );
 
 
-    card.appendChild(
-        details
+if (videoUpload) {
+
+    videoUpload.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "upload.html";
+
+        }
+    );
+
+}
+
+
+const reelUpload =
+    document.getElementById(
+        "reelUpload"
     );
 
 
-    card.appendChild(
-        actions
+if (reelUpload) {
+
+    reelUpload.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "upload.html#reel";
+
+        }
+    );
+
+}
+
+
+const photoUpload =
+    document.getElementById(
+        "photoUpload"
     );
 
 
-    return card;
+if (photoUpload) {
+
+    photoUpload.addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "Photo Upload Coming Soon"
+            );
+
+        }
+    );
+
+}
+
+
+const linkUpload =
+    document.getElementById(
+        "linkUpload"
+    );
+
+
+if (linkUpload) {
+
+    linkUpload.addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "Import Link Coming Soon"
+            );
+
+        }
+    );
+
+}
+
+
+const aiCreate =
+    document.getElementById(
+        "aiCreate"
+    );
+
+
+if (aiCreate) {
+
+    aiCreate.addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "AI Generator Coming Soon"
+            );
+
+        }
+    );
 
 }
 
 
 // =========================================
-// Load Uploaded Videos
+// Bottom Navigation
 // =========================================
 
-async function loadUploadedVideos() {
-
-    if (!videoContainer) {
-
-        return;
-
-    }
+const navLinks =
+    document.querySelectorAll(
+        ".bottom-nav a"
+    );
 
 
-    try {
+navLinks.forEach(
+    (link) => {
 
-        console.log(
-            "📡 Loading uploaded videos..."
+        link.addEventListener(
+            "click",
+            () => {
+
+                navLinks.forEach(
+                    (item) => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
         );
 
+    }
+);
 
-        // =====================================
-        // IMPORTANT:
-        // apiFetch automatically adds
-        // Firebase ID Token
-        // =====================================
 
-        const result =
-            await apiFetch(
-                "/api/upload/posts",
-                {
-                    method:
-                        "GET"
-                }
-            );
+// =========================================
+// ESC Key
+// =========================================
 
+document.addEventListener(
+    "keydown",
+    (event) => {
 
         if (
-            !result ||
-            !result.success
+            event.key ===
+            "Escape"
         ) {
 
-            console.error(
-                "Video Feed Error:",
-                result
-            );
+            if (uploadMenu) {
 
-            return;
-
-        }
-
-
-        const posts =
-            Array.isArray(
-                result.posts
-            )
-                ? result.posts
-                : [];
-
-
-        const videos =
-            posts.filter(
-                (post) =>
-                    post &&
-                    post.type ===
-                        "video" &&
-                    post.url
-            );
-
-
-        console.log(
-            "🎬 Uploaded videos:",
-            videos.length
-        );
-
-
-        // =====================================
-        // Remove Previous Dynamic Cards
-        // =====================================
-
-        videoContainer
-            .querySelectorAll(
-                ".uploaded-video-card"
-            )
-            .forEach(
-                (card) => {
-
-                    card.remove();
-
-                }
-            );
-
-
-        // =====================================
-        // Add Uploaded Videos
-        // =====================================
-
-        videos.forEach(
-            (post, index) => {
-
-                const card =
-                    createVideoCard(
-                        post
-                    );
-
-
-                card.style.opacity =
-                    "0";
-
-
-                videoContainer.appendChild(
-                    card
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        card.style.transition =
-                            "opacity .35s ease";
-
-
-                        card.style.opacity =
-                            "1";
-
-                    },
-                    index * 100
+                uploadMenu.classList.add(
+                    "hidden"
                 );
 
             }
-        );
-
-
-        setupVideoSearch();
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "❌ Unable to load videos:",
-            error
-        );
-
-    }
-
-}
-
-
-// =========================================
-// Search Videos
-// =========================================
-
-function setupVideoSearch() {
-
-    if (!searchInput) {
-
-        return;
-
-    }
-
-
-    searchInput.onkeyup =
-        () => {
-
-            const value =
-                searchInput.value
-                    .toLowerCase()
-                    .trim();
-
-
-            const cards =
-                document.querySelectorAll(
-                    ".video-card"
-                );
-
-
-            cards.forEach(
-                (card) => {
-
-                    const title =
-                        card.querySelector(
-                            "h3"
-                        )
-                            ?.textContent
-                            ?.toLowerCase() ||
-                        "";
-
-
-                    const description =
-                        card.querySelector(
-                            "p"
-                        )
-                            ?.textContent
-                            ?.toLowerCase() ||
-                        "";
-
-
-                    if (
-                        title.includes(
-                            value
-                        ) ||
-                        description.includes(
-                            value
-                        )
-                    ) {
-
-                        card.style.display =
-                            "block";
-
-                    }
-
-                    else {
-
-                        card.style.display =
-                            "none";
-
-                    }
-
-                }
-            );
-
-        };
-
-}
-
-
-// =========================================
-// Search Reset
-// =========================================
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "search",
-        () => {
-
-            document
-                .querySelectorAll(
-                    ".video-card"
-                )
-                .forEach(
-                    (card) => {
-
-                        card.style.display =
-                            "block";
-
-                    }
-                );
 
         }
-    );
 
-}
+    }
+);
+
+
+// =========================================
+// PAGE LOAD
+// =========================================
+
+window.addEventListener(
+    "load",
+    async () => {
+
+        console.log(
+            "🚀 Bot Pro Home Loaded"
+        );
+
+
+        console.log(
+            "🔐 Authenticated Feed Starting..."
+        );
+
+
+        try {
+
+            await loadUploadedVideos();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "❌ Home Feed Error:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+// =========================================
+// Console
+// =========================================
+
+console.log(
+    "✅ Bot Pro Home Ready"
+);
+
+
+console.log(
+    "🎬 Video Feed System Ready"
+);
+
+
+console.log(
+    "🎥 Watch Page Connection Ready"
+);
+
+
+console.log(
+    "🔐 Firebase Authenticated Feed Ready"
+);
+
+
+// =========================================
+// END
+// =========================================
