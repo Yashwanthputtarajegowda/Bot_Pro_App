@@ -1,6 +1,6 @@
 // ==========================================
 // Bot Pro Upload JS
-// Final Upload Settings + Preview Version
+// Video + Photo + Settings
 // ==========================================
 
 
@@ -56,6 +56,8 @@ let selectedFile = null;
 
 let selectedThumbnail = null;
 
+let selectedUploadType = "video";
+
 
 // ==========================================
 // Elements
@@ -66,120 +68,95 @@ const uploadTypes =
         ".type-card"
     );
 
-
 const chooseFileBtn =
     document.querySelector(
         ".select-btn"
     );
-
 
 const uploadTitle =
     document.querySelector(
         ".upload-select h3"
     );
 
-
 const uploadDescription =
     document.querySelector(
         ".upload-select p"
     );
-
 
 const videoChooseArea =
     document.querySelector(
         "#videoChooseArea"
     );
 
-
 const videoPreviewArea =
     document.querySelector(
         "#videoPreviewArea"
     );
-
 
 const videoPreview =
     document.querySelector(
         "#videoPreview"
     );
 
-
 const videoFileName =
     document.querySelector(
         "#videoFileName"
     );
-
 
 const videoCancelBtn =
     document.querySelector(
         "#videoCancelBtn"
     );
 
-
 const thumbnailButton =
     document.querySelector(
         ".thumb-upload"
     );
-
-
-const thumbnailPreview =
-    document.querySelector(
-        "#thumbnailPreview"
-    );
-
 
 const thumbnailText =
     document.querySelector(
         "#thumbnailText"
     );
 
-
 const thumbnailImage =
     document.querySelector(
         "#thumbnailImage"
     );
-
 
 const thumbnailCancelBtn =
     document.querySelector(
         "#thumbnailCancelBtn"
     );
 
-
 const uploadButton =
     document.querySelector(
         ".upload-btn"
     );
-
 
 const progressFill =
     document.querySelector(
         ".progress-fill"
     );
 
-
 const progressText =
     document.querySelector(
         "#progressText"
     );
-
 
 const category =
     document.querySelector(
         ".category-select"
     );
 
-
 const linkInput =
     document.querySelector(
         ".link-input"
     );
 
-
 const tagsInput =
     document.querySelector(
         ".tags-input"
     );
-
 
 const backButton =
     document.querySelector(
@@ -188,7 +165,7 @@ const backButton =
 
 
 // ==========================================
-// UPLOAD SETTINGS ELEMENTS
+// Upload Settings
 // ==========================================
 
 const uploadSettingsBtn =
@@ -196,42 +173,35 @@ const uploadSettingsBtn =
         "#uploadSettingsBtn"
     );
 
-
 const uploadSettingsPanel =
     document.querySelector(
         "#uploadSettingsPanel"
     );
-
 
 const uploadSettingsClose =
     document.querySelector(
         "#uploadSettingsClose"
     );
 
-
 const saveUploadSettings =
     document.querySelector(
         "#saveUploadSettings"
     );
-
 
 const uploadQuality =
     document.querySelector(
         "#uploadQuality"
     );
 
-
 const defaultPrivacy =
     document.querySelector(
         "#defaultPrivacy"
     );
 
-
 const defaultComments =
     document.querySelector(
         "#defaultComments"
     );
-
 
 const customThumbnailSetting =
     document.querySelector(
@@ -240,16 +210,14 @@ const customThumbnailSetting =
 
 
 // ==========================================
-// Upload Type
+// Upload Type Selection
 // ==========================================
 
 uploadTypes.forEach((card) => {
 
-
     card.addEventListener(
         "click",
         () => {
-
 
             uploadTypes.forEach(
                 (item) => {
@@ -260,7 +228,6 @@ uploadTypes.forEach((card) => {
 
                 }
             );
-
 
             card.classList.add(
                 "active"
@@ -274,59 +241,75 @@ uploadTypes.forEach((card) => {
                     ?.trim();
 
 
+            // ==================================
+            // VIDEO
+            // ==================================
+
             if (type === "Video") {
 
+                selectedUploadType =
+                    "video";
 
                 uploadTitle.textContent =
                     "Select Video";
 
-
                 uploadDescription.textContent =
                     "MP4 • MOV • AVI • Max 2GB";
-
 
                 fileInput.accept =
                     "video/*";
 
+                resetMainFile();
 
             }
 
+
+            // ==================================
+            // REEL
+            // ==================================
 
             else if (
                 type === "Reel"
             ) {
 
+                selectedUploadType =
+                    "reel";
 
                 uploadTitle.textContent =
                     "Select Reel";
 
-
                 uploadDescription.textContent =
                     "MP4 • MOV • Max 2GB";
-
 
                 fileInput.accept =
                     "video/*";
 
+                resetMainFile();
 
             }
 
+
+            // ==================================
+            // LINK
+            // ==================================
 
             else if (
                 type === "Link"
             ) {
 
+                selectedUploadType =
+                    "link";
 
                 uploadTitle.textContent =
-                    "Paste Link";
-
+                    "Select File";
 
                 uploadDescription.textContent =
-                    "YouTube • Website • Any URL";
-
+                    "Choose a video or image";
 
                 fileInput.accept =
                     "video/*,image/*";
+
+                resetMainFile();
 
             }
 
@@ -341,7 +324,6 @@ uploadTypes.forEach((card) => {
 // ==========================================
 
 if (chooseFileBtn) {
-
 
     chooseFileBtn.addEventListener(
         "click",
@@ -362,7 +344,6 @@ if (chooseFileBtn) {
 fileInput.addEventListener(
     "change",
     () => {
-
 
         if (
             !fileInput.files.length
@@ -393,11 +374,18 @@ fileInput.addEventListener(
         );
 
 
+        // ==================================
+        // VIDEO
+        // ==================================
+
         if (
             file.type.startsWith(
                 "video/"
             )
         ) {
+
+            selectedUploadType =
+                "video";
 
             showVideoPreview(
                 file
@@ -406,13 +394,20 @@ fileInput.addEventListener(
         }
 
 
+        // ==================================
+        // IMAGE / PHOTO
+        // ==================================
+
         else if (
             file.type.startsWith(
                 "image/"
             )
         ) {
 
-            showImagePreview(
+            selectedUploadType =
+                "photo";
+
+            showPhotoPreview(
                 file
             );
 
@@ -424,7 +419,6 @@ fileInput.addEventListener(
             alert(
                 "Please select a video or image."
             );
-
 
             resetMainFile();
 
@@ -441,7 +435,6 @@ fileInput.addEventListener(
 function showVideoPreview(
     file
 ) {
-
 
     const videoURL =
         URL.createObjectURL(
@@ -473,6 +466,19 @@ function showVideoPreview(
         "block";
 
 
+    const imagePreview =
+        document.querySelector(
+            "#mainImagePreview"
+        );
+
+
+    if (imagePreview) {
+
+        imagePreview.remove();
+
+    }
+
+
     videoPreview.load();
 
 
@@ -484,13 +490,12 @@ function showVideoPreview(
 
 
 // ==========================================
-// Show Image Preview
+// Show Photo Preview
 // ==========================================
 
-function showImagePreview(
+function showPhotoPreview(
     file
 ) {
-
 
     const imageURL =
         URL.createObjectURL(
@@ -526,12 +531,10 @@ function showImagePreview(
 
     if (!imagePreview) {
 
-
         imagePreview =
             document.createElement(
                 "img"
             );
-
 
         imagePreview.id =
             "mainImagePreview";
@@ -554,7 +557,7 @@ function showImagePreview(
 
 
         imagePreview.style.background =
-            "#000";
+            "#000000";
 
 
         videoPreviewArea.insertBefore(
@@ -574,7 +577,7 @@ function showImagePreview(
 
 
     console.log(
-        "🖼️ Image preview ready"
+        "🖼️ Photo preview ready"
     );
 
 }
@@ -586,16 +589,13 @@ function showImagePreview(
 
 if (videoCancelBtn) {
 
-
     videoCancelBtn.addEventListener(
         "click",
         (event) => {
 
-
             event.preventDefault();
 
             event.stopPropagation();
-
 
             resetMainFile();
 
@@ -611,7 +611,6 @@ if (videoCancelBtn) {
 
 function resetMainFile() {
 
-
     selectedFile =
         null;
 
@@ -620,19 +619,20 @@ function resetMainFile() {
         "";
 
 
-    videoPreview.pause();
+    if (videoPreview) {
 
+        videoPreview.pause();
 
-    videoPreview.removeAttribute(
-        "src"
-    );
+        videoPreview.removeAttribute(
+            "src"
+        );
 
+        videoPreview.load();
 
-    videoPreview.load();
+        videoPreview.style.display =
+            "block";
 
-
-    videoPreview.style.display =
-        "block";
+    }
 
 
     videoPreviewArea.style.display =
@@ -677,7 +677,6 @@ function resetMainFile() {
 
 if (thumbnailButton) {
 
-
     thumbnailButton.addEventListener(
         "click",
         () => {
@@ -697,7 +696,6 @@ if (thumbnailButton) {
 thumbnailInput.addEventListener(
     "change",
     () => {
-
 
         if (
             !thumbnailInput.files.length
@@ -731,7 +729,6 @@ thumbnailInput.addEventListener(
 function showThumbnailPreview(
     file
 ) {
-
 
     const imageURL =
         URL.createObjectURL(
@@ -769,16 +766,13 @@ function showThumbnailPreview(
 
 if (thumbnailCancelBtn) {
 
-
     thumbnailCancelBtn.addEventListener(
         "click",
         (event) => {
 
-
             event.preventDefault();
 
             event.stopPropagation();
-
 
             resetThumbnail();
 
@@ -793,7 +787,6 @@ if (thumbnailCancelBtn) {
 // ==========================================
 
 function resetThumbnail() {
-
 
     selectedThumbnail =
         null;
@@ -834,10 +827,8 @@ function setProgress(
     value
 ) {
 
-
     progressFill.style.width =
         value + "%";
-
 
     progressText.textContent =
         value + "%";
@@ -851,7 +842,6 @@ function setProgress(
 
 if (uploadButton) {
 
-
     uploadButton.addEventListener(
         "click",
         async () => {
@@ -863,11 +853,9 @@ if (uploadButton) {
 
             if (!selectedFile) {
 
-
                 alert(
-                    "Please select a video first."
+                    "Please select a video or photo first."
                 );
-
 
                 return;
 
@@ -875,16 +863,14 @@ if (uploadButton) {
 
 
             // ==================================
-            // Disable Button
+            // Disable
             // ==================================
 
             uploadButton.disabled =
                 true;
 
-
             uploadButton.textContent =
                 "Uploading...";
-
 
             setProgress(0);
 
@@ -897,10 +883,30 @@ if (uploadButton) {
                 new FormData();
 
 
-            formData.append(
-                "video",
-                selectedFile
-            );
+            // ==================================
+            // Correct Field
+            // ==================================
+
+            if (
+                selectedUploadType ===
+                "photo"
+            ) {
+
+                formData.append(
+                    "photo",
+                    selectedFile
+                );
+
+            }
+
+            else {
+
+                formData.append(
+                    "video",
+                    selectedFile
+                );
+
+            }
 
 
             // ==================================
@@ -911,7 +917,6 @@ if (uploadButton) {
                 document.querySelector(
                     ".title-input"
                 );
-
 
             const descriptionInput =
                 document.querySelector(
@@ -933,6 +938,11 @@ if (uploadButton) {
 
                 formData.append(
                     "description",
+                    descriptionInput.value
+                );
+
+                formData.append(
+                    "caption",
                     descriptionInput.value
                 );
 
@@ -970,7 +980,7 @@ if (uploadButton) {
 
 
             // ==================================
-            // Upload Settings
+            // Settings
             // ==================================
 
             if (uploadQuality) {
@@ -1016,16 +1026,24 @@ if (uploadButton) {
 
 
             // ==================================
-            // Upload
+            // Upload URL
             // ==================================
 
-            try {
+            const uploadRoute =
+                selectedUploadType ===
+                "photo"
 
+                    ? "/api/upload/photo"
+
+                    : "/api/upload/video";
+
+
+            try {
 
                 console.log(
                     "Uploading to:",
                     API_URL +
-                    "/api/upload/video"
+                    uploadRoute
                 );
 
 
@@ -1036,13 +1054,15 @@ if (uploadButton) {
                     await fetch(
 
                         API_URL +
-                        "/api/upload/video",
+                        uploadRoute,
 
                         {
 
-                            method: "POST",
+                            method:
+                                "POST",
 
-                            body: formData
+                            body:
+                                formData
 
                         }
 
@@ -1071,24 +1091,39 @@ if (uploadButton) {
                     result.success
                 ) {
 
-
                     setProgress(100);
 
 
-                    alert(
-                        "✅ Video Uploaded Successfully!"
-                    );
+                    if (
+                        selectedUploadType ===
+                        "photo"
+                    ) {
 
+                        alert(
+                            "✅ Photo Uploaded Successfully!"
+                        );
 
-                    console.log(
-                        "Video URL:",
-                        result.videoUrl
-                    );
+                    }
+
+                    else {
+
+                        alert(
+                            "✅ Video Uploaded Successfully!"
+                        );
+
+                    }
 
 
                     console.log(
                         "Post ID:",
                         result.id
+                    );
+
+
+                    console.log(
+                        "Media URL:",
+                        result.photoUrl ||
+                        result.videoUrl
                     );
 
 
@@ -1103,7 +1138,6 @@ if (uploadButton) {
 
                 else {
 
-
                     alert(
                         result.error ||
                         result.message ||
@@ -1116,7 +1150,6 @@ if (uploadButton) {
 
 
             catch (error) {
-
 
                 console.error(
                     "Upload error:",
@@ -1138,7 +1171,6 @@ if (uploadButton) {
             uploadButton.disabled =
                 false;
 
-
             uploadButton.textContent =
                 "Upload Now";
 
@@ -1159,34 +1191,27 @@ if (uploadButton) {
 
 if (uploadSettingsBtn) {
 
-
     uploadSettingsBtn.addEventListener(
         "click",
         () => {
-
 
             if (
                 uploadSettingsPanel.style.display ===
                 "none"
             ) {
 
-
                 uploadSettingsPanel.style.display =
                     "block";
-
 
                 uploadSettingsBtn.textContent =
                     "⚙ Settings";
 
             }
 
-
             else {
-
 
                 uploadSettingsPanel.style.display =
                     "none";
-
 
                 uploadSettingsBtn.textContent =
                     "⚙ Upload Settings";
@@ -1200,20 +1225,17 @@ if (uploadSettingsBtn) {
 
 
 // ==========================================
-// Close Settings X
+// Close Settings
 // ==========================================
 
 if (uploadSettingsClose) {
-
 
     uploadSettingsClose.addEventListener(
         "click",
         () => {
 
-
             uploadSettingsPanel.style.display =
                 "none";
-
 
             uploadSettingsBtn.textContent =
                 "⚙ Upload Settings";
@@ -1225,62 +1247,47 @@ if (uploadSettingsClose) {
 
 
 // ==========================================
-// Save Upload Settings
+// Save Settings
 // ==========================================
 
 if (saveUploadSettings) {
-
 
     saveUploadSettings.addEventListener(
         "click",
         () => {
 
-
             const quality =
-                uploadQuality
-                ?.value ||
+                uploadQuality?.value ||
                 "auto";
 
-
             const privacy =
-                defaultPrivacy
-                ?.value ||
+                defaultPrivacy?.value ||
                 "public";
 
-
             const comments =
-                defaultComments
-                ?.value ||
+                defaultComments?.value ||
                 "allow";
-
 
             const customThumbnail =
                 customThumbnailSetting
-                ?.checked ??
+                    ?.checked ??
                 true;
 
-
-            // ==================================
-            // Save Local Settings
-            // ==================================
 
             localStorage.setItem(
                 "botProUploadQuality",
                 quality
             );
 
-
             localStorage.setItem(
                 "botProUploadPrivacy",
                 privacy
             );
 
-
             localStorage.setItem(
                 "botProUploadComments",
                 comments
             );
-
 
             localStorage.setItem(
                 "botProCustomThumbnail",
@@ -1296,7 +1303,6 @@ if (saveUploadSettings) {
             uploadSettingsPanel.style.display =
                 "none";
 
-
             uploadSettingsBtn.textContent =
                 "⚙ Upload Settings";
 
@@ -1307,29 +1313,25 @@ if (saveUploadSettings) {
 
 
 // ==========================================
-// Load Saved Settings
+// Load Settings
 // ==========================================
 
 function loadUploadSettings() {
-
 
     const quality =
         localStorage.getItem(
             "botProUploadQuality"
         );
 
-
     const privacy =
         localStorage.getItem(
             "botProUploadPrivacy"
         );
 
-
     const comments =
         localStorage.getItem(
             "botProUploadComments"
         );
-
 
     const customThumbnail =
         localStorage.getItem(
@@ -1376,7 +1378,8 @@ function loadUploadSettings() {
     ) {
 
         customThumbnailSetting.checked =
-            customThumbnail === "true";
+            customThumbnail ===
+            "true";
 
     }
 
@@ -1388,7 +1391,6 @@ function loadUploadSettings() {
 // ==========================================
 
 if (category) {
-
 
     category.addEventListener(
         "change",
@@ -1406,11 +1408,10 @@ if (category) {
 
 
 // ==========================================
-// Link Input
+// Link
 // ==========================================
 
 if (linkInput) {
-
 
     linkInput.addEventListener(
         "input",
@@ -1433,7 +1434,6 @@ if (linkInput) {
 
 if (tagsInput) {
 
-
     tagsInput.addEventListener(
         "input",
         () => {
@@ -1454,7 +1454,6 @@ if (tagsInput) {
 // ==========================================
 
 if (backButton) {
-
 
     backButton.addEventListener(
         "click",
@@ -1481,11 +1480,9 @@ const navLinks =
 navLinks.forEach(
     (link) => {
 
-
         link.addEventListener(
             "click",
             () => {
-
 
                 navLinks.forEach(
                     (item) => {
@@ -1496,7 +1493,6 @@ navLinks.forEach(
 
                     }
                 );
-
 
                 link.classList.add(
                     "active"
@@ -1510,14 +1506,12 @@ navLinks.forEach(
 
 
 // ==========================================
-// Reset Complete Upload Form
+// Reset Complete Form
 // ==========================================
 
 function resetUploadForm() {
 
-
     resetMainFile();
-
 
     resetThumbnail();
 
@@ -1576,11 +1570,6 @@ function resetUploadForm() {
 
     setProgress(0);
 
-
-    console.log(
-        "🔄 Upload form reset"
-    );
-
 }
 
 
@@ -1592,22 +1581,22 @@ window.addEventListener(
     "load",
     () => {
 
-
         loadUploadSettings();
-
 
         console.log(
             "🚀 Bot Pro Upload Ready"
         );
 
+        console.log(
+            "🖼️ Photo Upload Ready"
+        );
 
         console.log(
             "⚙ Upload Settings Ready"
         );
 
-
         console.log(
-            "✅ Railway Upload Integration Loaded"
+            "✅ Railway Integration Loaded"
         );
 
     }
