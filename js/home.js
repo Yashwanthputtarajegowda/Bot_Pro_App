@@ -3,12 +3,20 @@
 // Final Version
 // Existing Design + Uploaded Video Feed
 // Watch Page Connection
-// ==========================================
+// Authenticated Home Feed
+// =========================================
+
+
+// =========================================
+// Firebase API Helper
+// =========================================
+
+import { apiFetch } from "../firebase/api.js";
 
 
 // =========================================
 // Backend API
-// ==========================================
+// =========================================
 
 const API_URL =
     "https://bot-pro-backend-production.up.railway.app";
@@ -16,7 +24,7 @@ const API_URL =
 
 // =========================================
 // Elements
-// ==========================================
+// =========================================
 
 const uploadBtn =
     document.getElementById(
@@ -310,8 +318,6 @@ function formatDuration(
     );
 
 }
-
-
 // =========================================
 // Open Watch Page
 // =========================================
@@ -449,11 +455,6 @@ function createVideoCard(
         "click",
         (event) => {
 
-            /*
-                Keep the actual video controls
-                working normally.
-            */
-
             event.stopPropagation();
 
         }
@@ -497,7 +498,7 @@ function createVideoCard(
 
 
     // =====================================
-    // WATCH PAGE POSTER OVERLAY
+    // Watch Page Overlay
     // =====================================
 
     const watchOverlay =
@@ -586,7 +587,7 @@ function createVideoCard(
 
 
     // =====================================
-    // Hide Overlay After Play
+    // Hide Overlay When Video Plays
     // =====================================
 
     video.addEventListener(
@@ -713,7 +714,7 @@ function createVideoCard(
 
 
     // =====================================
-    // OPEN WATCH PAGE FROM DETAILS
+    // Details → Watch Page
     // =====================================
 
     details.addEventListener(
@@ -733,7 +734,7 @@ function createVideoCard(
 
 
     // =====================================
-    // OPEN WATCH PAGE FROM TITLE
+    // Title → Watch Page
     // =====================================
 
     title.style.cursor =
@@ -754,7 +755,9 @@ function createVideoCard(
 
         }
     );
-        // =====================================
+
+
+    // =====================================
     // Action Buttons
     // =====================================
 
@@ -773,16 +776,6 @@ function createVideoCard(
         <button
             type="button">
 
-            <svg
-                class="action-icon"
-                viewBox="0 0 24 24">
-
-                <path
-                    d="M7 10V21H3V10H7ZM22 11C22 9.9 21.1 9 20 9H14.3L15.2 4.7V4.4C15.2 4 15 3.6 14.7 3.3L13.6 2L7.6 8C7.2 8.4 7 8.9 7 9.4V19C7 20.1 7.9 21 9 21H18C18.8 21 19.5 20.5 19.8 19.8L22 12.5V11Z"
-                    fill="currentColor"/>
-
-            </svg>
-
             <span>
                 Like
             </span>
@@ -792,16 +785,6 @@ function createVideoCard(
 
         <button
             type="button">
-
-            <svg
-                class="action-icon"
-                viewBox="0 0 24 24">
-
-                <path
-                    d="M4 4H20V16H6L4 18V4Z"
-                    fill="currentColor"/>
-
-            </svg>
 
             <span>
                 Comment
@@ -814,16 +797,6 @@ function createVideoCard(
             type="button"
             class="share-video-btn">
 
-            <svg
-                class="action-icon"
-                viewBox="0 0 24 24">
-
-                <path
-                    d="M4 12L20 4L16 20L11 13L4 12Z"
-                    fill="currentColor"/>
-
-            </svg>
-
             <span>
                 Share
             </span>
@@ -833,16 +806,6 @@ function createVideoCard(
 
         <button
             type="button">
-
-            <svg
-                class="action-icon"
-                viewBox="0 0 24 24">
-
-                <path
-                    d="M6 3H18V21L12 17L6 21V3Z"
-                    fill="currentColor"/>
-
-            </svg>
 
             <span>
                 Save
@@ -873,12 +836,6 @@ function createVideoCard(
 
                 event.stopPropagation();
 
-
-                /*
-                    IMPORTANT:
-                    Share the WATCH PAGE URL,
-                    not the Cloudinary direct URL.
-                */
 
                 const watchUrl =
                     new URL(
@@ -915,7 +872,6 @@ function createVideoCard(
 
                     }
 
-
                     catch (error) {
 
                         if (
@@ -934,7 +890,6 @@ function createVideoCard(
 
                 }
 
-
                 else {
 
                     try {
@@ -949,7 +904,6 @@ function createVideoCard(
                         );
 
                     }
-
 
                     catch (error) {
 
@@ -1011,31 +965,24 @@ async function loadUploadedVideos() {
         );
 
 
-        const response =
-            await fetch(
+        // =====================================
+        // IMPORTANT:
+        // apiFetch automatically adds
+        // Firebase ID Token
+        // =====================================
 
-                API_URL +
+        const result =
+            await apiFetch(
                 "/api/upload/posts",
-
                 {
-
                     method:
-                        "GET",
-
-                    cache:
-                        "no-store"
-
+                        "GET"
                 }
-
             );
 
 
-        const result =
-            await response.json();
-
-
         if (
-            !response.ok ||
+            !result ||
             !result.success
         ) {
 
@@ -1210,7 +1157,6 @@ function setupVideoSearch() {
 
                     }
 
-
                     else {
 
                         card.style.display =
@@ -1254,274 +1200,883 @@ if (searchInput) {
 
 }
 // =========================================
-// Categories
+// Open Watch Page
 // =========================================
 
-categoryButtons.forEach(
-    (button) => {
+function openWatchPage(
+    post
+) {
 
-        button.addEventListener(
+    if (
+        !post ||
+        !post.id
+    ) {
+
+        console.error(
+            "❌ Video ID missing:",
+            post
+        );
+
+        return;
+
+    }
+
+
+    const watchUrl =
+        "watch.html?id=" +
+        encodeURIComponent(
+            String(post.id)
+        );
+
+
+    console.log(
+        "🎬 Opening Watch Page:",
+        watchUrl
+    );
+
+
+    window.location.href =
+        watchUrl;
+
+}
+
+
+// =========================================
+// Create Uploaded Video Card
+// =========================================
+
+function createVideoCard(
+    post
+) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "video-card uploaded-video-card";
+
+
+    card.dataset.postId =
+        post.id || "";
+
+
+    card.dataset.title =
+        (
+            post.caption ||
+            "Uploaded Video"
+        ).toLowerCase();
+
+
+    // =====================================
+    // Thumbnail / Video Area
+    // =====================================
+
+    const thumbnail =
+        document.createElement(
+            "div"
+        );
+
+
+    thumbnail.className =
+        "thumbnail";
+
+
+    // =====================================
+    // Video
+    // =====================================
+
+    const video =
+        document.createElement(
+            "video"
+        );
+
+
+    video.src =
+        post.url;
+
+
+    video.controls =
+        true;
+
+
+    video.preload =
+        "metadata";
+
+
+    video.playsInline =
+        true;
+
+
+    video.setAttribute(
+        "playsinline",
+        ""
+    );
+
+
+    video.setAttribute(
+        "webkit-playsinline",
+        ""
+    );
+
+
+    video.setAttribute(
+        "controlsList",
+        "nodownload"
+    );
+
+
+    // =====================================
+    // Video Click
+    // =====================================
+
+    video.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+        }
+    );
+
+
+    // =====================================
+    // Duration
+    // =====================================
+
+    const duration =
+        document.createElement(
+            "span"
+        );
+
+
+    duration.className =
+        "duration";
+
+
+    duration.textContent =
+        "";
+
+
+    video.addEventListener(
+        "loadedmetadata",
+        () => {
+
+            duration.textContent =
+                formatDuration(
+                    video.duration
+                );
+
+        }
+    );
+
+
+    thumbnail.appendChild(
+        video
+    );
+
+
+    // =====================================
+    // Watch Page Overlay
+    // =====================================
+
+    const watchOverlay =
+        document.createElement(
+            "button"
+        );
+
+
+    watchOverlay.type =
+        "button";
+
+
+    watchOverlay.className =
+        "watch-poster-overlay";
+
+
+    watchOverlay.setAttribute(
+        "aria-label",
+        "Open video watch page"
+    );
+
+
+    watchOverlay.innerHTML =
+        '<span class="watch-poster-play">▶</span>';
+
+
+    watchOverlay.style.position =
+        "absolute";
+
+
+    watchOverlay.style.inset =
+        "0";
+
+
+    watchOverlay.style.display =
+        "flex";
+
+
+    watchOverlay.style.alignItems =
+        "center";
+
+
+    watchOverlay.style.justifyContent =
+        "center";
+
+
+    watchOverlay.style.border =
+        "0";
+
+
+    watchOverlay.style.background =
+        "transparent";
+
+
+    watchOverlay.style.cursor =
+        "pointer";
+
+
+    watchOverlay.style.zIndex =
+        "2";
+
+
+    watchOverlay.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+
+
+    thumbnail.style.position =
+        "relative";
+
+
+    thumbnail.appendChild(
+        watchOverlay
+    );
+
+
+    // =====================================
+    // Hide Overlay When Video Plays
+    // =====================================
+
+    video.addEventListener(
+        "play",
+        () => {
+
+            watchOverlay.style.display =
+                "none";
+
+        }
+    );
+
+
+    video.addEventListener(
+        "pause",
+        () => {
+
+            if (
+                video.currentTime === 0
+            ) {
+
+                watchOverlay.style.display =
+                    "flex";
+
+            }
+
+        }
+    );
+
+
+    thumbnail.appendChild(
+        duration
+    );
+
+
+    // =====================================
+    // Video Details
+    // =====================================
+
+    const details =
+        document.createElement(
+            "div"
+        );
+
+
+    details.className =
+        "video-details";
+
+
+    // =====================================
+    // Avatar
+    // =====================================
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+
+    avatar.className =
+        "channel-avatar";
+
+
+    avatar.textContent =
+        "BP";
+
+
+    // =====================================
+    // Info
+    // =====================================
+
+    const info =
+        document.createElement(
+            "div"
+        );
+
+
+    info.className =
+        "video-info";
+
+
+    const title =
+        document.createElement(
+            "h3"
+        );
+
+
+    title.textContent =
+        post.caption ||
+        "Uploaded Video";
+
+
+    const meta =
+        document.createElement(
+            "p"
+        );
+
+
+    meta.textContent =
+        "Bot Pro • " +
+        formatPostTime(
+            post.createdAt
+        );
+
+
+    info.appendChild(
+        title
+    );
+
+
+    info.appendChild(
+        meta
+    );
+
+
+    details.appendChild(
+        avatar
+    );
+
+
+    details.appendChild(
+        info
+    );
+
+
+    // =====================================
+    // Details → Watch Page
+    // =====================================
+
+    details.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // Title → Watch Page
+    // =====================================
+
+    title.style.cursor =
+        "pointer";
+
+
+    title.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // Action Buttons
+    // =====================================
+
+    const actions =
+        document.createElement(
+            "div"
+        );
+
+
+    actions.className =
+        "video-actions";
+
+
+    actions.innerHTML = `
+
+        <button
+            type="button">
+
+            <span>
+                Like
+            </span>
+
+        </button>
+
+
+        <button
+            type="button">
+
+            <span>
+                Comment
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="share-video-btn">
+
+            <span>
+                Share
+            </span>
+
+        </button>
+
+
+        <button
+            type="button">
+
+            <span>
+                Save
+            </span>
+
+        </button>
+
+    `;
+
+
+    // =====================================
+    // Share
+    // =====================================
+
+    const shareButton =
+        actions.querySelector(
+            ".share-video-btn"
+        );
+
+
+    if (shareButton) {
+
+        shareButton.addEventListener(
             "click",
-            () => {
+            async (event) => {
 
-                categoryButtons.forEach(
-                    (item) => {
+                event.preventDefault();
 
-                        item.classList.remove(
-                            "active"
+                event.stopPropagation();
+
+
+                const watchUrl =
+                    new URL(
+                        "watch.html",
+                        window.location.href
+                    );
+
+
+                watchUrl.searchParams.set(
+                    "id",
+                    post.id
+                );
+
+
+                if (
+                    navigator.share
+                ) {
+
+                    try {
+
+                        await navigator.share({
+
+                            title:
+                                post.caption ||
+                                "Bot Pro Video",
+
+                            text:
+                                "Watch this video on Bot Pro",
+
+                            url:
+                                watchUrl.href
+
+                        });
+
+                    }
+
+                    catch (error) {
+
+                        if (
+                            error.name !==
+                            "AbortError"
+                        ) {
+
+                            console.log(
+                                "Share Error:",
+                                error
+                            );
+
+                        }
+
+                    }
+
+                }
+
+                else {
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            watchUrl.href
+                        );
+
+
+                        alert(
+                            "Video link copied"
                         );
 
                     }
-                );
 
+                    catch (error) {
 
-                button.classList.add(
-                    "active"
-                );
+                        alert(
+                            "Unable to share video"
+                        );
+
+                    }
+
+                }
 
             }
         );
 
     }
-);
 
 
-// =========================================
-// Upload Menu Buttons
-// =========================================
+    // =====================================
+    // Build Card
+    // =====================================
 
-const videoUpload =
-    document.getElementById(
-        "videoUpload"
+    card.appendChild(
+        thumbnail
     );
 
 
-if (videoUpload) {
-
-    videoUpload.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "upload.html";
-
-        }
-    );
-
-}
-
-
-const reelUpload =
-    document.getElementById(
-        "reelUpload"
+    card.appendChild(
+        details
     );
 
 
-if (reelUpload) {
-
-    reelUpload.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "upload.html#reel";
-
-        }
-    );
-
-}
-
-
-const photoUpload =
-    document.getElementById(
-        "photoUpload"
+    card.appendChild(
+        actions
     );
 
 
-if (photoUpload) {
-
-    photoUpload.addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Photo Upload Coming Soon"
-            );
-
-        }
-    );
-
-}
-
-
-const linkUpload =
-    document.getElementById(
-        "linkUpload"
-    );
-
-
-if (linkUpload) {
-
-    linkUpload.addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Import Link Coming Soon"
-            );
-
-        }
-    );
-
-}
-
-
-const aiCreate =
-    document.getElementById(
-        "aiCreate"
-    );
-
-
-if (aiCreate) {
-
-    aiCreate.addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "AI Generator Coming Soon"
-            );
-
-        }
-    );
+    return card;
 
 }
 
 
 // =========================================
-// Bottom Navigation
+// Load Uploaded Videos
 // =========================================
 
-const navLinks =
-    document.querySelectorAll(
-        ".bottom-nav a"
-    );
+async function loadUploadedVideos() {
 
+    if (!videoContainer) {
 
-navLinks.forEach(
-    (link) => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                navLinks.forEach(
-                    (item) => {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                link.classList.add(
-                    "active"
-                );
-
-            }
-        );
+        return;
 
     }
-);
 
 
-// =========================================
-// ESC Key
-// =========================================
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key ===
-            "Escape"
-        ) {
-
-            if (uploadMenu) {
-
-                uploadMenu.classList.add(
-                    "hidden"
-                );
-
-            }
-
-        }
-
-    }
-);
-
-
-// =========================================
-// Page Load
-// =========================================
-
-window.addEventListener(
-    "load",
-    () => {
+    try {
 
         console.log(
-            "🚀 Bot Pro Home Loaded"
+            "📡 Loading uploaded videos..."
         );
 
 
-        loadUploadedVideos();
+        // =====================================
+        // IMPORTANT:
+        // apiFetch automatically adds
+        // Firebase ID Token
+        // =====================================
+
+        const result =
+            await apiFetch(
+                "/api/upload/posts",
+                {
+                    method:
+                        "GET"
+                }
+            );
+
+
+        if (
+            !result ||
+            !result.success
+        ) {
+
+            console.error(
+                "Video Feed Error:",
+                result
+            );
+
+            return;
+
+        }
+
+
+        const posts =
+            Array.isArray(
+                result.posts
+            )
+                ? result.posts
+                : [];
+
+
+        const videos =
+            posts.filter(
+                (post) =>
+                    post &&
+                    post.type ===
+                        "video" &&
+                    post.url
+            );
+
+
+        console.log(
+            "🎬 Uploaded videos:",
+            videos.length
+        );
+
+
+        // =====================================
+        // Remove Previous Dynamic Cards
+        // =====================================
+
+        videoContainer
+            .querySelectorAll(
+                ".uploaded-video-card"
+            )
+            .forEach(
+                (card) => {
+
+                    card.remove();
+
+                }
+            );
+
+
+        // =====================================
+        // Add Uploaded Videos
+        // =====================================
+
+        videos.forEach(
+            (post, index) => {
+
+                const card =
+                    createVideoCard(
+                        post
+                    );
+
+
+                card.style.opacity =
+                    "0";
+
+
+                videoContainer.appendChild(
+                    card
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        card.style.transition =
+                            "opacity .35s ease";
+
+
+                        card.style.opacity =
+                            "1";
+
+                    },
+                    index * 100
+                );
+
+            }
+        );
+
+
+        setupVideoSearch();
 
     }
-);
+
+
+    catch (error) {
+
+        console.error(
+            "❌ Unable to load videos:",
+            error
+        );
+
+    }
+
+}
 
 
 // =========================================
-// Console
+// Search Videos
 // =========================================
 
-console.log(
-    "✅ Bot Pro Home Ready"
-);
+function setupVideoSearch() {
+
+    if (!searchInput) {
+
+        return;
+
+    }
 
 
-console.log(
-    "🎬 Video Feed System Ready"
-);
+    searchInput.onkeyup =
+        () => {
+
+            const value =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
 
 
-console.log(
-    "🎥 Watch Page Connection Ready"
-);
+            const cards =
+                document.querySelectorAll(
+                    ".video-card"
+                );
+
+
+            cards.forEach(
+                (card) => {
+
+                    const title =
+                        card.querySelector(
+                            "h3"
+                        )
+                            ?.textContent
+                            ?.toLowerCase() ||
+                        "";
+
+
+                    const description =
+                        card.querySelector(
+                            "p"
+                        )
+                            ?.textContent
+                            ?.toLowerCase() ||
+                        "";
+
+
+                    if (
+                        title.includes(
+                            value
+                        ) ||
+                        description.includes(
+                            value
+                        )
+                    ) {
+
+                        card.style.display =
+                            "block";
+
+                    }
+
+                    else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        };
+
+}
 
 
 // =========================================
-// FINAL VERSION
+// Search Reset
 // =========================================
-//
-// Home Video:
-//   Poster / Play overlay → Watch Page
-//
-// Video Title:
-//   Click → Watch Page
-//
-// Video Controls:
-//   Normal browser controls
-//
-// Watch URL:
-//   watch.html?id=POST_ID
-//
-// Share:
-//   Shares Watch Page URL
-//
-// Uploaded Videos:
-//   Loaded from Railway backend
-//
-// =========================================
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "search",
+        () => {
+
+            document
+                .querySelectorAll(
+                    ".video-card"
+                )
+                .forEach(
+                    (card) => {
+
+                        card.style.display =
+                            "block";
+
+                    }
+                );
+
+        }
+    );
+
+}
