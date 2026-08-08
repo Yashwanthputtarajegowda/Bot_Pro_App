@@ -1585,3 +1585,31 @@ iframe {
     }
 
 }
+/* =========================================
+   BOT PRO - SLIGHTLY SMALLER APP SCALE
+========================================= */
+
+body {
+    zoom: 0.95;
+    width: 105.263157%;
+}
+
+/* Keep mobile comfortable */
+@media (max-width: 768px) {
+
+    body {
+        zoom: 0.97;
+        width: 103.092783%;
+    }
+
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+    body {
+        zoom: 0.98;
+        width: 102.040816%;
+    }
+
+}
