@@ -2,6 +2,7 @@
 // Bot Pro Home JS
 // Final Version
 // Existing Design + Uploaded Video Feed
+// Watch Page Connection
 // =========================================
 
 
@@ -63,7 +64,10 @@ const videoContainer =
 // Upload Menu
 // =========================================
 
-if (uploadBtn && uploadMenu) {
+if (
+    uploadBtn &&
+    uploadMenu
+) {
 
     uploadBtn.addEventListener(
         "click",
@@ -188,12 +192,15 @@ function formatPostTime(
     if (minutes < 60) {
 
         return (
+
             minutes +
+
             (
                 minutes === 1
                     ? " minute ago"
                     : " minutes ago"
             )
+
         );
 
     }
@@ -208,12 +215,15 @@ function formatPostTime(
     if (hours < 24) {
 
         return (
+
             hours +
+
             (
                 hours === 1
                     ? " Hour Ago"
                     : " Hours Ago"
             )
+
         );
 
     }
@@ -228,12 +238,15 @@ function formatPostTime(
     if (days < 30) {
 
         return (
+
             days +
+
             (
                 days === 1
                     ? " Day Ago"
                     : " Days Ago"
             )
+
         );
 
     }
@@ -289,9 +302,54 @@ function formatDuration(
 
         String(
             remainingSeconds
-        ).padStart(2, "0")
+        ).padStart(
+            2,
+            "0"
+        )
 
     );
+
+}
+
+
+// =========================================
+// Open Watch Page
+// =========================================
+
+function openWatchPage(
+    post
+) {
+
+    if (
+        !post ||
+        !post.id
+    ) {
+
+        console.error(
+            "❌ Video ID missing:",
+            post
+        );
+
+        return;
+
+    }
+
+
+    const watchUrl =
+        "watch.html?id=" +
+        encodeURIComponent(
+            String(post.id)
+        );
+
+
+    console.log(
+        "🎬 Opening Watch Page:",
+        watchUrl
+    );
+
+
+    window.location.href =
+        watchUrl;
 
 }
 
@@ -311,7 +369,7 @@ function createVideoCard(
 
 
     card.className =
-        "video-card";
+        "video-card uploaded-video-card";
 
 
     card.dataset.postId =
@@ -377,10 +435,6 @@ function createVideoCard(
     );
 
 
-    // =====================================
-    // Prevent Download Button
-    // =====================================
-
     video.setAttribute(
         "controlsList",
         "nodownload"
@@ -396,6 +450,11 @@ function createVideoCard(
         (event) => {
 
             event.stopPropagation();
+
+            /*
+                Do not open Watch Page when
+                user is using the video controls.
+            */
 
         }
     );
@@ -439,6 +498,39 @@ function createVideoCard(
 
     thumbnail.appendChild(
         duration
+    );
+
+
+    // =====================================
+    // OPEN WATCH PAGE WHEN THUMBNAIL
+    // AREA IS CLICKED
+    // =====================================
+
+    thumbnail.addEventListener(
+        "click",
+        (event) => {
+
+            /*
+                If actual video element was
+                clicked, browser video controls
+                should remain usable.
+            */
+
+            if (
+                event.target ===
+                video
+            ) {
+
+                return;
+
+            }
+
+
+            openWatchPage(
+                post
+            );
+
+        }
     );
 
 
@@ -548,7 +640,8 @@ function createVideoCard(
 
     actions.innerHTML = `
 
-        <button type="button">
+        <button
+            type="button">
 
             <svg
                 class="action-icon"
@@ -567,7 +660,8 @@ function createVideoCard(
         </button>
 
 
-        <button type="button">
+        <button
+            type="button">
 
             <svg
                 class="action-icon"
@@ -607,7 +701,8 @@ function createVideoCard(
         </button>
 
 
-        <button type="button">
+        <button
+            type="button">
 
             <svg
                 class="action-icon"
@@ -642,7 +737,29 @@ function createVideoCard(
 
         shareButton.addEventListener(
             "click",
-            async () => {
+            async (event) => {
+
+                event.stopPropagation();
+
+
+                /*
+                    IMPORTANT:
+                    Share the WATCH PAGE URL,
+                    not the Cloudinary direct URL.
+                */
+
+                const watchUrl =
+                    new URL(
+                        "watch.html",
+                        window.location.href
+                    );
+
+
+                watchUrl.searchParams.set(
+                    "id",
+                    post.id
+                );
+
 
                 if (
                     navigator.share
@@ -653,10 +770,14 @@ function createVideoCard(
                         await navigator.share({
 
                             title:
-                                title.textContent,
+                                post.caption ||
+                                "Bot Pro Video",
+
+                            text:
+                                "Watch this video on Bot Pro",
 
                             url:
-                                post.url
+                                watchUrl.href
 
                         });
 
@@ -664,9 +785,17 @@ function createVideoCard(
 
                     catch (error) {
 
-                        console.log(
-                            "Share cancelled"
-                        );
+                        if (
+                            error.name !==
+                            "AbortError"
+                        ) {
+
+                            console.log(
+                                "Share Error:",
+                                error
+                            );
+
+                        }
 
                     }
 
@@ -677,7 +806,7 @@ function createVideoCard(
                     try {
 
                         await navigator.clipboard.writeText(
-                            post.url
+                            watchUrl.href
                         );
 
 
@@ -701,6 +830,44 @@ function createVideoCard(
         );
 
     }
+
+
+    // =====================================
+    // Open Watch Page From Details
+    // =====================================
+
+    details.addEventListener(
+        "click",
+        () => {
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // Open Watch Page From Title
+    // =====================================
+
+    title.style.cursor =
+        "pointer";
+
+
+    title.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
 
 
     // =====================================
@@ -780,7 +947,6 @@ async function loadUploadedVideos() {
                 result
             );
 
-
             return;
 
         }
@@ -831,18 +997,13 @@ async function loadUploadedVideos() {
         // Add Uploaded Videos
         // =====================================
 
-        videos.reverse().forEach(
+        videos.forEach(
             (post, index) => {
 
                 const card =
                     createVideoCard(
                         post
                     );
-
-
-                card.classList.add(
-                    "uploaded-video-card"
-                );
 
 
                 card.style.opacity =
@@ -1233,6 +1394,12 @@ console.log(
     "✅ Bot Pro Home Ready"
 );
 
+
 console.log(
     "🎬 Video Feed System Ready"
+);
+
+
+console.log(
+    "🎥 Watch Page Connection Ready"
 );
