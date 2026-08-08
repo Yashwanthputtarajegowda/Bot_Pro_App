@@ -1,1202 +1,487 @@
 /* ==========================================
-   Bot Pro Upload CSS
-   Final Upload Settings Version
+   Bot Pro - Upload CSS
+   Compact Version
+   No Zoom
 ========================================== */
 
-
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
-}
-
-
-body {
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
+}
 
-    background: #0B0B0B;
 
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #0D0D0D;
     color: #FFFFFF;
 
     overflow-x: hidden;
-
-}
-
-
-.upload-page {
-
-    padding: 16px;
-
-    padding-bottom: 95px;
-
 }
 
 
 /* ==========================================
-   HEADER
+   TOP BAR
 ========================================== */
 
-.upload-header {
+.top-bar {
+    width: 100%;
+    height: 62px;
 
     display: flex;
-
+    align-items: center;
     justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 20px;
-
-}
-
-
-.back-btn,
-.demo-btn {
-
-    min-width: 42px;
-
-    height: 42px;
-
-    border: none;
-
-    border-radius: 22px;
-
-    background: #1B1B1B;
-
-    color: #FFFFFF;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.demo-btn {
-
-    width: auto;
-
-    padding: 0 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6A00FF,
-            #A020F0
-        );
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    white-space: nowrap;
-
-}
-
-
-.back-btn:hover,
-.demo-btn:hover {
-
-    opacity: .9;
-
-}
-
-
-.header-icon {
-
-    width: 22px;
-
-    height: 22px;
-
-}
-
-
-.upload-header h2 {
-
-    font-size: 28px;
-
-    font-weight: bold;
-
-}
-
-
-/* ==========================================
-   UPLOAD SETTINGS
-========================================== */
-
-.upload-settings {
-
-    margin-top: 18px;
-
-    margin-bottom: 22px;
-
-    background: #181818;
-
-    border: 1px solid #2E2E2E;
-
-    border-radius: 20px;
-
-    padding: 18px;
-
-    animation:
-        settingsOpen .25s ease;
-
-}
-
-
-@keyframes settingsOpen {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(-8px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* ==========================================
-   SETTINGS HEADER
-========================================== */
-
-.settings-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 18px;
-
-}
-
-
-.settings-header h3 {
-
-    font-size: 19px;
-
-    margin-bottom: 5px;
-
-}
-
-
-.settings-header p {
-
-    color: #999999;
-
-    font-size: 13px;
-
-}
-
-
-/* ==========================================
-   SETTINGS CLOSE
-========================================== */
-
-.settings-close {
-
-    width: 36px;
-
-    height: 36px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: #292929;
-
-    color: #FFFFFF;
-
-    font-size: 24px;
-
-    cursor: pointer;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-.settings-close:hover {
-
-    background: #8A2BE2;
-
-}
-
-
-/* ==========================================
-   SETTINGS LIST
-========================================== */
-
-.settings-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-
-}
-
-
-.setting-item {
-
-    min-height: 70px;
-
-    padding: 14px;
-
-    border-radius: 14px;
-
-    background: #202020;
-
-    border: 1px solid #2D2D2D;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 14px;
-
-}
-
-
-.setting-info {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-
-}
-
-
-.setting-info strong {
-
-    font-size: 14px;
-
-    color: #FFFFFF;
-
-}
-
-
-.setting-info span {
-
-    font-size: 12px;
-
-    color: #999999;
-
-}
-
-
-/* ==========================================
-   SETTINGS SELECT
-========================================== */
-
-.setting-item select {
-
-    min-width: 125px;
-
-    padding: 10px 12px;
-
-    border: 1px solid #3A3A3A;
-
-    border-radius: 10px;
-
-    background: #111111;
-
-    color: #FFFFFF;
-
-    outline: none;
-
-}
-
-
-.setting-item select:focus {
-
-    border-color: #8A2BE2;
-
-}
-
-
-/* ==========================================
-   SETTINGS SWITCH
-========================================== */
-
-.setting-switch {
-
-    position: relative;
-
-    width: 48px;
-
-    height: 26px;
-
-    display: inline-block;
-
-    flex-shrink: 0;
-
-}
-
-
-.setting-switch input {
-
-    opacity: 0;
-
-    width: 0;
-
-    height: 0;
-
-}
-
-
-.switch-slider {
-
-    position: absolute;
-
-    inset: 0;
-
-    background: #3A3A3A;
-
-    border-radius: 30px;
-
-    cursor: pointer;
-
-    transition: .25s;
-
-}
-
-
-.switch-slider::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 20px;
-
-    height: 20px;
-
-    left: 3px;
-
-    top: 3px;
-
-    background: #FFFFFF;
-
-    border-radius: 50%;
-
-    transition: .25s;
-
-}
-
-
-.setting-switch input:checked
-+ .switch-slider {
-
-    background: #8A2BE2;
-
-}
-
-
-.setting-switch input:checked
-+ .switch-slider::before {
-
-    transform:
-        translateX(22px);
-
-}
-
-
-/* ==========================================
-   SAVE SETTINGS
-========================================== */
-
-.save-settings-btn {
-
-    width: 100%;
-
-    height: 48px;
-
-    margin-top: 4px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6A00FF,
-            #A020F0
-        );
-
-    color: #FFFFFF;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-
-
-.save-settings-btn:hover {
-
-    opacity: .9;
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* ==========================================
-   UPLOAD TYPE
-========================================== */
-
-.upload-type h3 {
-
-    margin-bottom: 14px;
-
-    font-size: 18px;
-
-}
-
-
-.type-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 12px;
-
-}
-
-
-.type-card {
-
-    height: 90px;
-
-    border: none;
-
-    border-radius: 18px;
-
-    background: #181818;
-
-    border: 1px solid #292929;
-
-    color: #FFFFFF;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.type-card.active {
-
-    background:
-        linear-gradient(
-            135deg,
-            #6A00FF,
-            #A020F0
-        );
-
-    border: none;
-
-}
-
-
-.type-card:hover {
-
-    border-color: #8A2BE2;
-
-}
-
-
-.type-icon {
-
-    width: 28px;
-
-    height: 28px;
-
-}
-
-
-/* ==========================================
-   UPLOAD BOX
-========================================== */
-
-.upload-box {
-
-    margin-top: 22px;
-
-    background: #181818;
-
-    border: 1px solid #2B2B2B;
-
-    border-radius: 20px;
-
-    padding: 18px;
-
-}
-
-
-/* ==========================================
-   UPLOAD SELECT BOX
-========================================== */
-
-.upload-select {
-
-    position: relative;
-
-    border: 2px dashed #8A2BE2;
-
-    border-radius: 18px;
-
-    min-height: 190px;
-
-    padding: 24px;
-
-    text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    overflow: hidden;
-
-}
-
-
-.upload-icon {
-
-    width: 42px;
-
-    height: 42px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.upload-select h3 {
-
-    font-size: 20px;
-
-    margin-bottom: 8px;
-
-}
-
-
-.upload-select p {
-
-    color: #AFAFAF;
-
-    font-size: 14px;
-
-    margin-bottom: 18px;
-
-}
-
-
-/* ==========================================
-   CHOOSE FILE
-========================================== */
-
-.select-btn {
-
-    border: none;
-
-    border-radius: 14px;
-
-    padding: 12px 22px;
-
-    background: #8A2BE2;
-
-    color: #FFFFFF;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-}
-
-
-.select-btn:hover {
-
-    opacity: .9;
-
-}
-
-
-/* ==========================================
-   VIDEO PREVIEW
-========================================== */
-
-.video-preview-area {
-
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-}
-
-
-.video-preview-area video {
-
-    width: 100%;
-
-    max-height: 420px;
-
-    border-radius: 14px;
-
-    background: #000000;
-
-    object-fit: contain;
-
-}
-
-
-/* ==========================================
-   VIDEO FILE NAME
-========================================== */
-
-.video-file-name {
-
-    width: 100%;
-
-    margin-top: 10px;
-
-    padding: 8px 12px;
-
-    border-radius: 10px;
-
-    background: #202020;
-
-    color: #BEBEBE;
-
-    font-size: 13px;
-
-    text-align: center;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-}
-
-
-/* ==========================================
-   VIDEO CANCEL X
-========================================== */
-
-.preview-close {
-
-    position: absolute;
-
-    top: 10px;
-
-    right: 10px;
-
-    width: 36px;
-
-    height: 36px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(0, 0, 0, .75);
-
-    color: #FFFFFF;
-
-    font-size: 25px;
-
-    line-height: 36px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    cursor: pointer;
-
-    z-index: 20;
-
-}
-
-
-.preview-close:hover {
-
-    background: #8A2BE2;
-
-}
-
-
-/* ==========================================
-   THUMBNAIL
-========================================== */
-
-.thumbnail-section {
-
-    margin-top: 22px;
-
-}
-
-
-.thumbnail-section h3 {
-
-    margin-bottom: 12px;
-
-    font-size: 17px;
-
-}
-
-
-.thumbnail-row {
-
-    display: flex;
-
-    gap: 14px;
-
-    align-items: stretch;
-
-}
-
-
-/* ==========================================
-   THUMBNAIL PREVIEW
-========================================== */
-
-.thumb-preview {
-
-    position: relative;
-
-    flex: 1;
-
-    min-height: 110px;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #242424,
-            #111111
-        );
-
-    border: 1px solid #2E2E2E;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    overflow: hidden;
-
-    color: #7A7A7A;
-
-    font-size: 14px;
-
-}
-
-
-.thumb-preview img {
-
-    width: 100%;
-
-    height: 100%;
-
-    min-height: 110px;
-
-    object-fit: cover;
-
-    display: block;
-
-}
-
-
-/* ==========================================
-   THUMBNAIL BUTTON
-========================================== */
-
-.thumb-upload {
-
-    width: 42%;
-
-    min-height: 110px;
-
-    border: none;
-
-    border-radius: 16px;
-
-    background: #1A1A1A;
-
-    border: 1px dashed #8A2BE2;
-
-    color: #FFFFFF;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    padding: 12px;
-
-}
-
-
-.thumb-upload:hover {
-
-    background: #222222;
-
-}
-
-
-/* ==========================================
-   THUMBNAIL CANCEL X
-========================================== */
-
-.thumbnail-close {
-
-    position: absolute;
-
-    top: 8px;
-
-    right: 8px;
-
-    width: 32px;
-
-    height: 32px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(0, 0, 0, .8);
-
-    color: #FFFFFF;
-
-    font-size: 22px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    cursor: pointer;
-
-    z-index: 10;
-
-}
-
-
-.thumbnail-close:hover {
-
-    background: #8A2BE2;
-
-}
-
-
-/* ==========================================
-   DETAILS
-========================================== */
-
-.details-section {
-
-    margin-top: 24px;
-
-}
-
-
-.details-section h3 {
-
-    margin-bottom: 12px;
-
-    font-size: 17px;
-
-}
-
-
-.title-input,
-.description-input,
-.link-input,
-.category-select,
-.option-box select {
-
-    width: 100%;
-
-    border: none;
-
-    border-radius: 14px;
-
-    background: #1A1A1A;
-
-    border: 1px solid #2E2E2E;
-
-    color: #FFFFFF;
-
-    padding: 14px;
-
-    font-size: 14px;
-
-    outline: none;
-
-}
-
-
-.description-input {
-
-    height: 110px;
-
-    resize: none;
-
-    margin-top: 12px;
-
-}
-
-
-.title-input:focus,
-.description-input:focus,
-.link-input:focus,
-.category-select:focus,
-.option-box select:focus {
-
-    border-color: #8A2BE2;
-
-}
-
-
-/* ==========================================
-   CATEGORY
-========================================== */
-
-.category-section {
-
-    margin-top: 24px;
-
-}
-
-
-.category-section h3 {
-
-    margin-bottom: 12px;
-
-    font-size: 17px;
-
-}
-
-
-/* ==========================================
-   PRIVACY
-========================================== */
-
-.privacy-section {
-
-    margin-top: 24px;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 14px;
-
-}
-
-
-.option-box {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-}
-
-
-.option-box label {
-
-    color: #CFCFCF;
-
-    font-size: 14px;
-
-}
-
-
-/* ==========================================
-   LINK
-========================================== */
-
-.link-section {
-
-    margin-top: 24px;
-
-}
-
-
-.link-section h3 {
-
-    margin-bottom: 12px;
-
-    font-size: 17px;
-
-}
-
-
-/* ==========================================
-   TAGS
-========================================== */
-
-.tags-section {
-
-    margin-top: 24px;
-
-}
-
-
-.tags-section h3 {
-
-    margin-bottom: 12px;
-
-    font-size: 17px;
-
-}
-
-
-.tags-input {
-
-    width: 100%;
-
-    height: 48px;
 
     padding: 0 14px;
 
-    border: none;
+    position: sticky;
+    top: 0;
 
-    border-radius: 14px;
+    z-index: 1000;
 
-    background: #1A1A1A;
+    background: #151515;
 
-    border: 1px solid #2E2E2E;
-
-    color: #FFFFFF;
-
-    outline: none;
-
+    border-bottom:
+        1px solid #262626;
 }
 
 
-.tags-input:focus {
+.back-btn {
+    width: 40px;
+    height: 40px;
 
-    border-color: #8A2BE2;
+    border: none;
+    border-radius: 50%;
 
+    background: #252525;
+    color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.back-btn:hover {
+    background: #8A2BE2;
+}
+
+
+.back-btn .material-icons {
+    font-size: 21px;
+}
+
+
+.logo {
+    font-size: 27px;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+}
+
+
+.bot {
+    color: #FFFFFF;
+}
+
+
+.pro {
+    color: #8A2BE2;
 }
 
 
 /* ==========================================
-   UPLOAD STATUS
+   UPLOAD PAGE
 ========================================== */
 
-.upload-status {
+.upload-page {
+    width: 100%;
+    max-width: 680px;
 
-    margin-top: 24px;
+    margin: 0 auto;
 
+    padding:
+        18px
+        15px
+        40px;
 }
 
 
-.progress-header {
+.upload-page h2 {
+    text-align: center;
+
+    font-size: 26px;
+
+    margin-bottom: 22px;
+}
+
+
+/* ==========================================
+   TAB BAR
+========================================== */
+
+.tab-bar {
+    width: 100%;
 
     display: flex;
 
-    justify-content: space-between;
+    gap: 9px;
 
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
 
-    color: #D5D5D5;
+
+.tab {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 11px 8px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #222222;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
 
     font-size: 14px;
 
+    transition: .3s;
+}
+
+
+.tab:hover {
+    background: #333333;
+}
+
+
+.tab.active {
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
+}
+
+
+/* ==========================================
+   UPLOAD SECTION
+========================================== */
+
+.upload-section {
+    display: block;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================
+   UPLOAD CARD
+========================================== */
+
+.upload-card {
+    width: 100%;
+
+    background: #1A1A1A;
+
+    border:
+        1px solid #2D2D2D;
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    animation:
+        fadeIn .35s ease;
+}
+
+
+.upload-card label {
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+
+    color: #CCCCCC;
+}
+
+
+.upload-card input[type="file"] {
+    width: 100%;
+
+    color: #FFFFFF;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   PREVIEWS
+========================================== */
+
+#thumbnailPreview,
+#videoPreview,
+#coverPreview,
+#reelPreview {
+    width: 100%;
+
+    margin-top: 12px;
+
+    border-radius: 11px;
+
+    overflow: hidden;
+}
+
+
+#thumbnailPreview img,
+#coverPreview img {
+    width: 100%;
+
+    max-height: 210px;
+
+    object-fit: cover;
+
+    border-radius: 11px;
+
+    margin-top: 10px;
+
+    border:
+        2px solid #333333;
+}
+
+
+#videoPreview video,
+#reelPreview video {
+    width: 100%;
+
+    max-height: 300px;
+
+    display: block;
+
+    object-fit: contain;
+
+    border-radius: 11px;
+
+    margin-top: 10px;
+
+    background: #000000;
+
+    border:
+        2px solid #333333;
+}
+
+
+/* ==========================================
+   INPUT BOX
+========================================== */
+
+.input-box {
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    animation:
+        fadeIn .35s ease;
+}
+
+
+.input-box input,
+.input-box textarea,
+.input-box select {
+    width: 100%;
+
+    background: #1F1F1F;
+
+    border:
+        1px solid #333333;
+
+    border-radius: 12px;
+
+    padding: 13px;
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: .3s;
+}
+
+
+.input-box input:focus,
+.input-box textarea:focus,
+.input-box select:focus {
+    border-color: #8A2BE2;
+
+    box-shadow:
+        0 0 9px
+        rgba(
+            138,
+            43,
+            226,
+            .35
+        );
+}
+
+
+.input-box textarea {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+.input-box input::placeholder,
+.input-box textarea::placeholder {
+    color: #777777;
+}
+
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.action-buttons {
+    width: 100%;
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 17px;
+}
+
+
+.secondary-btn {
+    flex: 1;
+
+    height: 47px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #2A2A2A;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: .3s;
+}
+
+
+.secondary-btn:hover {
+    background: #3B3B3B;
+}
+
+
+.primary-btn {
+    flex: 2;
+
+    height: 47px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.primary-btn:hover {
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 0 16px
+        rgba(
+            138,
+            43,
+            226,
+            .4
+        );
+}
+
+
+.primary-btn:active,
+.secondary-btn:active {
+    transform: scale(.98);
+}
+
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+.progress-area {
+    width: 100%;
+
+    margin-top: 25px;
 }
 
 
 .progress-bar {
-
     width: 100%;
 
-    height: 10px;
+    height: 9px;
 
-    background: #202020;
+    background: #242424;
 
-    border-radius: 10px;
+    border-radius: 50px;
 
     overflow: hidden;
-
 }
 
 
-.progress-fill {
-
+#progressFill {
     width: 0%;
 
     height: 100%;
@@ -1208,177 +493,161 @@ body {
             #A020F0
         );
 
-    transition: width .3s;
-
-}
-
-
-/* ==========================================
-   UPLOAD BUTTON
-========================================== */
-
-.upload-action {
-
-    margin-top: 26px;
-
-}
-
-
-.upload-btn {
-
-    width: 100%;
-
-    height: 52px;
-
-    border: none;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6A00FF,
-            #A020F0
-        );
-
-    color: #FFFFFF;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
     transition: .3s;
-
 }
 
 
-.upload-btn:hover {
+#progressText {
+    text-align: center;
 
-    transform:
-        translateY(-2px);
+    margin-top: 8px;
 
-}
-
-
-/* ==========================================
-   RULES
-========================================== */
-
-.upload-rules {
-
-    margin-top: 26px;
-
-    padding: 18px;
-
-    border-radius: 18px;
-
-    background: #171717;
-
-    border: 1px solid #2A2A2A;
-
-}
-
-
-.upload-rules h3 {
-
-    margin-bottom: 12px;
-
-}
-
-
-.upload-rules ul {
-
-    padding-left: 18px;
-
-    color: #BEBEBE;
-
-}
-
-
-.upload-rules li {
-
-    margin-bottom: 8px;
-
-    line-height: 1.6;
-
-}
-
-
-/* ==========================================
-   BOTTOM NAVIGATION
-========================================== */
-
-.bottom-nav {
-
-    position: fixed;
-
-    left: 0;
-
-    right: 0;
-
-    bottom: 0;
-
-    height: 72px;
-
-    background: #101010;
-
-    border-top: 1px solid #252525;
-
-    display: flex;
-
-    justify-content: space-around;
-
-    align-items: center;
-
-    z-index: 999;
-
-}
-
-
-.bottom-nav a {
-
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 6px;
-
-    text-decoration: none;
-
-    color: #909090;
-
-    transition: .3s;
-
-}
-
-
-.bottom-nav a:hover {
-
-    color: #FFFFFF;
-
-}
-
-
-.nav-icon {
-
-    width: 24px;
-
-    height: 24px;
-
-}
-
-
-.bottom-nav span {
+    color: #BBBBBB;
 
     font-size: 12px;
+}
+
+
+#status {
+    margin-top: 16px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   BUTTON GLOBAL
+========================================== */
+
+button {
+    transition:
+        all .3s ease;
+}
+
+
+input,
+textarea,
+select {
+    transition:
+        all .3s ease;
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #8A2BE2;
+
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A64DFF;
+}
+
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 768px) {
+
+    .top-bar {
+        height: 60px;
+
+        padding:
+            0
+            12px;
+    }
+
+
+    .logo {
+        font-size: 25px;
+    }
+
+
+    .upload-page {
+        max-width: 100%;
+
+        padding:
+            16px
+            13px
+            35px;
+    }
+
+
+    .upload-page h2 {
+        font-size: 24px;
+
+        margin-bottom: 19px;
+    }
+
+
+    .tab-bar {
+        gap: 8px;
+    }
+
+
+    .tab {
+        padding: 10px 7px;
+
+        font-size: 13px;
+    }
+
+
+    .action-buttons {
+        gap: 8px;
+    }
+
+
+    .primary-btn,
+    .secondary-btn {
+        height: 45px;
+
+        font-size: 13px;
+    }
 
 }
 
@@ -1389,218 +658,200 @@ body {
 
 @media (max-width: 480px) {
 
+    .top-bar {
+        height: 58px;
+
+        padding:
+            0
+            10px;
+    }
+
+
+    .back-btn {
+        width: 37px;
+        height: 37px;
+    }
+
+
+    .back-btn .material-icons {
+        font-size: 20px;
+    }
+
+
+    .logo {
+        font-size: 22px;
+    }
+
 
     .upload-page {
-
-        padding: 14px;
-
-        padding-bottom: 90px;
-
+        padding:
+            13px
+            10px
+            30px;
     }
 
 
-    .upload-header h2 {
+    .upload-page h2 {
+        font-size: 22px;
 
-        font-size: 24px;
-
+        margin-bottom: 17px;
     }
 
 
-    .demo-btn {
+    .tab-bar {
+        gap: 6px;
 
-        padding: 0 12px;
-
-        font-size: 11px;
-
+        margin-bottom: 16px;
     }
 
 
-    .type-card {
+    .tab {
+        padding:
+            9px
+            5px;
 
-        height: 82px;
-
-    }
-
-
-    .upload-select {
-
-        min-height: 180px;
-
-        padding: 18px;
-
-    }
-
-
-    .video-preview-area video {
-
-        max-height: 300px;
-
-    }
-
-
-    .thumbnail-row {
-
-        flex-direction: row;
-
-    }
-
-
-    .thumb-preview {
-
-        width: 58%;
-
-        min-height: 100px;
-
-    }
-
-
-    .thumb-upload {
-
-        width: 42%;
-
-        min-height: 100px;
-
-    }
-
-
-    .privacy-section {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .setting-item {
-
-        align-items: flex-start;
-
-    }
-
-
-    .setting-info {
-
-        flex: 1;
-
-    }
-
-
-    .setting-item select {
-
-        min-width: 105px;
+        border-radius: 10px;
 
         font-size: 12px;
-
     }
 
 
-    .settings-header h3 {
+    .upload-card {
+        padding: 12px;
 
-        font-size: 17px;
+        border-radius: 12px;
 
+        margin-bottom: 12px;
     }
 
 
-    .settings-header p {
-
+    .upload-card label {
         font-size: 12px;
 
+        margin-bottom: 7px;
     }
 
 
-    .bottom-nav {
-
-        height: 70px;
-
+    .upload-card input[type="file"] {
+        font-size: 12px;
     }
 
 
-    .nav-icon {
-
-        width: 22px;
-
-        height: 22px;
-
+    .input-box {
+        margin-bottom: 12px;
     }
 
 
-    .bottom-nav span {
+    .input-box input,
+    .input-box textarea,
+    .input-box select {
+        padding: 11px;
 
+        border-radius: 10px;
+
+        font-size: 13px;
+    }
+
+
+    .input-box textarea {
+        min-height: 105px;
+    }
+
+
+    .action-buttons {
+        flex-direction: column;
+
+        gap: 8px;
+
+        margin-top: 14px;
+    }
+
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+
+        height: 44px;
+
+        flex: none;
+
+        font-size: 13px;
+    }
+
+
+    #thumbnailPreview img,
+    #coverPreview img {
+        max-height: 180px;
+    }
+
+
+    #videoPreview video,
+    #reelPreview video {
+        max-height: 240px;
+    }
+
+
+    .progress-area {
+        margin-top: 20px;
+    }
+
+
+    #progressText {
         font-size: 11px;
+    }
 
+
+    #status {
+        font-size: 13px;
     }
 
 }
 
 
 /* ==========================================
-   VERY SMALL PHONES
+   VERY SMALL MOBILE
 ========================================== */
 
 @media (max-width: 360px) {
 
-
-    .type-grid {
-
-        gap: 7px;
-
+    .logo {
+        font-size: 20px;
     }
 
 
-    .type-card {
-
-        height: 76px;
-
-        border-radius: 14px;
-
+    .upload-page h2 {
+        font-size: 20px;
     }
 
 
-    .type-icon {
+    .tab {
+        font-size: 11px;
 
-        width: 24px;
-
-        height: 24px;
-
+        padding:
+            8px
+            4px;
     }
 
 
-    .upload-box {
-
-        padding: 12px;
-
+    .upload-card {
+        padding: 10px;
     }
 
 
-    .upload-select {
-
-        padding: 14px;
-
-    }
-
-
-    .thumbnail-row {
-
-        gap: 8px;
-
-    }
-
-
-    .thumb-upload {
-
+    .input-box input,
+    .input-box textarea,
+    .input-box select {
         font-size: 12px;
 
-        padding: 8px;
-
+        padding: 10px;
     }
 
 
-    .demo-btn {
+    .primary-btn,
+    .secondary-btn {
+        height: 42px;
 
-        padding: 0 9px;
-
-        font-size: 10px;
-
+        font-size: 12px;
     }
-
 
 }
