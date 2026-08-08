@@ -1,7 +1,7 @@
 // =========================================
 // Bot Pro Message JS
 // Full Version
-// Real-Time + Seen System
+// Real-Time + Seen + Eye Status
 // =========================================
 
 
@@ -66,6 +66,66 @@ const chatSendBtn =
 
 
 // =========================================
+// Message Status Style
+// =========================================
+
+const messageStatusStyle =
+    document.createElement("style");
+
+messageStatusStyle.textContent = `
+
+.message-status {
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-left:7px;
+
+    font-size:13px;
+
+    line-height:1;
+
+    vertical-align:middle;
+
+    user-select:none;
+
+}
+
+.message-status.not-seen {
+
+    color:#BDBDBD;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+}
+
+.message-status.seen {
+
+    color:#A020F0;
+
+    font-size:14px;
+
+    filter:
+        drop-shadow(
+            0 0 3px
+            rgba(160,32,240,.45)
+        );
+
+}
+
+`;
+
+document.head.appendChild(
+    messageStatusStyle
+);
+
+
+// =========================================
 // Create Chat ID
 // =========================================
 
@@ -124,7 +184,9 @@ if (searchInput) {
                         chat.style.display =
                             "flex";
 
-                    } else {
+                    }
+
+                    else {
 
                         chat.style.display =
                             "none";
@@ -400,7 +462,7 @@ function openChat(
 
 
     // =====================================
-    // Load Existing Messages
+    // Load Messages
     // =====================================
 
     loadMessages();
@@ -510,11 +572,10 @@ async function loadMessages() {
 
 
         // =================================
-        // Mark Incoming Messages As Seen
+        // Mark Incoming Messages Seen
         // =================================
 
         await markMessagesAsSeen();
-
 
     }
 
@@ -607,7 +668,6 @@ async function markMessagesAsSeen() {
             "👁️ Messages marked as seen:",
             result.updated
         );
-
 
     }
 
@@ -744,21 +804,20 @@ function startRealtimeMessages() {
                 }
 
 
-                // =================================
+                // =============================
                 // Render Messages
-                // =================================
+                // =============================
 
                 renderRealtimeMessages(
                     data.messages || []
                 );
 
 
-                // =================================
-                // Mark Incoming Messages Seen
-                // =================================
+                // =============================
+                // Mark Incoming As Seen
+                // =============================
 
                 await markMessagesAsSeen();
-
 
             }
 
@@ -872,7 +931,8 @@ function stopRealtimeMessages() {
 
 
 // =========================================
-// Add Message To Screen
+// ADD MESSAGE TO SCREEN
+// With ✓ / 👁 Status
 // =========================================
 
 function addMessageToScreen(
@@ -886,16 +946,26 @@ function addMessageToScreen(
     }
 
 
+    // =====================================
+    // Message Row
+    // =====================================
+
     const messageRow =
         document.createElement(
             "div"
         );
 
 
-    if (
+    // =====================================
+    // Check Sent / Received
+    // =====================================
+
+    const isSent =
         message.senderId ===
-        CURRENT_USER_ID
-    ) {
+        CURRENT_USER_ID;
+
+
+    if (isSent) {
 
         messageRow.className =
             "message-row sent";
@@ -910,6 +980,10 @@ function addMessageToScreen(
     }
 
 
+    // =====================================
+    // Message Bubble
+    // =====================================
+
     const messageBubble =
         document.createElement(
             "div"
@@ -920,14 +994,108 @@ function addMessageToScreen(
         "message-bubble";
 
 
-    messageBubble.textContent =
+    // =====================================
+    // Message Text
+    // =====================================
+
+    const messageText =
+        document.createElement(
+            "span"
+        );
+
+
+    messageText.className =
+        "message-text";
+
+
+    messageText.textContent =
         message.text;
 
+
+    messageBubble.appendChild(
+        messageText
+    );
+
+
+    // =====================================
+    // Sent Message Status
+    // =====================================
+
+    if (isSent) {
+
+        const messageStatus =
+            document.createElement(
+                "span"
+            );
+
+
+        messageStatus.className =
+            "message-status";
+
+
+        // =================================
+        // Seen
+        // =================================
+
+        if (
+            message.seen === true
+        ) {
+
+            messageStatus.textContent =
+                "👁";
+
+
+            messageStatus.classList.add(
+                "seen"
+            );
+
+
+            messageStatus.title =
+                "Seen";
+
+        }
+
+
+        // =================================
+        // Not Seen
+        // =================================
+
+        else {
+
+            messageStatus.textContent =
+                "✓";
+
+
+            messageStatus.classList.add(
+                "not-seen"
+            );
+
+
+            messageStatus.title =
+                "Sent";
+
+        }
+
+
+        messageBubble.appendChild(
+            messageStatus
+        );
+
+    }
+
+
+    // =====================================
+    // Add Bubble
+    // =====================================
 
     messageRow.appendChild(
         messageBubble
     );
 
+
+    // =====================================
+    // Add To Chat
+    // =====================================
 
     chatMessages.appendChild(
         messageRow
@@ -937,7 +1105,7 @@ function addMessageToScreen(
 
 
 // =========================================
-// Back To Message List
+// Back To Messages
 // =========================================
 
 document.addEventListener(
@@ -989,7 +1157,7 @@ document.addEventListener(
 
 
         // =====================================
-        // Show Message Page
+        // Show Message List
         // =====================================
 
         if (page) {
@@ -1018,7 +1186,7 @@ document.addEventListener(
 
 
 // =========================================
-// Send Message
+// SEND MESSAGE
 // =========================================
 
 async function sendMessage() {
@@ -1144,11 +1312,9 @@ async function sendMessage() {
 
 
         /*
-         * Message screen update will happen
-         * automatically through Firebase
-         * real-time stream.
+         * Real-time stream automatically
+         * updates the message screen.
          */
-
 
     }
 
@@ -1182,7 +1348,7 @@ async function sendMessage() {
 
 
 // =========================================
-// Send Button
+// SEND BUTTON
 // =========================================
 
 document.addEventListener(
@@ -1210,7 +1376,7 @@ document.addEventListener(
 
 
 // =========================================
-// Enter To Send
+// ENTER TO SEND
 // =========================================
 
 if (chatInput) {
@@ -1262,7 +1428,7 @@ function scrollChatToBottom() {
 
 }
 // =========================================
-// Stories
+// STORIES
 // =========================================
 
 stories.forEach(
@@ -1313,7 +1479,7 @@ stories.forEach(
 
 
 // =========================================
-// Chat Press Effect
+// CHAT PRESS EFFECT
 // =========================================
 
 chatItems.forEach(
@@ -1356,7 +1522,7 @@ chatItems.forEach(
 
 
 // =========================================
-// Bottom Navigation
+// BOTTOM NAVIGATION
 // =========================================
 
 const navLinks =
@@ -1395,7 +1561,7 @@ navLinks.forEach(
 
 
 // =========================================
-// Search Reset
+// SEARCH RESET
 // =========================================
 
 if (searchInput) {
@@ -1420,7 +1586,7 @@ if (searchInput) {
 
 
 // =========================================
-// ESC Key
+// ESC KEY
 // =========================================
 
 document.addEventListener(
@@ -1472,7 +1638,7 @@ document.addEventListener(
 
 
 // =========================================
-// Online Dot Animation
+// ONLINE DOT ANIMATION
 // =========================================
 
 const onlineDots =
@@ -1510,7 +1676,7 @@ setInterval(
 
 
 // =========================================
-// Chat Fade Animation
+// CHAT FADE ANIMATION
 // =========================================
 
 chatItems.forEach(
@@ -1539,7 +1705,7 @@ chatItems.forEach(
 
 
 // =========================================
-// Page Ready
+// PAGE LOAD
 // =========================================
 
 window.addEventListener(
@@ -1555,7 +1721,7 @@ window.addEventListener(
 
 
 // =========================================
-// Console
+// CONSOLE
 // =========================================
 
 console.log(
@@ -1570,4 +1736,9 @@ console.log(
 
 console.log(
     "👁️ Seen / Read System Ready"
+);
+
+
+console.log(
+    "✓ / 👁 Message Status Ready"
 );
