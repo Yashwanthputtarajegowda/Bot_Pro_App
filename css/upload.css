@@ -1,24 +1,42 @@
 /* ==========================================
    Bot Pro Upload CSS
-   Final Preview Version
+   Final Upload Settings Version
 ========================================== */
 
+
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
+
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background: #0B0B0B;
+
     color: #FFFFFF;
+
     overflow-x: hidden;
+
 }
 
+
 .upload-page {
+
     padding: 16px;
+
     padding-bottom: 95px;
+
 }
 
 
@@ -27,51 +45,439 @@ body {
 ========================================== */
 
 .upload-header {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 20px;
+
 }
+
 
 .back-btn,
 .demo-btn {
-    width: 42px;
+
+    min-width: 42px;
+
     height: 42px;
+
     border: none;
-    border-radius: 50%;
+
+    border-radius: 22px;
+
     background: #1B1B1B;
+
     color: #FFFFFF;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     cursor: pointer;
+
     transition: .3s;
+
 }
 
+
 .demo-btn {
+
     width: auto;
+
     padding: 0 18px;
-    border-radius: 22px;
-    background: linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
 }
+
 
 .back-btn:hover,
 .demo-btn:hover {
+
     opacity: .9;
+
 }
+
 
 .header-icon {
+
     width: 22px;
+
     height: 22px;
+
 }
 
+
 .upload-header h2 {
+
     font-size: 28px;
+
     font-weight: bold;
+
+}
+
+
+/* ==========================================
+   UPLOAD SETTINGS
+========================================== */
+
+.upload-settings {
+
+    margin-top: 18px;
+
+    margin-bottom: 22px;
+
+    background: #181818;
+
+    border: 1px solid #2E2E2E;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    animation:
+        settingsOpen .25s ease;
+
+}
+
+
+@keyframes settingsOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+   SETTINGS HEADER
+========================================== */
+
+.settings-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.settings-header h3 {
+
+    font-size: 19px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.settings-header p {
+
+    color: #999999;
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================
+   SETTINGS CLOSE
+========================================== */
+
+.settings-close {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #292929;
+
+    color: #FFFFFF;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.settings-close:hover {
+
+    background: #8A2BE2;
+
+}
+
+
+/* ==========================================
+   SETTINGS LIST
+========================================== */
+
+.settings-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.setting-item {
+
+    min-height: 70px;
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background: #202020;
+
+    border: 1px solid #2D2D2D;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.setting-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.setting-info strong {
+
+    font-size: 14px;
+
+    color: #FFFFFF;
+
+}
+
+
+.setting-info span {
+
+    font-size: 12px;
+
+    color: #999999;
+
+}
+
+
+/* ==========================================
+   SETTINGS SELECT
+========================================== */
+
+.setting-item select {
+
+    min-width: 125px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #3A3A3A;
+
+    border-radius: 10px;
+
+    background: #111111;
+
+    color: #FFFFFF;
+
+    outline: none;
+
+}
+
+
+.setting-item select:focus {
+
+    border-color: #8A2BE2;
+
+}
+
+
+/* ==========================================
+   SETTINGS SWITCH
+========================================== */
+
+.setting-switch {
+
+    position: relative;
+
+    width: 48px;
+
+    height: 26px;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+}
+
+
+.setting-switch input {
+
+    opacity: 0;
+
+    width: 0;
+
+    height: 0;
+
+}
+
+
+.switch-slider {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #3A3A3A;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.switch-slider::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+
+    height: 20px;
+
+    left: 3px;
+
+    top: 3px;
+
+    background: #FFFFFF;
+
+    border-radius: 50%;
+
+    transition: .25s;
+
+}
+
+
+.setting-switch input:checked
++ .switch-slider {
+
+    background: #8A2BE2;
+
+}
+
+
+.setting-switch input:checked
++ .switch-slider::before {
+
+    transform:
+        translateX(22px);
+
+}
+
+
+/* ==========================================
+   SAVE SETTINGS
+========================================== */
+
+.save-settings-btn {
+
+    width: 100%;
+
+    height: 48px;
+
+    margin-top: 4px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
+
+    color: #FFFFFF;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.save-settings-btn:hover {
+
+    opacity: .9;
+
+    transform:
+        translateY(-1px);
+
 }
 
 
@@ -80,52 +486,84 @@ body {
 ========================================== */
 
 .upload-type h3 {
+
     margin-bottom: 14px;
+
     font-size: 18px;
+
 }
+
 
 .type-grid {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 12px;
+
 }
 
+
 .type-card {
+
     height: 90px;
+
     border: none;
+
     border-radius: 18px;
+
     background: #181818;
+
     border: 1px solid #292929;
+
     color: #FFFFFF;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
     gap: 10px;
 
     cursor: pointer;
+
     transition: .3s;
+
 }
+
 
 .type-card.active {
-    background: linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
     border: none;
+
 }
+
 
 .type-card:hover {
+
     border-color: #8A2BE2;
+
 }
 
+
 .type-icon {
+
     width: 28px;
+
     height: 28px;
+
 }
 
 
@@ -134,14 +572,17 @@ body {
 ========================================== */
 
 .upload-box {
+
     margin-top: 22px;
 
     background: #181818;
+
     border: 1px solid #2B2B2B;
 
     border-radius: 20px;
 
     padding: 18px;
+
 }
 
 
@@ -150,9 +591,11 @@ body {
 ========================================== */
 
 .upload-select {
+
     position: relative;
 
     border: 2px dashed #8A2BE2;
+
     border-radius: 18px;
 
     min-height: 190px;
@@ -162,56 +605,76 @@ body {
     text-align: center;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
     overflow: hidden;
+
 }
 
-
-/* ==========================================
-   UPLOAD ICON
-========================================== */
 
 .upload-icon {
+
     width: 42px;
+
     height: 42px;
+
     margin-bottom: 12px;
+
 }
+
 
 .upload-select h3 {
+
     font-size: 20px;
+
     margin-bottom: 8px;
+
 }
 
+
 .upload-select p {
+
     color: #AFAFAF;
+
     font-size: 14px;
+
     margin-bottom: 18px;
+
 }
 
 
 /* ==========================================
-   CHOOSE FILE BUTTON
+   CHOOSE FILE
 ========================================== */
 
 .select-btn {
+
     border: none;
+
     border-radius: 14px;
 
     padding: 12px 22px;
 
     background: #8A2BE2;
+
     color: #FFFFFF;
 
     font-weight: bold;
 
     cursor: pointer;
+
 }
 
+
 .select-btn:hover {
+
     opacity: .9;
+
 }
 
 
@@ -220,15 +683,22 @@ body {
 ========================================== */
 
 .video-preview-area {
+
     width: 100%;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
 }
 
+
 .video-preview-area video {
+
     width: 100%;
+
     max-height: 420px;
 
     border-radius: 14px;
@@ -236,6 +706,7 @@ body {
     background: #000000;
 
     object-fit: contain;
+
 }
 
 
@@ -244,6 +715,7 @@ body {
 ========================================== */
 
 .video-file-name {
+
     width: 100%;
 
     margin-top: 10px;
@@ -261,8 +733,11 @@ body {
     text-align: center;
 
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
+
 }
 
 
@@ -271,63 +746,87 @@ body {
 ========================================== */
 
 .preview-close {
+
     position: absolute;
 
     top: 10px;
+
     right: 10px;
 
     width: 36px;
+
     height: 36px;
 
     border: none;
+
     border-radius: 50%;
 
-    background: rgba(0, 0, 0, .75);
+    background:
+        rgba(0, 0, 0, .75);
 
     color: #FFFFFF;
 
     font-size: 25px;
+
     line-height: 36px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     cursor: pointer;
 
     z-index: 20;
+
 }
 
+
 .preview-close:hover {
+
     background: #8A2BE2;
+
 }
 
 
 /* ==========================================
-   THUMBNAIL SECTION
+   THUMBNAIL
 ========================================== */
 
 .thumbnail-section {
+
     margin-top: 22px;
+
 }
+
 
 .thumbnail-section h3 {
+
     margin-bottom: 12px;
+
     font-size: 17px;
+
 }
 
+
 .thumbnail-row {
+
     display: flex;
+
     gap: 14px;
+
     align-items: stretch;
+
 }
 
 
 /* ==========================================
-   THUMBNAIL PREVIEW BOX
+   THUMBNAIL PREVIEW
 ========================================== */
 
 .thumb-preview {
+
     position: relative;
 
     flex: 1;
@@ -336,16 +835,19 @@ body {
 
     border-radius: 16px;
 
-    background: linear-gradient(
-        135deg,
-        #242424,
-        #111111
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #242424,
+            #111111
+        );
 
     border: 1px solid #2E2E2E;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     overflow: hidden;
@@ -353,15 +855,14 @@ body {
     color: #7A7A7A;
 
     font-size: 14px;
+
 }
 
 
-/* ==========================================
-   THUMBNAIL IMAGE
-========================================== */
-
 .thumb-preview img {
+
     width: 100%;
+
     height: 100%;
 
     min-height: 110px;
@@ -369,14 +870,16 @@ body {
     object-fit: cover;
 
     display: block;
+
 }
 
 
 /* ==========================================
-   THUMBNAIL CHOOSE BUTTON
+   THUMBNAIL BUTTON
 ========================================== */
 
 .thumb-upload {
+
     width: 42%;
 
     min-height: 110px;
@@ -396,10 +899,14 @@ body {
     font-weight: bold;
 
     padding: 12px;
+
 }
 
+
 .thumb-upload:hover {
+
     background: #222222;
+
 }
 
 
@@ -408,34 +915,45 @@ body {
 ========================================== */
 
 .thumbnail-close {
+
     position: absolute;
 
     top: 8px;
+
     right: 8px;
 
     width: 32px;
+
     height: 32px;
 
     border: none;
+
     border-radius: 50%;
 
-    background: rgba(0, 0, 0, .8);
+    background:
+        rgba(0, 0, 0, .8);
 
     color: #FFFFFF;
 
     font-size: 22px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     cursor: pointer;
 
     z-index: 10;
+
 }
 
+
 .thumbnail-close:hover {
+
     background: #8A2BE2;
+
 }
 
 
@@ -444,25 +962,35 @@ body {
 ========================================== */
 
 .details-section {
+
     margin-top: 24px;
+
 }
 
+
 .details-section h3 {
+
     margin-bottom: 12px;
+
     font-size: 17px;
+
 }
+
 
 .title-input,
 .description-input,
 .link-input,
 .category-select,
 .option-box select {
+
     width: 100%;
 
     border: none;
+
     border-radius: 14px;
 
     background: #1A1A1A;
+
     border: 1px solid #2E2E2E;
 
     color: #FFFFFF;
@@ -472,22 +1000,29 @@ body {
     font-size: 14px;
 
     outline: none;
+
 }
 
+
 .description-input {
+
     height: 110px;
 
     resize: none;
 
     margin-top: 12px;
+
 }
+
 
 .title-input:focus,
 .description-input:focus,
 .link-input:focus,
 .category-select:focus,
 .option-box select:focus {
+
     border-color: #8A2BE2;
+
 }
 
 
@@ -496,12 +1031,18 @@ body {
 ========================================== */
 
 .category-section {
+
     margin-top: 24px;
+
 }
 
+
 .category-section h3 {
+
     margin-bottom: 12px;
+
     font-size: 17px;
+
 }
 
 
@@ -510,24 +1051,36 @@ body {
 ========================================== */
 
 .privacy-section {
+
     margin-top: 24px;
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 14px;
+
 }
+
 
 .option-box {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 8px;
+
 }
 
+
 .option-box label {
+
     color: #CFCFCF;
+
     font-size: 14px;
+
 }
 
 
@@ -536,12 +1089,18 @@ body {
 ========================================== */
 
 .link-section {
+
     margin-top: 24px;
+
 }
 
+
 .link-section h3 {
+
     margin-bottom: 12px;
+
     font-size: 17px;
+
 }
 
 
@@ -550,15 +1109,23 @@ body {
 ========================================== */
 
 .tags-section {
+
     margin-top: 24px;
+
 }
+
 
 .tags-section h3 {
+
     margin-bottom: 12px;
+
     font-size: 17px;
+
 }
 
+
 .tags-input {
+
     width: 100%;
 
     height: 48px;
@@ -566,6 +1133,7 @@ body {
     padding: 0 14px;
 
     border: none;
+
     border-radius: 14px;
 
     background: #1A1A1A;
@@ -575,10 +1143,14 @@ body {
     color: #FFFFFF;
 
     outline: none;
+
 }
 
+
 .tags-input:focus {
+
     border-color: #8A2BE2;
+
 }
 
 
@@ -587,11 +1159,16 @@ body {
 ========================================== */
 
 .upload-status {
+
     margin-top: 24px;
+
 }
 
+
 .progress-header {
+
     display: flex;
+
     justify-content: space-between;
 
     margin-bottom: 10px;
@@ -599,9 +1176,12 @@ body {
     color: #D5D5D5;
 
     font-size: 14px;
+
 }
 
+
 .progress-bar {
+
     width: 100%;
 
     height: 10px;
@@ -611,20 +1191,25 @@ body {
     border-radius: 10px;
 
     overflow: hidden;
+
 }
 
+
 .progress-fill {
+
     width: 0%;
 
     height: 100%;
 
-    background: linear-gradient(
-        90deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #6A00FF,
+            #A020F0
+        );
 
     transition: width .3s;
+
 }
 
 
@@ -633,10 +1218,14 @@ body {
 ========================================== */
 
 .upload-action {
+
     margin-top: 26px;
+
 }
 
+
 .upload-btn {
+
     width: 100%;
 
     height: 52px;
@@ -645,11 +1234,12 @@ body {
 
     border-radius: 16px;
 
-    background: linear-gradient(
-        135deg,
-        #6A00FF,
-        #A020F0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #6A00FF,
+            #A020F0
+        );
 
     color: #FFFFFF;
 
@@ -660,10 +1250,15 @@ body {
     cursor: pointer;
 
     transition: .3s;
+
 }
 
+
 .upload-btn:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
+
 }
 
 
@@ -672,6 +1267,7 @@ body {
 ========================================== */
 
 .upload-rules {
+
     margin-top: 26px;
 
     padding: 18px;
@@ -681,20 +1277,32 @@ body {
     background: #171717;
 
     border: 1px solid #2A2A2A;
+
 }
+
 
 .upload-rules h3 {
+
     margin-bottom: 12px;
+
 }
+
 
 .upload-rules ul {
+
     padding-left: 18px;
+
     color: #BEBEBE;
+
 }
 
+
 .upload-rules li {
+
     margin-bottom: 8px;
+
     line-height: 1.6;
+
 }
 
 
@@ -703,10 +1311,13 @@ body {
 ========================================== */
 
 .bottom-nav {
+
     position: fixed;
 
     left: 0;
+
     right: 0;
+
     bottom: 0;
 
     height: 72px;
@@ -718,12 +1329,16 @@ body {
     display: flex;
 
     justify-content: space-around;
+
     align-items: center;
 
     z-index: 999;
+
 }
 
+
 .bottom-nav a {
+
     flex: 1;
 
     display: flex;
@@ -731,6 +1346,7 @@ body {
     flex-direction: column;
 
     justify-content: center;
+
     align-items: center;
 
     gap: 6px;
@@ -740,19 +1356,30 @@ body {
     color: #909090;
 
     transition: .3s;
+
 }
+
 
 .bottom-nav a:hover {
+
     color: #FFFFFF;
+
 }
+
 
 .nav-icon {
+
     width: 24px;
+
     height: 24px;
+
 }
 
+
 .bottom-nav span {
+
     font-size: 12px;
+
 }
 
 
@@ -762,58 +1389,146 @@ body {
 
 @media (max-width: 480px) {
 
+
     .upload-page {
+
         padding: 14px;
+
         padding-bottom: 90px;
+
     }
+
 
     .upload-header h2 {
+
         font-size: 24px;
+
     }
+
+
+    .demo-btn {
+
+        padding: 0 12px;
+
+        font-size: 11px;
+
+    }
+
 
     .type-card {
+
         height: 82px;
+
     }
+
 
     .upload-select {
+
         min-height: 180px;
+
         padding: 18px;
+
     }
+
 
     .video-preview-area video {
+
         max-height: 300px;
+
     }
+
 
     .thumbnail-row {
+
         flex-direction: row;
+
     }
+
 
     .thumb-preview {
+
         width: 58%;
+
         min-height: 100px;
+
     }
+
 
     .thumb-upload {
+
         width: 42%;
+
         min-height: 100px;
+
     }
+
 
     .privacy-section {
+
         grid-template-columns: 1fr;
+
     }
+
+
+    .setting-item {
+
+        align-items: flex-start;
+
+    }
+
+
+    .setting-info {
+
+        flex: 1;
+
+    }
+
+
+    .setting-item select {
+
+        min-width: 105px;
+
+        font-size: 12px;
+
+    }
+
+
+    .settings-header h3 {
+
+        font-size: 17px;
+
+    }
+
+
+    .settings-header p {
+
+        font-size: 12px;
+
+    }
+
 
     .bottom-nav {
+
         height: 70px;
+
     }
+
 
     .nav-icon {
+
         width: 22px;
+
         height: 22px;
+
     }
 
+
     .bottom-nav span {
+
         font-size: 11px;
+
     }
+
 }
 
 
@@ -823,35 +1538,69 @@ body {
 
 @media (max-width: 360px) {
 
+
     .type-grid {
+
         gap: 7px;
+
     }
+
 
     .type-card {
+
         height: 76px;
+
         border-radius: 14px;
+
     }
+
 
     .type-icon {
+
         width: 24px;
+
         height: 24px;
+
     }
+
 
     .upload-box {
+
         padding: 12px;
+
     }
+
 
     .upload-select {
+
         padding: 14px;
+
     }
+
 
     .thumbnail-row {
+
         gap: 8px;
+
     }
 
+
     .thumb-upload {
+
         font-size: 12px;
+
         padding: 8px;
+
     }
+
+
+    .demo-btn {
+
+        padding: 0 9px;
+
+        font-size: 10px;
+
+    }
+
 
 }
