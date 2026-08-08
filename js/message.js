@@ -126,36 +126,42 @@ function createChatId(user1, user2) {
 }
 // =========================================
 // Open Chat
+// Fixed Version
 // =========================================
 
 chatItems.forEach((chat) => {
 
-    chat.addEventListener(
-        "click",
-        () => {
+    chat.addEventListener("click", () => {
 
-            const userName =
-                chat.querySelector("h3")
-                    ?.textContent
-                    .trim();
+        console.log("Chat clicked");
 
-            const avatar =
-                chat.querySelector(".chat-avatar")
-                    ?.textContent
-                    .trim()
-                    .charAt(0) || "?";
+        const nameElement =
+            chat.querySelector("h3");
 
-            if (!userName) {
-                return;
-            }
+        const avatarElement =
+            chat.querySelector(".chat-avatar");
 
-            openChat(
-                userName,
-                avatar
-            );
+        const userName =
+            nameElement
+                ? nameElement.textContent.trim()
+                : "User";
 
-        }
-    );
+        const avatar =
+            avatarElement
+                ? avatarElement.textContent.trim().charAt(0)
+                : userName.charAt(0);
+
+        console.log(
+            "Opening chat:",
+            userName
+        );
+
+        openChat(
+            userName,
+            avatar
+        );
+
+    });
 
 });
 
@@ -164,15 +170,55 @@ chatItems.forEach((chat) => {
 // Open Chat Function
 // =========================================
 
-async function openChat(
+function openChat(
     userName,
     avatar
 ) {
 
-    if (!messagePage || !chatScreen) {
+    console.log(
+        "openChat()",
+        userName
+    );
+
+
+    // =====================================
+    // Check Chat Screen
+    // =====================================
+
+    if (!chatScreen) {
+
+        console.error(
+            "chatScreen element not found"
+        );
+
         return;
+
     }
 
+
+    // =====================================
+    // Hide Message List
+    // =====================================
+
+    if (messagePage) {
+
+        messagePage.style.display =
+            "none";
+
+    }
+
+
+    // =====================================
+    // Show Chat Screen
+    // =====================================
+
+    chatScreen.style.display =
+        "flex";
+
+
+    // =====================================
+    // Current Chat
+    // =====================================
 
     currentReceiverId =
         userName;
@@ -184,12 +230,15 @@ async function openChat(
         );
 
 
-    messagePage.style.display =
-        "none";
+    console.log(
+        "Chat ID:",
+        currentChatId
+    );
 
-    chatScreen.style.display =
-        "flex";
 
+    // =====================================
+    // Header
+    // =====================================
 
     if (chatUserName) {
 
@@ -215,6 +264,10 @@ async function openChat(
     }
 
 
+    // =====================================
+    // Clear Input
+    // =====================================
+
     if (chatInput) {
 
         chatInput.value = "";
@@ -222,7 +275,9 @@ async function openChat(
     }
 
 
-    // Clear old demo messages
+    // =====================================
+    // Clear Old Messages
+    // =====================================
 
     if (chatMessages) {
 
@@ -231,10 +286,16 @@ async function openChat(
     }
 
 
-    // Load Firebase messages
+    // =====================================
+    // Load Messages
+    // =====================================
 
-    await loadMessages();
+    loadMessages();
 
+
+    // =====================================
+    // Focus Input
+    // =====================================
 
     setTimeout(() => {
 
@@ -244,7 +305,14 @@ async function openChat(
 
         }
 
-    }, 100);
+    }, 150);
+
+
+    // =====================================
+    // Scroll
+    // =====================================
+
+    scrollChatToBottom();
 
 }
 
