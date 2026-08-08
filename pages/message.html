@@ -1,503 +1,550 @@
-<!DOCTYPE html>
+<!-- =========================================
+     Bot Pro Messages
+     Chat Screen Ready
+========================================= -->
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>
-
         Bot Pro - Messages
-
     </title>
 
-    <link rel="stylesheet"
-          href="../css/message.css">
+    <link
+        rel="stylesheet"
+        href="../css/message.css">
 
 </head>
 
+
 <body>
 
-<header class="header">
 
-    <button class="menu-btn">
+<!-- =========================================
+     MESSAGE LIST PAGE
+========================================= -->
 
-        <svg class="header-icon"
-             viewBox="0 0 24 24">
+<div
+    id="messagePage"
+    class="message-page">
 
-            <path d="M3 6H21M3 12H21M3 18H21"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"/>
 
-        </svg>
+    <!-- HEADER -->
 
-    </button>
+    <header class="header">
 
-    <h1>
 
-        Messages
+        <button
+            type="button"
+            class="menu-btn">
 
-    </h1>
-
-    <div class="header-right">
-
-        <button class="header-btn">
-
-            <svg class="header-icon"
-                 viewBox="0 0 24 24">
-
-                <circle cx="11"
-                        cy="11"
-                        r="7"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"/>
-
-                <line x1="16.5"
-                      y1="16.5"
-                      x2="21"
-                      y2="21"
-                      stroke="currentColor"
-                      stroke-width="2"/>
-
-            </svg>
+            ☰
 
         </button>
 
-        <button class="header-btn">
 
-            <svg class="header-icon"
-                 viewBox="0 0 24 24">
+        <h1>
+            Messages
+        </h1>
 
-                <circle cx="12"
-                        cy="5"
-                        r="2"
-                        fill="currentColor"/>
 
-                <circle cx="12"
-                        cy="12"
-                        r="2"
-                        fill="currentColor"/>
+        <div class="header-right">
 
-                <circle cx="12"
-                        cy="19"
-                        r="2"
-                        fill="currentColor"/>
 
-            </svg>
+            <button
+                type="button"
+                class="header-btn"
+                id="newChatBtn">
 
-        </button>
+                +
 
-    </div>
+            </button>
 
-</header>
 
-<section class="search-section">
+        </div>
 
-    <div class="search-box">
+    </header>
 
-        <svg class="search-icon"
-             viewBox="0 0 24 24">
 
-            <circle cx="11"
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+
+            <svg
+                class="search-icon"
+                viewBox="0 0 24 24">
+
+                <circle
+                    cx="11"
                     cy="11"
                     r="7"
                     stroke="currentColor"
                     stroke-width="2"
                     fill="none"/>
 
-            <line x1="16.5"
-                  y1="16.5"
-                  x2="21"
-                  y2="21"
-                  stroke="currentColor"
-                  stroke-width="2"/>
+                <path
+                    d="M16 16L21 21"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
 
-        </svg>
+            </svg>
 
-        <input
-            type="text"
-            placeholder="Search messages..."
-            id="messageSearch">
 
-    </div>
+            <input
+                id="messageSearch"
+                type="search"
+                placeholder="Search messages...">
 
-</section>
+        </div>
 
-<section class="stories">
+    </section>
 
-    <div class="story">
 
-        <div class="story-avatar add-story">
+    <!-- STORIES -->
+
+    <section class="stories">
+
+
+        <div class="story">
+
+            <div class="story-avatar add-story">
+                +
+            </div>
+
+            <p>
+                Your Story
+            </p>
+
+        </div>
+
+
+        <div class="story">
+
+            <div class="story-avatar">
+                Y
+
+                <span
+                    class="online-dot">
+                </span>
+
+            </div>
+
+            <p>
+                Yashu
+            </p>
+
+        </div>
+
+
+        <div class="story">
+
+            <div class="story-avatar">
+                B
+
+                <span
+                    class="online-dot">
+                </span>
+
+            </div>
+
+            <p>
+                Bot Pro
+            </p>
+
+        </div>
+
+
+        <div class="story">
+
+            <div class="story-avatar">
+                C
+            </div>
+
+            <p>
+                Creator
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- CHAT LIST -->
+
+    <section
+        class="chat-list"
+        id="chatList">
+
+
+        <!-- CHAT 1 -->
+
+        <div
+            class="chat-item"
+            data-chat="Yashu">
+
+
+            <div class="chat-avatar online">
+
+                Y
+
+                <span
+                    class="online-dot">
+                </span>
+
+            </div>
+
+
+            <div class="chat-info">
+
+                <h3>
+                    Yashu
+                </h3>
+
+                <p>
+                    Hey! Welcome to Bot Pro 👋
+                </p>
+
+            </div>
+
+
+            <div class="chat-right">
+
+                <span class="chat-time">
+                    9:20 PM
+                </span>
+
+                <span class="unread">
+                    2
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- CHAT 2 -->
+
+        <div
+            class="chat-item"
+            data-chat="Bot Pro">
+
+
+            <div class="chat-avatar">
+
+                B
+
+            </div>
+
+
+            <div class="chat-info">
+
+                <h3>
+                    Bot Pro
+                </h3>
+
+                <p>
+                    Your upload was successful.
+                </p>
+
+            </div>
+
+
+            <div class="chat-right">
+
+                <span class="chat-time">
+                    8:45 PM
+                </span>
+
+                <span class="unread">
+                    1
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- CHAT 3 -->
+
+        <div
+            class="chat-item"
+            data-chat="Creator">
+
+
+            <div class="chat-avatar">
+
+                C
+
+            </div>
+
+
+            <div class="chat-info">
+
+                <h3>
+                    Creator
+                </h3>
+
+                <p>
+                    New content is ready.
+                </p>
+
+            </div>
+
+
+            <div class="chat-right">
+
+                <span class="chat-time">
+                    Yesterday
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================
+     CHAT SCREEN
+========================================= -->
+
+<div
+    id="chatScreen"
+    class="chat-screen"
+    style="display:none;">
+
+
+    <!-- CHAT HEADER -->
+
+    <header class="chat-header">
+
+
+        <button
+            type="button"
+            class="chat-back-btn"
+            id="chatBackBtn">
+
+            ←
+
+        </button>
+
+
+        <div
+            class="chat-user">
+
+
+            <div
+                class="chat-user-avatar"
+                id="chatUserAvatar">
+
+                Y
+
+            </div>
+
+
+            <div>
+
+                <h3
+                    id="chatUserName">
+
+                    Yashu
+
+                </h3>
+
+
+                <p
+                    id="chatUserStatus">
+
+                    Online
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="chat-menu-btn">
+
+            ⋮
+
+        </button>
+
+
+    </header>
+
+
+    <!-- CHAT MESSAGES -->
+
+    <main
+        class="chat-messages"
+        id="chatMessages">
+
+
+        <div class="chat-date">
+            Today
+        </div>
+
+
+        <div class="message-row received">
+
+            <div class="message-bubble">
+
+                Hey! 👋
+
+            </div>
+
+        </div>
+
+
+        <div class="message-row received">
+
+            <div class="message-bubble">
+
+                Welcome to Bot Pro.
+
+            </div>
+
+        </div>
+
+
+        <div class="message-row sent">
+
+            <div class="message-bubble">
+
+                Thanks! 👍
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- CHAT INPUT -->
+
+    <footer class="chat-input-area">
+
+
+        <button
+            type="button"
+            class="chat-attach-btn">
 
             +
 
-        </div>
+        </button>
 
-        <p>
 
-            Your Story
+        <input
+            type="text"
+            id="chatInput"
+            placeholder="Write a message...">
 
-        </p>
 
-    </div>
+        <button
+            type="button"
+            class="chat-send-btn"
+            id="chatSendBtn">
 
-    <div class="story">
+            ➤
 
-        <div class="story-avatar online">
+        </button>
 
-            Y
 
-            <span class="online-dot"></span>
+    </footer>
 
-        </div>
 
-        <p>
+</div>
 
-            Yashu
 
-        </p>
-
-    </div>
-
-    <div class="story">
-
-        <div class="story-avatar online">
-
-            B
-
-            <span class="online-dot"></span>
-
-        </div>
-
-        <p>
-
-            Bot Pro
-
-        </p>
-
-    </div>
-
-    <div class="story">
-
-        <div class="story-avatar online">
-
-            C
-
-            <span class="online-dot"></span>
-
-        </div>
-
-        <p>
-
-            Creator
-
-        </p>
-
-    </div>
-
-</section>
-
-<section class="chat-list">
-    <!-- Chat 1 -->
-
-    <div class="chat-item">
-
-        <div class="chat-avatar online">
-
-            Y
-
-            <span class="online-dot"></span>
-
-        </div>
-
-        <div class="chat-info">
-
-            <h3>
-
-                Yashu
-
-            </h3>
-
-            <p>
-
-                Hi, How are you?
-
-            </p>
-
-        </div>
-
-        <div class="chat-right">
-
-            <span class="chat-time">
-
-                2m
-
-            </span>
-
-            <span class="unread">
-
-                2
-
-            </span>
-
-        </div>
-
-    </div>
-
-    <!-- Chat 2 -->
-
-    <div class="chat-item">
-
-        <div class="chat-avatar online">
-
-            B
-
-            <span class="online-dot"></span>
-
-        </div>
-
-        <div class="chat-info">
-
-            <h3>
-
-                Bot Pro Team
-
-            </h3>
-
-            <p>
-
-                Welcome to Bot Pro 🚀
-
-            </p>
-
-        </div>
-
-        <div class="chat-right">
-
-            <span class="chat-time">
-
-                5m
-
-            </span>
-
-            <span class="unread">
-
-                3
-
-            </span>
-
-        </div>
-
-    </div>
-
-    <!-- Chat 3 -->
-
-    <div class="chat-item">
-
-        <div class="chat-avatar online">
-
-            C
-
-            <span class="online-dot"></span>
-
-        </div>
-
-        <div class="chat-info">
-
-            <h3>
-
-                Creator
-
-            </h3>
-
-            <p>
-
-                Check out this video.
-
-            </p>
-
-        </div>
-
-        <div class="chat-right">
-
-            <span class="chat-time">
-
-                1h
-
-            </span>
-
-        </div>
-
-    </div>
-
-    <!-- Chat 4 -->
-
-    <div class="chat-item">
-
-        <div class="chat-avatar">
-
-            T
-
-        </div>
-
-        <div class="chat-info">
-
-            <h3>
-
-                TechBot
-
-            </h3>
-
-            <p>
-
-                Amazing Work!
-
-            </p>
-
-        </div>
-
-        <div class="chat-right">
-
-            <span class="chat-time">
-
-                2h
-
-            </span>
-
-            <span class="unread">
-
-                1
-
-            </span>
-
-        </div>
-
-    </div>
-
-    <!-- Chat 5 -->
-
-    <div class="chat-item">
-
-        <div class="chat-avatar">
-
-            A
-
-        </div>
-
-        <div class="chat-info">
-
-            <h3>
-
-                Anjali
-
-            </h3>
-
-            <p>
-
-                Let's catch up tomorrow.
-
-            </p>
-
-        </div>
-
-        <div class="chat-right">
-
-            <span class="chat-time">
-
-                3h
-
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
+<!-- =========================================
+     BOTTOM NAVIGATION
+========================================= -->
 
 <nav class="bottom-nav">
+
+
     <a href="home.html">
 
-        <svg class="nav-icon"
-             viewBox="0 0 24 24">
-
-            <path d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
-                  fill="currentColor"/>
-
-        </svg>
+        <span>
+            🏠
+        </span>
 
         <span>
-
             Home
-
         </span>
 
     </a>
 
-    <a href="message.html"
-       class="active">
 
-        <svg class="nav-icon"
-             viewBox="0 0 24 24">
-
-            <path d="M4 12L20 4L16 20L11 13L4 12Z"
-                  fill="currentColor"/>
-
-        </svg>
+    <a
+        href="message.html"
+        class="active">
 
         <span>
+            💬
+        </span>
 
+        <span>
             Messages
-
         </span>
 
     </a>
+
 
     <a href="reels.html">
 
-        <svg class="nav-icon"
-             viewBox="0 0 24 24">
-
-            <path d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
-                  fill="currentColor"/>
-
-        </svg>
+        <span>
+            ▶
+        </span>
 
         <span>
-
             Reels
-
         </span>
 
     </a>
+
 
     <a href="profile.html">
 
-        <svg class="nav-icon"
-             viewBox="0 0 24 24">
-
-            <path d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
-                  fill="currentColor"/>
-
-        </svg>
+        <span>
+            👤
+        </span>
 
         <span>
-
             Profile
-
         </span>
 
     </a>
 
+
 </nav>
 
-<script type="module"
-        src="../js/message.js"></script>
+
+<script
+    src="../js/message.js">
+</script>
+
 
 </body>
 
