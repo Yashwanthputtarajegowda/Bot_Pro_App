@@ -1,856 +1,857 @@
 /* ==========================================
    Bot Pro Upload CSS
-   Final Version - Part 1
+   Final Preview Version
 ========================================== */
 
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-
-    font-family:Arial,Helvetica,sans-serif;
-
-    background:#0B0B0B;
-
-    color:#FFFFFF;
-
-    overflow-x:hidden;
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0B0B0B;
+    color: #FFFFFF;
+    overflow-x: hidden;
 }
 
-.upload-page{
-
-    padding:16px;
-
-    padding-bottom:95px;
-
+.upload-page {
+    padding: 16px;
+    padding-bottom: 95px;
 }
 
-/* ==========================
+
+/* ==========================================
    HEADER
-========================== */
+========================================== */
 
-.upload-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
+.upload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .back-btn,
-.demo-btn{
-
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#1B1B1B;
-
-    color:#FFFFFF;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.demo-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #1B1B1B;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.demo-btn{
-
-    width:auto;
-
-    padding:0 18px;
-
-    border-radius:22px;
-
-    background:linear-gradient(
+.demo-btn {
+    width: auto;
+    padding: 0 18px;
+    border-radius: 22px;
+    background: linear-gradient(
         135deg,
         #6A00FF,
         #A020F0
     );
-
 }
 
 .back-btn:hover,
-.demo-btn:hover{
-
-    opacity:.9;
-
+.demo-btn:hover {
+    opacity: .9;
 }
 
-.header-icon{
-
-    width:22px;
-
-    height:22px;
-
+.header-icon {
+    width: 22px;
+    height: 22px;
 }
 
-.upload-header h2{
-
-    font-size:28px;
-
-    font-weight:bold;
-
+.upload-header h2 {
+    font-size: 28px;
+    font-weight: bold;
 }
 
-/* ==========================
+
+/* ==========================================
    UPLOAD TYPE
-========================== */
+========================================== */
 
-.upload-type h3{
-
-    margin-bottom:14px;
-
-    font-size:18px;
-
+.upload-type h3 {
+    margin-bottom: 14px;
+    font-size: 18px;
 }
 
-.type-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:12px;
-
+.type-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
-.type-card{
+.type-card {
+    height: 90px;
+    border: none;
+    border-radius: 18px;
+    background: #181818;
+    border: 1px solid #292929;
+    color: #FFFFFF;
 
-    height:90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    border:none;
+    gap: 10px;
 
-    border-radius:18px;
-
-    background:#181818;
-
-    border:1px solid #292929;
-
-    color:#FFFFFF;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+    cursor: pointer;
+    transition: .3s;
 }
 
-.type-card.active{
-
-    background:linear-gradient(
+.type-card.active {
+    background: linear-gradient(
         135deg,
         #6A00FF,
         #A020F0
     );
 
-    border:none;
-
+    border: none;
 }
 
-.type-card:hover{
-
-    border-color:#8A2BE2;
-
+.type-card:hover {
+    border-color: #8A2BE2;
 }
 
-.type-icon{
-
-    width:28px;
-
-    height:28px;
-
+.type-icon {
+    width: 28px;
+    height: 28px;
 }
 
-/* ==========================
+
+/* ==========================================
    UPLOAD BOX
-========================== */
+========================================== */
 
-.upload-box{
+.upload-box {
+    margin-top: 22px;
 
-    margin-top:22px;
+    background: #181818;
+    border: 1px solid #2B2B2B;
 
-    background:#181818;
+    border-radius: 20px;
 
-    border:1px solid #2B2B2B;
-
-    border-radius:20px;
-
-    padding:18px;
-
+    padding: 18px;
 }
 
-.upload-select{
 
-    border:2px dashed #8A2BE2;
+/* ==========================================
+   UPLOAD SELECT BOX
+========================================== */
 
-    border-radius:18px;
+.upload-select {
+    position: relative;
 
-    padding:24px;
+    border: 2px dashed #8A2BE2;
+    border-radius: 18px;
 
-    text-align:center;
+    min-height: 190px;
 
+    padding: 24px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
 }
 
-.upload-icon{
 
-    width:42px;
+/* ==========================================
+   UPLOAD ICON
+========================================== */
 
-    height:42px;
-
-    margin-bottom:12px;
-
+.upload-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
 }
 
-.upload-select h3{
-
-    font-size:20px;
-
-    margin-bottom:8px;
-
+.upload-select h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
-.upload-select p{
-
-    color:#AFAFAF;
-
-    font-size:14px;
-
-    margin-bottom:18px;
-
+.upload-select p {
+    color: #AFAFAF;
+    font-size: 14px;
+    margin-bottom: 18px;
 }
 
-.select-btn{
 
-    border:none;
+/* ==========================================
+   CHOOSE FILE BUTTON
+========================================== */
 
-    border-radius:14px;
+.select-btn {
+    border: none;
+    border-radius: 14px;
 
-    padding:12px 22px;
+    padding: 12px 22px;
 
-    background:#8A2BE2;
+    background: #8A2BE2;
+    color: #FFFFFF;
 
-    color:#FFFFFF;
+    font-weight: bold;
 
-    font-weight:bold;
-
-    cursor:pointer;
-
+    cursor: pointer;
 }
 
-.preview-card{
-
-    margin-top:18px;
-
+.select-btn:hover {
+    opacity: .9;
 }
 
-.preview-image{
 
-    height:170px;
+/* ==========================================
+   VIDEO PREVIEW
+========================================== */
 
-    border-radius:18px;
+.video-preview-area {
+    width: 100%;
 
-    background:linear-gradient(
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-preview-area video {
+    width: 100%;
+    max-height: 420px;
+
+    border-radius: 14px;
+
+    background: #000000;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================
+   VIDEO FILE NAME
+========================================== */
+
+.video-file-name {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    background: #202020;
+
+    color: #BEBEBE;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   VIDEO CANCEL X
+========================================== */
+
+.preview-close {
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .75);
+
+    color: #FFFFFF;
+
+    font-size: 25px;
+    line-height: 36px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 20;
+}
+
+.preview-close:hover {
+    background: #8A2BE2;
+}
+
+
+/* ==========================================
+   THUMBNAIL SECTION
+========================================== */
+
+.thumbnail-section {
+    margin-top: 22px;
+}
+
+.thumbnail-section h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+.thumbnail-row {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+}
+
+
+/* ==========================================
+   THUMBNAIL PREVIEW BOX
+========================================== */
+
+.thumb-preview {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 110px;
+
+    border-radius: 16px;
+
+    background: linear-gradient(
         135deg,
         #242424,
         #111111
     );
 
-    display:flex;
+    border: 1px solid #2E2E2E;
 
-    justify-content:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    align-items:center;
+    overflow: hidden;
 
-    color:#777777;
+    color: #7A7A7A;
 
-    font-size:20px;
-
-    font-weight:bold;
-
+    font-size: 14px;
 }
 
-.remove-btn{
 
-    width:100%;
+/* ==========================================
+   THUMBNAIL IMAGE
+========================================== */
 
-    margin-top:12px;
+.thumb-preview img {
+    width: 100%;
+    height: 100%;
 
-    height:42px;
+    min-height: 110px;
 
-    border:none;
+    object-fit: cover;
 
-    border-radius:12px;
-
-    background:#2A2A2A;
-
-    color:#FFFFFF;
-
-    cursor:pointer;
-
-}
-/* ==========================
-   THUMBNAIL
-========================== */
-
-.thumbnail-section{
-
-    margin-top:22px;
-
+    display: block;
 }
 
-.thumbnail-section h3{
 
-    margin-bottom:12px;
+/* ==========================================
+   THUMBNAIL CHOOSE BUTTON
+========================================== */
 
-    font-size:17px;
+.thumb-upload {
+    width: 42%;
 
+    min-height: 110px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #1A1A1A;
+
+    border: 1px dashed #8A2BE2;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    padding: 12px;
 }
 
-.thumbnail-row{
-
-    display:flex;
-
-    gap:14px;
-
-    align-items:center;
-
+.thumb-upload:hover {
+    background: #222222;
 }
 
-.thumb-upload{
 
-    width:42%;
+/* ==========================================
+   THUMBNAIL CANCEL X
+========================================== */
 
-    height:95px;
+.thumbnail-close {
+    position: absolute;
 
-    border:none;
+    top: 8px;
+    right: 8px;
 
-    border-radius:16px;
+    width: 32px;
+    height: 32px;
 
-    background:#1A1A1A;
+    border: none;
+    border-radius: 50%;
 
-    border:1px dashed #8A2BE2;
+    background: rgba(0, 0, 0, .8);
 
-    color:#FFFFFF;
+    color: #FFFFFF;
 
-    cursor:pointer;
+    font-size: 22px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 10;
 }
 
-.thumb-preview{
-
-    flex:1;
-
-    height:95px;
-
-    border-radius:16px;
-
-    background:linear-gradient(
-        135deg,
-        #242424,
-        #111111
-    );
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#7A7A7A;
-
-    font-size:14px;
-
+.thumbnail-close:hover {
+    background: #8A2BE2;
 }
 
-/* ==========================
+
+/* ==========================================
    DETAILS
-========================== */
+========================================== */
 
-.details-section{
-
-    margin-top:24px;
-
+.details-section {
+    margin-top: 24px;
 }
 
-.details-section h3{
-
-    margin-bottom:12px;
-
-    font-size:17px;
-
+.details-section h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
 }
 
 .title-input,
 .description-input,
 .link-input,
 .category-select,
-.option-box select{
+.option-box select {
+    width: 100%;
 
-    width:100%;
+    border: none;
+    border-radius: 14px;
 
-    border:none;
+    background: #1A1A1A;
+    border: 1px solid #2E2E2E;
 
-    border-radius:14px;
+    color: #FFFFFF;
 
-    background:#1A1A1A;
+    padding: 14px;
 
-    border:1px solid #2E2E2E;
+    font-size: 14px;
 
-    color:#FFFFFF;
-
-    padding:14px;
-
-    font-size:14px;
-
-    outline:none;
-
+    outline: none;
 }
 
-.description-input{
+.description-input {
+    height: 110px;
 
-    height:110px;
+    resize: none;
 
-    resize:none;
-
-    margin-top:12px;
-
-}
-
-/* ==========================
-   CATEGORY
-========================== */
-
-.category-section{
-
-    margin-top:24px;
-
-}
-
-.category-section h3{
-
-    margin-bottom:12px;
-
-    font-size:17px;
-
-}
-
-/* ==========================
-   PRIVACY
-========================== */
-
-.privacy-section{
-
-    margin-top:24px;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:14px;
-
-}
-
-.option-box{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
-}
-
-.option-box label{
-
-    color:#CFCFCF;
-
-    font-size:14px;
-
-}
-
-/* ==========================
-   LINK
-========================== */
-
-.link-section{
-
-    margin-top:24px;
-
-}
-
-.link-section h3{
-
-    margin-bottom:12px;
-
-    font-size:17px;
-
+    margin-top: 12px;
 }
 
 .title-input:focus,
 .description-input:focus,
 .link-input:focus,
 .category-select:focus,
-.option-box select:focus{
-
-    border-color:#8A2BE2;
-
+.option-box select:focus {
+    border-color: #8A2BE2;
 }
-/* ==========================
+
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+.category-section {
+    margin-top: 24px;
+}
+
+.category-section h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   PRIVACY
+========================================== */
+
+.privacy-section {
+    margin-top: 24px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+.option-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option-box label {
+    color: #CFCFCF;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   LINK
+========================================== */
+
+.link-section {
+    margin-top: 24px;
+}
+
+.link-section h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+
+/* ==========================================
    TAGS
-========================== */
+========================================== */
 
-.tags-section{
-
-    margin-top:24px;
-
+.tags-section {
+    margin-top: 24px;
 }
 
-.tags-section h3{
-
-    margin-bottom:12px;
-
-    font-size:17px;
-
+.tags-section h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
 }
 
-.tags-input{
+.tags-input {
+    width: 100%;
 
-    width:100%;
+    height: 48px;
 
-    height:48px;
+    padding: 0 14px;
 
-    padding:0 14px;
+    border: none;
+    border-radius: 14px;
 
-    border:none;
+    background: #1A1A1A;
 
-    border-radius:14px;
+    border: 1px solid #2E2E2E;
 
-    background:#1A1A1A;
+    color: #FFFFFF;
 
-    border:1px solid #2E2E2E;
-
-    color:#FFFFFF;
-
-    outline:none;
-
+    outline: none;
 }
 
-.tags-input:focus{
-
-    border-color:#8A2BE2;
-
+.tags-input:focus {
+    border-color: #8A2BE2;
 }
 
-/* ==========================
+
+/* ==========================================
    UPLOAD STATUS
-========================== */
+========================================== */
 
-.upload-status{
-
-    margin-top:24px;
-
+.upload-status {
+    margin-top: 24px;
 }
 
-.progress-header{
+.progress-header {
+    display: flex;
+    justify-content: space-between;
 
-    display:flex;
+    margin-bottom: 10px;
 
-    justify-content:space-between;
+    color: #D5D5D5;
 
-    margin-bottom:10px;
-
-    color:#D5D5D5;
-
-    font-size:14px;
-
+    font-size: 14px;
 }
 
-.progress-bar{
+.progress-bar {
+    width: 100%;
 
-    width:100%;
+    height: 10px;
 
-    height:10px;
+    background: #202020;
 
-    background:#202020;
+    border-radius: 10px;
 
-    border-radius:10px;
-
-    overflow:hidden;
-
+    overflow: hidden;
 }
 
-.progress-fill{
+.progress-fill {
+    width: 0%;
 
-    width:0%;
+    height: 100%;
 
-    height:100%;
-
-    background:linear-gradient(
+    background: linear-gradient(
         90deg,
         #6A00FF,
         #A020F0
     );
 
-    transition:width .3s;
-
+    transition: width .3s;
 }
 
-/* ==========================
+
+/* ==========================================
    UPLOAD BUTTON
-========================== */
+========================================== */
 
-.upload-action{
-
-    margin-top:26px;
-
+.upload-action {
+    margin-top: 26px;
 }
 
-.upload-btn{
+.upload-btn {
+    width: 100%;
 
-    width:100%;
+    height: 52px;
 
-    height:52px;
+    border: none;
 
-    border:none;
+    border-radius: 16px;
 
-    border-radius:16px;
-
-    background:linear-gradient(
+    background: linear-gradient(
         135deg,
         #6A00FF,
         #A020F0
     );
 
-    color:#FFFFFF;
+    color: #FFFFFF;
 
-    font-size:16px;
+    font-size: 16px;
 
-    font-weight:bold;
+    font-weight: bold;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
-
+    transition: .3s;
 }
 
-.upload-btn:hover{
-
-    transform:translateY(-2px);
-
+.upload-btn:hover {
+    transform: translateY(-2px);
 }
 
-/* ==========================
+
+/* ==========================================
    RULES
-========================== */
+========================================== */
 
-.upload-rules{
+.upload-rules {
+    margin-top: 26px;
 
-    margin-top:26px;
+    padding: 18px;
 
-    padding:18px;
+    border-radius: 18px;
 
-    border-radius:18px;
+    background: #171717;
 
-    background:#171717;
-
-    border:1px solid #2A2A2A;
-
+    border: 1px solid #2A2A2A;
 }
 
-.upload-rules h3{
-
-    margin-bottom:12px;
-
+.upload-rules h3 {
+    margin-bottom: 12px;
 }
 
-.upload-rules ul{
-
-    padding-left:18px;
-
-    color:#BEBEBE;
-
+.upload-rules ul {
+    padding-left: 18px;
+    color: #BEBEBE;
 }
 
-.upload-rules li{
-
-    margin-bottom:8px;
-
-    line-height:1.6;
-
+.upload-rules li {
+    margin-bottom: 8px;
+    line-height: 1.6;
 }
 
-/* ==========================
+
+/* ==========================================
    BOTTOM NAVIGATION
-========================== */
+========================================== */
 
-.bottom-nav{
+.bottom-nav {
+    position: fixed;
 
-    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    left:0;
+    height: 72px;
 
-    right:0;
+    background: #101010;
 
-    bottom:0;
+    border-top: 1px solid #252525;
 
-    height:72px;
+    display: flex;
 
-    background:#101010;
+    justify-content: space-around;
+    align-items: center;
 
-    border-top:1px solid #252525;
-
-    display:flex;
-
-    justify-content:space-around;
-
-    align-items:center;
-
-    z-index:999;
-
+    z-index: 999;
 }
 
-.bottom-nav a{
+.bottom-nav a {
+    flex: 1;
 
-    flex:1;
+    display: flex;
 
-    display:flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    justify-content: center;
+    align-items: center;
 
-    justify-content:center;
+    gap: 6px;
 
-    align-items:center;
+    text-decoration: none;
 
-    gap:6px;
+    color: #909090;
 
-    text-decoration:none;
-
-    color:#909090;
-
-    transition:.3s;
-
+    transition: .3s;
 }
 
-.bottom-nav a:hover{
-
-    color:#FFFFFF;
-
+.bottom-nav a:hover {
+    color: #FFFFFF;
 }
 
-.nav-icon{
-
-    width:24px;
-
-    height:24px;
-
+.nav-icon {
+    width: 24px;
+    height: 24px;
 }
 
-.bottom-nav span{
-
-    font-size:12px;
-
+.bottom-nav span {
+    font-size: 12px;
 }
 
-/* ==========================
+
+/* ==========================================
    MOBILE
-========================== */
+========================================== */
 
-@media(max-width:480px){
+@media (max-width: 480px) {
 
-    .upload-page{
-
-        padding:14px;
-
-        padding-bottom:90px;
-
+    .upload-page {
+        padding: 14px;
+        padding-bottom: 90px;
     }
 
-    .type-card{
-
-        height:82px;
-
+    .upload-header h2 {
+        font-size: 24px;
     }
 
-    .preview-image{
-
-        height:150px;
-
+    .type-card {
+        height: 82px;
     }
 
-    .thumbnail-row{
-
-        flex-direction:column;
-
+    .upload-select {
+        min-height: 180px;
+        padding: 18px;
     }
 
-    .thumb-upload{
-
-        width:100%;
-
+    .video-preview-area video {
+        max-height: 300px;
     }
 
-    .thumb-preview{
-
-        width:100%;
-
+    .thumbnail-row {
+        flex-direction: row;
     }
 
-    .privacy-section{
-
-        grid-template-columns:1fr;
-
+    .thumb-preview {
+        width: 58%;
+        min-height: 100px;
     }
 
-    .bottom-nav{
-
-        height:70px;
-
+    .thumb-upload {
+        width: 42%;
+        min-height: 100px;
     }
 
-    .nav-icon{
-
-        width:22px;
-
-        height:22px;
-
+    .privacy-section {
+        grid-template-columns: 1fr;
     }
 
-    .bottom-nav span{
+    .bottom-nav {
+        height: 70px;
+    }
 
-        font-size:11px;
+    .nav-icon {
+        width: 22px;
+        height: 22px;
+    }
 
+    .bottom-nav span {
+        font-size: 11px;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 360px) {
+
+    .type-grid {
+        gap: 7px;
+    }
+
+    .type-card {
+        height: 76px;
+        border-radius: 14px;
+    }
+
+    .type-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .upload-box {
+        padding: 12px;
+    }
+
+    .upload-select {
+        padding: 14px;
+    }
+
+    .thumbnail-row {
+        gap: 8px;
+    }
+
+    .thumb-upload {
+        font-size: 12px;
+        padding: 8px;
     }
 
 }
