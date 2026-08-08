@@ -11,7 +11,7 @@
 // Firebase API Helper
 // =========================================
 
-import { apiFetch } from "../firebase/api.js";
+import { apiFetch, waitForAuth } from "../firebase/api.js";
 
 
 // =========================================
@@ -761,44 +761,24 @@ function createVideoCard(
 
     actions.innerHTML = `
 
-        <button
-            type="button">
-
-            <span>
-                Like
-            </span>
-
+        <button type="button">
+            <span>Like</span>
         </button>
 
-
-        <button
-            type="button">
-
-            <span>
-                Comment
-            </span>
-
+        <button type="button">
+            <span>Comment</span>
         </button>
-
 
         <button
             type="button"
             class="share-video-btn">
 
-            <span>
-                Share
-            </span>
+            <span>Share</span>
 
         </button>
 
-
-        <button
-            type="button">
-
-            <span>
-                Save
-            </span>
-
+        <button type="button">
+            <span>Save</span>
         </button>
 
     `;
@@ -958,7 +938,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Authenticated API Request
+        // Authenticated Request
         // =====================================
 
         const result =
@@ -1007,7 +987,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Only Videos
+        // Only Video Posts
         // =====================================
 
         const videos =
@@ -1029,7 +1009,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Remove Old Dynamic Videos
+        // Remove Existing Uploaded Cards
         // =====================================
 
         videoContainer
@@ -1046,7 +1026,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Empty Feed
+        // No Videos
         // =====================================
 
         if (
@@ -1054,7 +1034,7 @@ async function loadUploadedVideos() {
         ) {
 
             console.log(
-                "ℹ️ No uploaded videos found"
+                "ℹ️ No uploaded videos found."
             );
 
             return;
@@ -1063,7 +1043,7 @@ async function loadUploadedVideos() {
 
 
         // =====================================
-        // Add Videos
+        // Add Videos To Home
         // =====================================
 
         videos.forEach(
@@ -1436,11 +1416,56 @@ window.addEventListener(
 
 
         console.log(
-            "🔐 Authenticated Feed Starting..."
+            "🔐 Waiting for Firebase authentication..."
         );
 
 
         try {
+
+            // =====================================
+            // Wait for Firebase Auth
+            // =====================================
+
+            const user =
+                await waitForAuth();
+
+
+            // =====================================
+            // Not Logged In
+            // =====================================
+
+            if (!user) {
+
+                console.error(
+                    "❌ User is not logged in."
+                );
+
+
+                /*
+                    Do not redirect immediately.
+                    This lets us see the actual
+                    authentication state in Console.
+                */
+
+                return;
+
+            }
+
+
+            console.log(
+                "✅ Firebase user:",
+                user.email
+            );
+
+
+            console.log(
+                "🔐 Loading authenticated feed..."
+            );
+
+
+            // =====================================
+            // Load Uploaded Videos
+            // =====================================
 
             await loadUploadedVideos();
 
@@ -1484,5 +1509,5 @@ console.log(
 
 
 // =========================================
-// END
+// END OF HOME.JS
 // =========================================
