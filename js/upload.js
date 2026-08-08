@@ -1,6 +1,6 @@
 // ==========================================
 // Bot Pro Upload JS
-// Final Preview + Railway Version
+// Final Upload Settings + Preview Version
 // ==========================================
 
 
@@ -24,9 +24,12 @@ fileInput.type = "file";
 fileInput.accept =
     "video/*,image/*";
 
-fileInput.style.display = "none";
+fileInput.style.display =
+    "none";
 
-document.body.appendChild(fileInput);
+document.body.appendChild(
+    fileInput
+);
 
 
 const thumbnailInput =
@@ -37,9 +40,12 @@ thumbnailInput.type = "file";
 thumbnailInput.accept =
     "image/*";
 
-thumbnailInput.style.display = "none";
+thumbnailInput.style.display =
+    "none";
 
-document.body.appendChild(thumbnailInput);
+document.body.appendChild(
+    thumbnailInput
+);
 
 
 // ==========================================
@@ -56,67 +62,181 @@ let selectedThumbnail = null;
 // ==========================================
 
 const uploadTypes =
-    document.querySelectorAll(".type-card");
+    document.querySelectorAll(
+        ".type-card"
+    );
+
 
 const chooseFileBtn =
-    document.querySelector(".select-btn");
+    document.querySelector(
+        ".select-btn"
+    );
+
 
 const uploadTitle =
-    document.querySelector(".upload-select h3");
+    document.querySelector(
+        ".upload-select h3"
+    );
+
 
 const uploadDescription =
-    document.querySelector(".upload-select p");
+    document.querySelector(
+        ".upload-select p"
+    );
+
 
 const videoChooseArea =
-    document.querySelector("#videoChooseArea");
+    document.querySelector(
+        "#videoChooseArea"
+    );
+
 
 const videoPreviewArea =
-    document.querySelector("#videoPreviewArea");
+    document.querySelector(
+        "#videoPreviewArea"
+    );
+
 
 const videoPreview =
-    document.querySelector("#videoPreview");
+    document.querySelector(
+        "#videoPreview"
+    );
+
 
 const videoFileName =
-    document.querySelector("#videoFileName");
+    document.querySelector(
+        "#videoFileName"
+    );
+
 
 const videoCancelBtn =
-    document.querySelector("#videoCancelBtn");
+    document.querySelector(
+        "#videoCancelBtn"
+    );
+
 
 const thumbnailButton =
-    document.querySelector(".thumb-upload");
+    document.querySelector(
+        ".thumb-upload"
+    );
+
 
 const thumbnailPreview =
-    document.querySelector("#thumbnailPreview");
+    document.querySelector(
+        "#thumbnailPreview"
+    );
+
 
 const thumbnailText =
-    document.querySelector("#thumbnailText");
+    document.querySelector(
+        "#thumbnailText"
+    );
+
 
 const thumbnailImage =
-    document.querySelector("#thumbnailImage");
+    document.querySelector(
+        "#thumbnailImage"
+    );
+
 
 const thumbnailCancelBtn =
-    document.querySelector("#thumbnailCancelBtn");
+    document.querySelector(
+        "#thumbnailCancelBtn"
+    );
+
 
 const uploadButton =
-    document.querySelector(".upload-btn");
+    document.querySelector(
+        ".upload-btn"
+    );
+
 
 const progressFill =
-    document.querySelector(".progress-fill");
+    document.querySelector(
+        ".progress-fill"
+    );
+
 
 const progressText =
-    document.querySelector("#progressText");
+    document.querySelector(
+        "#progressText"
+    );
+
 
 const category =
-    document.querySelector(".category-select");
+    document.querySelector(
+        ".category-select"
+    );
+
 
 const linkInput =
-    document.querySelector(".link-input");
+    document.querySelector(
+        ".link-input"
+    );
+
 
 const tagsInput =
-    document.querySelector(".tags-input");
+    document.querySelector(
+        ".tags-input"
+    );
+
 
 const backButton =
-    document.querySelector(".back-btn");
+    document.querySelector(
+        ".back-btn"
+    );
+
+
+// ==========================================
+// UPLOAD SETTINGS ELEMENTS
+// ==========================================
+
+const uploadSettingsBtn =
+    document.querySelector(
+        "#uploadSettingsBtn"
+    );
+
+
+const uploadSettingsPanel =
+    document.querySelector(
+        "#uploadSettingsPanel"
+    );
+
+
+const uploadSettingsClose =
+    document.querySelector(
+        "#uploadSettingsClose"
+    );
+
+
+const saveUploadSettings =
+    document.querySelector(
+        "#saveUploadSettings"
+    );
+
+
+const uploadQuality =
+    document.querySelector(
+        "#uploadQuality"
+    );
+
+
+const defaultPrivacy =
+    document.querySelector(
+        "#defaultPrivacy"
+    );
+
+
+const defaultComments =
+    document.querySelector(
+        "#defaultComments"
+    );
+
+
+const customThumbnailSetting =
+    document.querySelector(
+        "#customThumbnailSetting"
+    );
 
 
 // ==========================================
@@ -125,63 +245,93 @@ const backButton =
 
 uploadTypes.forEach((card) => {
 
-    card.addEventListener("click", () => {
 
-        uploadTypes.forEach((item) => {
-
-            item.classList.remove("active");
-
-        });
-
-        card.classList.add("active");
+    card.addEventListener(
+        "click",
+        () => {
 
 
-        const type =
-            card.querySelector("span")?.textContent?.trim();
+            uploadTypes.forEach(
+                (item) => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
 
 
-        if (type === "Video") {
+            card.classList.add(
+                "active"
+            );
 
-            uploadTitle.textContent =
-                "Select Video";
 
-            uploadDescription.textContent =
-                "MP4 • MOV • AVI • Max 2GB";
+            const type =
+                card
+                    .querySelector("span")
+                    ?.textContent
+                    ?.trim();
 
-            fileInput.accept =
-                "video/*";
+
+            if (type === "Video") {
+
+
+                uploadTitle.textContent =
+                    "Select Video";
+
+
+                uploadDescription.textContent =
+                    "MP4 • MOV • AVI • Max 2GB";
+
+
+                fileInput.accept =
+                    "video/*";
+
+
+            }
+
+
+            else if (
+                type === "Reel"
+            ) {
+
+
+                uploadTitle.textContent =
+                    "Select Reel";
+
+
+                uploadDescription.textContent =
+                    "MP4 • MOV • Max 2GB";
+
+
+                fileInput.accept =
+                    "video/*";
+
+
+            }
+
+
+            else if (
+                type === "Link"
+            ) {
+
+
+                uploadTitle.textContent =
+                    "Paste Link";
+
+
+                uploadDescription.textContent =
+                    "YouTube • Website • Any URL";
+
+
+                fileInput.accept =
+                    "video/*,image/*";
+
+            }
 
         }
-
-
-        else if (type === "Reel") {
-
-            uploadTitle.textContent =
-                "Select Reel";
-
-            uploadDescription.textContent =
-                "MP4 • MOV • Max 2GB";
-
-            fileInput.accept =
-                "video/*";
-
-        }
-
-
-        else if (type === "Link") {
-
-            uploadTitle.textContent =
-                "Paste Link";
-
-            uploadDescription.textContent =
-                "YouTube • Website • Any URL";
-
-            fileInput.accept =
-                "video/*,image/*";
-
-        }
-
-    });
+    );
 
 });
 
@@ -191,6 +341,7 @@ uploadTypes.forEach((card) => {
 // ==========================================
 
 if (chooseFileBtn) {
+
 
     chooseFileBtn.addEventListener(
         "click",
@@ -212,7 +363,10 @@ fileInput.addEventListener(
     "change",
     () => {
 
-        if (!fileInput.files.length) {
+
+        if (
+            !fileInput.files.length
+        ) {
 
             return;
 
@@ -223,7 +377,8 @@ fileInput.addEventListener(
             fileInput.files[0];
 
 
-        selectedFile = file;
+        selectedFile =
+            file;
 
 
         console.log(
@@ -238,28 +393,28 @@ fileInput.addEventListener(
         );
 
 
-        // ======================================
-        // VIDEO
-        // ======================================
-
         if (
-            file.type.startsWith("video/")
+            file.type.startsWith(
+                "video/"
+            )
         ) {
 
-            showVideoPreview(file);
+            showVideoPreview(
+                file
+            );
 
         }
 
 
-        // ======================================
-        // IMAGE
-        // ======================================
-
         else if (
-            file.type.startsWith("image/")
+            file.type.startsWith(
+                "image/"
+            )
         ) {
 
-            showImagePreview(file);
+            showImagePreview(
+                file
+            );
 
         }
 
@@ -269,6 +424,7 @@ fileInput.addEventListener(
             alert(
                 "Please select a video or image."
             );
+
 
             resetMainFile();
 
@@ -282,10 +438,15 @@ fileInput.addEventListener(
 // Show Video Preview
 // ==========================================
 
-function showVideoPreview(file) {
+function showVideoPreview(
+    file
+) {
+
 
     const videoURL =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+            file
+        );
 
 
     videoPreview.src =
@@ -308,6 +469,10 @@ function showVideoPreview(file) {
         file.name;
 
 
+    videoPreview.style.display =
+        "block";
+
+
     videoPreview.load();
 
 
@@ -322,20 +487,15 @@ function showVideoPreview(file) {
 // Show Image Preview
 // ==========================================
 
-function showImagePreview(file) {
+function showImagePreview(
+    file
+) {
+
 
     const imageURL =
-        URL.createObjectURL(file);
-
-
-    /*
-       Main upload box is designed
-       for video preview.
-
-       For an image upload,
-       we still display it inside
-       the same preview area.
-    */
+        URL.createObjectURL(
+            file
+        );
 
 
     videoChooseArea.style.display =
@@ -366,26 +526,36 @@ function showImagePreview(file) {
 
     if (!imagePreview) {
 
+
         imagePreview =
-            document.createElement("img");
+            document.createElement(
+                "img"
+            );
+
 
         imagePreview.id =
             "mainImagePreview";
 
+
         imagePreview.style.width =
             "100%";
+
 
         imagePreview.style.maxHeight =
             "420px";
 
+
         imagePreview.style.objectFit =
             "contain";
+
 
         imagePreview.style.borderRadius =
             "14px";
 
+
         imagePreview.style.background =
             "#000";
+
 
         videoPreviewArea.insertBefore(
             imagePreview,
@@ -416,13 +586,16 @@ function showImagePreview(file) {
 
 if (videoCancelBtn) {
 
+
     videoCancelBtn.addEventListener(
         "click",
         (event) => {
 
+
             event.preventDefault();
 
             event.stopPropagation();
+
 
             resetMainFile();
 
@@ -438,16 +611,22 @@ if (videoCancelBtn) {
 
 function resetMainFile() {
 
-    selectedFile = null;
 
-    fileInput.value = "";
+    selectedFile =
+        null;
+
+
+    fileInput.value =
+        "";
 
 
     videoPreview.pause();
 
+
     videoPreview.removeAttribute(
         "src"
     );
+
 
     videoPreview.load();
 
@@ -498,6 +677,7 @@ function resetMainFile() {
 
 if (thumbnailButton) {
 
+
     thumbnailButton.addEventListener(
         "click",
         () => {
@@ -518,7 +698,10 @@ thumbnailInput.addEventListener(
     "change",
     () => {
 
-        if (!thumbnailInput.files.length) {
+
+        if (
+            !thumbnailInput.files.length
+        ) {
 
             return;
 
@@ -533,7 +716,9 @@ thumbnailInput.addEventListener(
             file;
 
 
-        showThumbnailPreview(file);
+        showThumbnailPreview(
+            file
+        );
 
     }
 );
@@ -543,10 +728,15 @@ thumbnailInput.addEventListener(
 // Show Thumbnail
 // ==========================================
 
-function showThumbnailPreview(file) {
+function showThumbnailPreview(
+    file
+) {
+
 
     const imageURL =
-        URL.createObjectURL(file);
+        URL.createObjectURL(
+            file
+        );
 
 
     thumbnailImage.src =
@@ -579,13 +769,16 @@ function showThumbnailPreview(file) {
 
 if (thumbnailCancelBtn) {
 
+
     thumbnailCancelBtn.addEventListener(
         "click",
         (event) => {
 
+
             event.preventDefault();
 
             event.stopPropagation();
+
 
             resetThumbnail();
 
@@ -601,12 +794,18 @@ if (thumbnailCancelBtn) {
 
 function resetThumbnail() {
 
-    selectedThumbnail = null;
 
-    thumbnailInput.value = "";
+    selectedThumbnail =
+        null;
 
 
-    thumbnailImage.src = "";
+    thumbnailInput.value =
+        "";
+
+
+    thumbnailImage.src =
+        "";
+
 
     thumbnailImage.style.display =
         "none";
@@ -631,7 +830,10 @@ function resetThumbnail() {
 // Upload Progress
 // ==========================================
 
-function setProgress(value) {
+function setProgress(
+    value
+) {
+
 
     progressFill.style.width =
         value + "%";
@@ -649,6 +851,7 @@ function setProgress(value) {
 
 if (uploadButton) {
 
+
     uploadButton.addEventListener(
         "click",
         async () => {
@@ -660,9 +863,11 @@ if (uploadButton) {
 
             if (!selectedFile) {
 
+
                 alert(
                     "Please select a video first."
                 );
+
 
                 return;
 
@@ -675,6 +880,7 @@ if (uploadButton) {
 
             uploadButton.disabled =
                 true;
+
 
             uploadButton.textContent =
                 "Uploading...";
@@ -764,6 +970,52 @@ if (uploadButton) {
 
 
             // ==================================
+            // Upload Settings
+            // ==================================
+
+            if (uploadQuality) {
+
+                formData.append(
+                    "uploadQuality",
+                    uploadQuality.value
+                );
+
+            }
+
+
+            if (defaultPrivacy) {
+
+                formData.append(
+                    "privacy",
+                    defaultPrivacy.value
+                );
+
+            }
+
+
+            if (defaultComments) {
+
+                formData.append(
+                    "comments",
+                    defaultComments.value
+                );
+
+            }
+
+
+            if (
+                customThumbnailSetting
+            ) {
+
+                formData.append(
+                    "customThumbnail",
+                    customThumbnailSetting.checked
+                );
+
+            }
+
+
+            // ==================================
             // Upload
             // ==================================
 
@@ -782,8 +1034,10 @@ if (uploadButton) {
 
                 const response =
                     await fetch(
+
                         API_URL +
                         "/api/upload/video",
+
                         {
 
                             method: "POST",
@@ -791,6 +1045,7 @@ if (uploadButton) {
                             body: formData
 
                         }
+
                     );
 
 
@@ -811,8 +1066,10 @@ if (uploadButton) {
                 // SUCCESS
                 // ==================================
 
-                if (response.ok &&
-                    result.success) {
+                if (
+                    response.ok &&
+                    result.success
+                ) {
 
 
                     setProgress(100);
@@ -846,6 +1103,7 @@ if (uploadButton) {
 
                 else {
 
+
                     alert(
                         result.error ||
                         result.message ||
@@ -858,6 +1116,7 @@ if (uploadButton) {
 
 
             catch (error) {
+
 
                 console.error(
                     "Upload error:",
@@ -890,10 +1149,246 @@ if (uploadButton) {
 
 
 // ==========================================
+// UPLOAD SETTINGS
+// ==========================================
+
+
+// ==========================================
+// Open / Close Settings
+// ==========================================
+
+if (uploadSettingsBtn) {
+
+
+    uploadSettingsBtn.addEventListener(
+        "click",
+        () => {
+
+
+            if (
+                uploadSettingsPanel.style.display ===
+                "none"
+            ) {
+
+
+                uploadSettingsPanel.style.display =
+                    "block";
+
+
+                uploadSettingsBtn.textContent =
+                    "⚙ Settings";
+
+            }
+
+
+            else {
+
+
+                uploadSettingsPanel.style.display =
+                    "none";
+
+
+                uploadSettingsBtn.textContent =
+                    "⚙ Upload Settings";
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// Close Settings X
+// ==========================================
+
+if (uploadSettingsClose) {
+
+
+    uploadSettingsClose.addEventListener(
+        "click",
+        () => {
+
+
+            uploadSettingsPanel.style.display =
+                "none";
+
+
+            uploadSettingsBtn.textContent =
+                "⚙ Upload Settings";
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// Save Upload Settings
+// ==========================================
+
+if (saveUploadSettings) {
+
+
+    saveUploadSettings.addEventListener(
+        "click",
+        () => {
+
+
+            const quality =
+                uploadQuality
+                ?.value ||
+                "auto";
+
+
+            const privacy =
+                defaultPrivacy
+                ?.value ||
+                "public";
+
+
+            const comments =
+                defaultComments
+                ?.value ||
+                "allow";
+
+
+            const customThumbnail =
+                customThumbnailSetting
+                ?.checked ??
+                true;
+
+
+            // ==================================
+            // Save Local Settings
+            // ==================================
+
+            localStorage.setItem(
+                "botProUploadQuality",
+                quality
+            );
+
+
+            localStorage.setItem(
+                "botProUploadPrivacy",
+                privacy
+            );
+
+
+            localStorage.setItem(
+                "botProUploadComments",
+                comments
+            );
+
+
+            localStorage.setItem(
+                "botProCustomThumbnail",
+                customThumbnail
+            );
+
+
+            alert(
+                "✅ Upload Settings Saved"
+            );
+
+
+            uploadSettingsPanel.style.display =
+                "none";
+
+
+            uploadSettingsBtn.textContent =
+                "⚙ Upload Settings";
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// Load Saved Settings
+// ==========================================
+
+function loadUploadSettings() {
+
+
+    const quality =
+        localStorage.getItem(
+            "botProUploadQuality"
+        );
+
+
+    const privacy =
+        localStorage.getItem(
+            "botProUploadPrivacy"
+        );
+
+
+    const comments =
+        localStorage.getItem(
+            "botProUploadComments"
+        );
+
+
+    const customThumbnail =
+        localStorage.getItem(
+            "botProCustomThumbnail"
+        );
+
+
+    if (
+        quality &&
+        uploadQuality
+    ) {
+
+        uploadQuality.value =
+            quality;
+
+    }
+
+
+    if (
+        privacy &&
+        defaultPrivacy
+    ) {
+
+        defaultPrivacy.value =
+            privacy;
+
+    }
+
+
+    if (
+        comments &&
+        defaultComments
+    ) {
+
+        defaultComments.value =
+            comments;
+
+    }
+
+
+    if (
+        customThumbnail !== null &&
+        customThumbnailSetting
+    ) {
+
+        customThumbnailSetting.checked =
+            customThumbnail === "true";
+
+    }
+
+}
+
+
+// ==========================================
 // Category
 // ==========================================
 
 if (category) {
+
 
     category.addEventListener(
         "change",
@@ -916,6 +1411,7 @@ if (category) {
 
 if (linkInput) {
 
+
     linkInput.addEventListener(
         "input",
         () => {
@@ -937,6 +1433,7 @@ if (linkInput) {
 
 if (tagsInput) {
 
+
     tagsInput.addEventListener(
         "input",
         () => {
@@ -957,6 +1454,7 @@ if (tagsInput) {
 // ==========================================
 
 if (backButton) {
+
 
     backButton.addEventListener(
         "click",
@@ -983,9 +1481,11 @@ const navLinks =
 navLinks.forEach(
     (link) => {
 
+
         link.addEventListener(
             "click",
             () => {
+
 
                 navLinks.forEach(
                     (item) => {
@@ -1015,7 +1515,9 @@ navLinks.forEach(
 
 function resetUploadForm() {
 
+
     resetMainFile();
+
 
     resetThumbnail();
 
@@ -1034,35 +1536,40 @@ function resetUploadForm() {
 
     if (titleInput) {
 
-        titleInput.value = "";
+        titleInput.value =
+            "";
 
     }
 
 
     if (descriptionInput) {
 
-        descriptionInput.value = "";
+        descriptionInput.value =
+            "";
 
     }
 
 
     if (category) {
 
-        category.selectedIndex = 0;
+        category.selectedIndex =
+            0;
 
     }
 
 
     if (linkInput) {
 
-        linkInput.value = "";
+        linkInput.value =
+            "";
 
     }
 
 
     if (tagsInput) {
 
-        tagsInput.value = "";
+        tagsInput.value =
+            "";
 
     }
 
@@ -1085,9 +1592,19 @@ window.addEventListener(
     "load",
     () => {
 
+
+        loadUploadSettings();
+
+
         console.log(
             "🚀 Bot Pro Upload Ready"
         );
+
+
+        console.log(
+            "⚙ Upload Settings Ready"
+        );
+
 
         console.log(
             "✅ Railway Upload Integration Loaded"
