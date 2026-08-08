@@ -1,7 +1,6 @@
 // =========================================
 // Bot Pro Message JS
-// Final Full Version
-// Firebase Message System
+// Full Version + Real-Time Messages
 // =========================================
 
 
@@ -20,11 +19,11 @@ const API_URL =
 const CURRENT_USER_ID =
     "Yashu";
 
-let currentChatId =
-    "";
+let currentChatId = "";
 
-let currentReceiverId =
-    "";
+let currentReceiverId = "";
+
+let messageStream = null;
 
 
 // =========================================
@@ -32,64 +31,37 @@ let currentReceiverId =
 // =========================================
 
 const messagePage =
-    document.getElementById(
-        "messagePage"
-    );
+    document.getElementById("messagePage");
 
 const chatScreen =
-    document.getElementById(
-        "chatScreen"
-    );
+    document.getElementById("chatScreen");
 
 const searchInput =
-    document.getElementById(
-        "messageSearch"
-    );
+    document.getElementById("messageSearch");
 
 const chatItems =
-    document.querySelectorAll(
-        ".chat-item"
-    );
+    document.querySelectorAll(".chat-item");
 
 const stories =
-    document.querySelectorAll(
-        ".story"
-    );
-
-const chatBackBtn =
-    document.getElementById(
-        "chatBackBtn"
-    );
+    document.querySelectorAll(".story");
 
 const chatUserName =
-    document.getElementById(
-        "chatUserName"
-    );
+    document.getElementById("chatUserName");
 
 const chatUserAvatar =
-    document.getElementById(
-        "chatUserAvatar"
-    );
+    document.getElementById("chatUserAvatar");
 
 const chatUserStatus =
-    document.getElementById(
-        "chatUserStatus"
-    );
+    document.getElementById("chatUserStatus");
 
 const chatMessages =
-    document.getElementById(
-        "chatMessages"
-    );
+    document.getElementById("chatMessages");
 
 const chatInput =
-    document.getElementById(
-        "chatInput"
-    );
+    document.getElementById("chatInput");
 
 const chatSendBtn =
-    document.getElementById(
-        "chatSendBtn"
-    );
+    document.getElementById("chatSendBtn");
 
 
 // =========================================
@@ -102,21 +74,12 @@ function createChatId(
 ) {
 
     return [
-
         user1,
-
         user2
-
     ]
-
         .sort()
-
         .join("_")
-
-        .replace(
-            /\s+/g,
-            "-"
-        );
+        .replace(/\s+/g, "-");
 
 }
 
@@ -136,48 +99,28 @@ if (searchInput) {
                     .toLowerCase()
                     .trim();
 
-
             chatItems.forEach(
                 (chat) => {
 
                     const name =
-                        chat.querySelector(
-                            "h3"
-                        )
+                        chat.querySelector("h3")
                             ?.textContent
-                            .toLowerCase() ||
-                        "";
-
+                            .toLowerCase() || "";
 
                     const message =
-                        chat.querySelector(
-                            "p"
-                        )
+                        chat.querySelector("p")
                             ?.textContent
-                            .toLowerCase() ||
-                        "";
-
+                            .toLowerCase() || "";
 
                     if (
-
-                        name.includes(
-                            value
-                        )
-
-                        ||
-
-                        message.includes(
-                            value
-                        )
-
+                        name.includes(value) ||
+                        message.includes(value)
                     ) {
 
                         chat.style.display =
                             "flex";
 
-                    }
-
-                    else {
+                    } else {
 
                         chat.style.display =
                             "none";
@@ -194,48 +137,32 @@ if (searchInput) {
 
 
 // =========================================
-// OPEN CHAT
+// Open Chat
 // Event Delegation
 // =========================================
 
 document.addEventListener(
     "click",
-    function (event) {
-
+    (event) => {
 
         const chat =
-            event.target.closest(
-                ".chat-item"
-            );
-
+            event.target.closest(".chat-item");
 
         if (!chat) {
-
             return;
-
         }
-
 
         console.log(
             "✅ Chat Item Clicked"
         );
 
-
-        // =================================
-        // User Name
-        // =================================
-
         const nameElement =
-            chat.querySelector(
-                "h3"
-            );
-
+            chat.querySelector("h3");
 
         const userName =
             nameElement
                 ? nameElement.textContent.trim()
                 : "";
-
 
         if (!userName) {
 
@@ -247,20 +174,10 @@ document.addEventListener(
 
         }
 
-
-        // =================================
-        // Avatar
-        // =================================
-
         const avatarElement =
-            chat.querySelector(
-                ".chat-avatar"
-            );
+            chat.querySelector(".chat-avatar");
 
-
-        let avatar =
-            "";
-
+        let avatar = "";
 
         if (avatarElement) {
 
@@ -271,20 +188,12 @@ document.addEventListener(
 
         }
 
-
         if (!avatar) {
 
             avatar =
                 userName.charAt(0);
 
         }
-
-
-        console.log(
-            "Opening chat:",
-            userName
-        );
-
 
         openChat(
             userName,
@@ -297,7 +206,7 @@ document.addEventListener(
 
 
 // =========================================
-// OPEN CHAT FUNCTION
+// Open Chat Function
 // =========================================
 
 function openChat(
@@ -306,60 +215,44 @@ function openChat(
 ) {
 
     console.log(
-        "🚀 openChat:",
+        "🚀 Opening:",
         userName
     );
-
-
-    // =====================================
-    // Get Elements Again
-    // =====================================
 
     const page =
         document.getElementById(
             "messagePage"
         );
 
-
     const screen =
         document.getElementById(
             "chatScreen"
         );
-
 
     const name =
         document.getElementById(
             "chatUserName"
         );
 
-
     const userAvatar =
         document.getElementById(
             "chatUserAvatar"
         );
-
 
     const status =
         document.getElementById(
             "chatUserStatus"
         );
 
-
     const messages =
         document.getElementById(
             "chatMessages"
         );
 
-
     const input =
         document.getElementById(
             "chatInput"
         );
-
-
-    // =====================================
-    // Check Chat Screen
-    // =====================================
 
     if (!screen) {
 
@@ -374,6 +267,13 @@ function openChat(
         return;
 
     }
+
+
+    // =====================================
+    // Stop Previous Stream
+    // =====================================
+
+    stopRealtimeMessages();
 
 
     // =====================================
@@ -403,7 +303,6 @@ function openChat(
     currentReceiverId =
         userName;
 
-
     currentChatId =
         createChatId(
             CURRENT_USER_ID,
@@ -428,14 +327,12 @@ function openChat(
 
     }
 
-
     if (userAvatar) {
 
         userAvatar.textContent =
             avatar;
 
     }
-
 
     if (status) {
 
@@ -458,7 +355,7 @@ function openChat(
 
 
     // =====================================
-    // Clear Old Messages
+    // Clear Messages
     // =====================================
 
     if (messages) {
@@ -470,14 +367,21 @@ function openChat(
 
 
     // =====================================
-    // Load Messages
+    // Load Existing Messages
     // =====================================
 
     loadMessages();
 
 
     // =====================================
-    // Focus Input
+    // Start Real-Time
+    // =====================================
+
+    startRealtimeMessages();
+
+
+    // =====================================
+    // Focus
     // =====================================
 
     setTimeout(
@@ -487,7 +391,6 @@ function openChat(
                 document.getElementById(
                     "chatInput"
                 );
-
 
             if (currentInput) {
 
@@ -500,40 +403,25 @@ function openChat(
     );
 
 
-    // =====================================
-    // Scroll
-    // =====================================
-
     scrollChatToBottom();
-
-
-    console.log(
-        "✅ Chat Opened Successfully"
-    );
 
 }
 
 
 // =========================================
-// LOAD MESSAGES
+// Load Existing Messages
 // =========================================
 
 async function loadMessages() {
 
     if (
-
-        !currentChatId
-
-        ||
-
+        !currentChatId ||
         !chatMessages
-
     ) {
 
         return;
 
     }
-
 
     try {
 
@@ -541,23 +429,18 @@ async function loadMessages() {
             await fetch(
 
                 API_URL +
-
                 "/api/messages/" +
-
                 encodeURIComponent(
                     currentChatId
                 )
 
             );
 
-
         const result =
             await response.json();
 
-
         if (
-            !response.ok
-            ||
+            !response.ok ||
             !result.success
         ) {
 
@@ -570,10 +453,8 @@ async function loadMessages() {
 
         }
 
-
         chatMessages.innerHTML =
             "";
-
 
         result.messages.forEach(
             (message) => {
@@ -585,9 +466,7 @@ async function loadMessages() {
             }
         );
 
-
         scrollChatToBottom();
-
 
     }
 
@@ -601,10 +480,246 @@ async function loadMessages() {
     }
 
 }
+// =========================================
+// REAL-TIME MESSAGE STREAM
+// =========================================
 
 
 // =========================================
-// ADD MESSAGE TO SCREEN
+// Start Real-Time Messages
+// =========================================
+
+function startRealtimeMessages() {
+
+    // =====================================
+    // Close Old Stream
+    // =====================================
+
+    stopRealtimeMessages();
+
+
+    if (!currentChatId) {
+
+        console.log(
+            "❌ No chat selected"
+        );
+
+        return;
+
+    }
+
+
+    // =====================================
+    // Stream URL
+    // =====================================
+
+    const streamUrl =
+        API_URL +
+        "/api/messages/stream/" +
+        encodeURIComponent(
+            currentChatId
+        );
+
+
+    console.log(
+        "🟢 Starting stream:",
+        streamUrl
+    );
+
+
+    // =====================================
+    // EventSource
+    // =====================================
+
+    messageStream =
+        new EventSource(
+            streamUrl
+        );
+
+
+    // =====================================
+    // Connected
+    // =====================================
+
+    messageStream.addEventListener(
+        "connected",
+        (event) => {
+
+            try {
+
+                const data =
+                    JSON.parse(
+                        event.data
+                    );
+
+                console.log(
+                    "🟢 Real-time connected:",
+                    data.chatId
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Stream data error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+    // =====================================
+    // Messages Updated
+    // =====================================
+
+    messageStream.addEventListener(
+        "messages",
+        (event) => {
+
+            try {
+
+                const data =
+                    JSON.parse(
+                        event.data
+                    );
+
+
+                if (!data.success) {
+
+                    return;
+
+                }
+
+
+                if (
+                    data.chatId !==
+                    currentChatId
+                ) {
+
+                    return;
+
+                }
+
+
+                renderRealtimeMessages(
+                    data.messages || []
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Real-time error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+    // =====================================
+    // Connection Open
+    // =====================================
+
+    messageStream.onopen =
+        () => {
+
+            console.log(
+                "✅ Real-time connection active"
+            );
+
+        };
+
+
+    // =====================================
+    // Connection Error
+    // =====================================
+
+    messageStream.onerror =
+        () => {
+
+            console.log(
+                "⚠️ Real-time connection error"
+            );
+
+        };
+
+}
+
+
+// =========================================
+// Render Real-Time Messages
+// =========================================
+
+function renderRealtimeMessages(
+    messages
+) {
+
+    if (!chatMessages) {
+
+        return;
+
+    }
+
+
+    chatMessages.innerHTML =
+        "";
+
+
+    messages.sort(
+        (a, b) =>
+            a.createdAt -
+            b.createdAt
+    );
+
+
+    messages.forEach(
+        (message) => {
+
+            addMessageToScreen(
+                message
+            );
+
+        }
+    );
+
+
+    scrollChatToBottom();
+
+}
+
+
+// =========================================
+// Stop Real-Time Messages
+// =========================================
+
+function stopRealtimeMessages() {
+
+    if (messageStream) {
+
+        console.log(
+            "🔴 Closing message stream"
+        );
+
+        messageStream.close();
+
+        messageStream =
+            null;
+
+    }
+
+}
+
+
+// =========================================
+// Add Message To Screen
 // =========================================
 
 function addMessageToScreen(
@@ -625,10 +740,8 @@ function addMessageToScreen(
 
 
     if (
-
         message.senderId ===
         CURRENT_USER_ID
-
     ) {
 
         messageRow.className =
@@ -671,19 +784,17 @@ function addMessageToScreen(
 
 
 // =========================================
-// BACK TO MESSAGE LIST
+// Back To Message List
 // =========================================
 
 document.addEventListener(
     "click",
-    function (event) {
-
+    (event) => {
 
         const button =
             event.target.closest(
                 "#chatBackBtn"
             );
-
 
         if (!button) {
 
@@ -697,12 +808,22 @@ document.addEventListener(
                 "messagePage"
             );
 
-
         const screen =
             document.getElementById(
                 "chatScreen"
             );
 
+
+        // =====================================
+        // Stop Stream
+        // =====================================
+
+        stopRealtimeMessages();
+
+
+        // =====================================
+        // Hide Chat
+        // =====================================
 
         if (screen) {
 
@@ -711,6 +832,10 @@ document.addEventListener(
 
         }
 
+
+        // =====================================
+        // Show Message List
+        // =====================================
 
         if (page) {
 
@@ -737,19 +862,14 @@ document.addEventListener(
 
 
 // =========================================
-// SEND MESSAGE
+// Send Message
 // =========================================
 
 async function sendMessage() {
 
     if (
-
-        !chatInput
-
-        ||
-
+        !chatInput ||
         !chatMessages
-
     ) {
 
         return;
@@ -769,13 +889,8 @@ async function sendMessage() {
 
 
     if (
-
-        !currentChatId
-
-        ||
-
+        !currentChatId ||
         !currentReceiverId
-
     ) {
 
         alert(
@@ -842,25 +957,14 @@ async function sendMessage() {
 
 
         if (
-
-            !response.ok
-
-            ||
-
+            !response.ok ||
             !result.success
-
         ) {
 
             throw new Error(
 
-                result.error
-
-                ||
-
-                result.message
-
-                ||
-
+                result.error ||
+                result.message ||
                 "Message send failed"
 
             );
@@ -868,22 +972,21 @@ async function sendMessage() {
         }
 
 
-        addMessageToScreen(
-            result.data
-        );
-
-
         chatInput.value =
             "";
 
-
-        scrollChatToBottom();
-
-
         console.log(
-            "✅ Message saved to Firebase",
+            "✅ Message saved:",
             result.data
         );
+
+
+        /*
+         * Do NOT manually add the message here.
+         *
+         * Firebase real-time stream will
+         * automatically update the screen.
+         */
 
 
     }
@@ -894,7 +997,6 @@ async function sendMessage() {
             "Message Send Error:",
             error
         );
-
 
         alert(
             "Unable to send message."
@@ -918,26 +1020,23 @@ async function sendMessage() {
 
 
 // =========================================
-// SEND BUTTON
+// Send Button
 // =========================================
 
 document.addEventListener(
     "click",
-    function (event) {
-
+    (event) => {
 
         const button =
             event.target.closest(
                 "#chatSendBtn"
             );
 
-
         if (!button) {
 
             return;
 
         }
-
 
         sendMessage();
 
@@ -947,7 +1046,7 @@ document.addEventListener(
 
 
 // =========================================
-// ENTER TO SEND
+// Enter To Send
 // =========================================
 
 if (chatInput) {
@@ -956,16 +1055,9 @@ if (chatInput) {
         "keydown",
         (event) => {
 
-
             if (
-
-                event.key ===
-                "Enter"
-
-                &&
-
+                event.key === "Enter" &&
                 !event.shiftKey
-
             ) {
 
                 event.preventDefault();
@@ -981,7 +1073,7 @@ if (chatInput) {
 
 
 // =========================================
-// SCROLL CHAT
+// Scroll Chat
 // =========================================
 
 function scrollChatToBottom() {
@@ -1004,10 +1096,8 @@ function scrollChatToBottom() {
     );
 
 }
-
-
 // =========================================
-// STORIES
+// Stories
 // =========================================
 
 stories.forEach(
@@ -1017,11 +1107,8 @@ stories.forEach(
             "click",
             () => {
 
-
                 const storyName =
-                    story.querySelector(
-                        "p"
-                    )
+                    story.querySelector("p")
                         ?.textContent
                         ?.trim();
 
@@ -1060,12 +1147,11 @@ stories.forEach(
 
 
 // =========================================
-// CHAT PRESS EFFECT
+// Chat Press Effect
 // =========================================
 
 chatItems.forEach(
     (chat) => {
-
 
         chat.addEventListener(
             "mousedown",
@@ -1104,7 +1190,7 @@ chatItems.forEach(
 
 
 // =========================================
-// BOTTOM NAVIGATION
+// Bottom Navigation
 // =========================================
 
 const navLinks =
@@ -1119,7 +1205,6 @@ navLinks.forEach(
         link.addEventListener(
             "click",
             () => {
-
 
                 navLinks.forEach(
                     (item) => {
@@ -1144,7 +1229,7 @@ navLinks.forEach(
 
 
 // =========================================
-// SEARCH RESET
+// Search Reset
 // =========================================
 
 if (searchInput) {
@@ -1152,7 +1237,6 @@ if (searchInput) {
     searchInput.addEventListener(
         "search",
         () => {
-
 
             chatItems.forEach(
                 (chat) => {
@@ -1170,52 +1254,48 @@ if (searchInput) {
 
 
 // =========================================
-// ESC KEY
+// ESC Key
 // =========================================
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-
         if (
-            event.key ===
+            event.key !==
             "Escape"
         ) {
 
+            return;
 
-            if (
-
-                chatScreen
-
-                &&
-
-                chatScreen.style.display !==
-                    "none"
-
-            ) {
-
-                const backButton =
-                    document.getElementById(
-                        "chatBackBtn"
-                    );
+        }
 
 
-                if (backButton) {
+        if (
+            chatScreen &&
+            chatScreen.style.display !==
+                "none"
+        ) {
 
-                    backButton.click();
+            const backButton =
+                document.getElementById(
+                    "chatBackBtn"
+                );
 
-                }
+
+            if (backButton) {
+
+                backButton.click();
 
             }
 
-            else {
+        }
 
-                if (searchInput) {
+        else {
 
-                    searchInput.blur();
+            if (searchInput) {
 
-                }
+                searchInput.blur();
 
             }
 
@@ -1226,7 +1306,7 @@ document.addEventListener(
 
 
 // =========================================
-// ONLINE DOT ANIMATION
+// Online Dot Animation
 // =========================================
 
 const onlineDots =
@@ -1238,10 +1318,8 @@ const onlineDots =
 setInterval(
     () => {
 
-
         onlineDots.forEach(
             (dot) => {
-
 
                 dot.style.opacity =
                     "0.4";
@@ -1266,12 +1344,11 @@ setInterval(
 
 
 // =========================================
-// CHAT FADE ANIMATION
+// Chat Fade Animation
 // =========================================
 
 chatItems.forEach(
     (chat, index) => {
-
 
         chat.style.opacity =
             "0";
@@ -1296,7 +1373,7 @@ chatItems.forEach(
 
 
 // =========================================
-// PAGE READY
+// Page Ready
 // =========================================
 
 window.addEventListener(
@@ -1312,9 +1389,13 @@ window.addEventListener(
 
 
 // =========================================
-// CONSOLE
+// Console
 // =========================================
 
 console.log(
     "✅ Bot Pro Message JS Loaded"
+);
+
+console.log(
+    "🟢 Real-Time Message System Ready"
 );
