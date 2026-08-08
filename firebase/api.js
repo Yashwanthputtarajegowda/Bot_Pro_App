@@ -7,7 +7,7 @@ import { auth } from "./config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 // Railway backend URL
-const API_BASE_URL = "bot-pro-backend-production.up.railway.app";
+const API_BASE_URL =  "https://bot-pro-backend-production.up.railway.app";
 
 // ------------------------------------------
 // Get current Firebase ID token
