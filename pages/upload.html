@@ -9,10 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Bot Pro - Upload
-    </title>
-
+    <title>Bot Pro - Upload</title>
 
     <link
         rel="stylesheet"
@@ -58,8 +55,6 @@
         </h2>
 
 
-        <!-- UPLOAD SETTINGS BUTTON -->
-
         <button
             type="button"
             class="demo-btn"
@@ -73,7 +68,7 @@
 
 
     <!-- ==========================================
-         UPLOAD SETTINGS
+         SETTINGS
     ========================================== -->
 
     <section
@@ -110,8 +105,6 @@
 
         <div class="settings-list">
 
-
-            <!-- QUALITY -->
 
             <div class="setting-item">
 
@@ -151,8 +144,6 @@
             </div>
 
 
-            <!-- PRIVACY -->
-
             <div class="setting-item">
 
                 <div class="setting-info">
@@ -187,8 +178,6 @@
             </div>
 
 
-            <!-- COMMENTS -->
-
             <div class="setting-item">
 
                 <div class="setting-info">
@@ -219,8 +208,6 @@
             </div>
 
 
-            <!-- CUSTOM THUMBNAIL -->
-
             <div class="setting-item">
 
                 <div class="setting-info">
@@ -250,8 +237,6 @@
             </div>
 
 
-            <!-- SAVE -->
-
             <button
                 type="button"
                 class="save-settings-btn"
@@ -260,7 +245,6 @@
                 Save Settings
 
             </button>
-
 
         </div>
 
@@ -283,7 +267,9 @@
 
             <!-- VIDEO -->
 
-            <button class="type-card active">
+            <button
+                type="button"
+                class="type-card active">
 
                 <svg
                     class="type-icon"
@@ -305,7 +291,9 @@
 
             <!-- REEL -->
 
-            <button class="type-card">
+            <button
+                type="button"
+                class="type-card">
 
                 <svg
                     class="type-icon"
@@ -327,7 +315,9 @@
 
             <!-- LINK -->
 
-            <button class="type-card">
+            <button
+                type="button"
+                class="type-card">
 
                 <svg
                     class="type-icon"
@@ -348,25 +338,26 @@
 
             </button>
 
-
         </div>
 
     </section>
 
 
     <!-- ==========================================
-         UPLOAD BOX
+         MAIN UPLOAD AREA
     ========================================== -->
 
     <section class="upload-box">
 
 
+        <!-- ======================================
+             VIDEO / REEL FILE AREA
+        ======================================= -->
+
         <div
             class="upload-select"
             id="videoUploadBox">
 
-
-            <!-- CLOSE VIDEO -->
 
             <button
                 type="button"
@@ -378,8 +369,6 @@
 
             </button>
 
-
-            <!-- CHOOSE VIDEO -->
 
             <div id="videoChooseArea">
 
@@ -439,13 +428,57 @@
 
             </div>
 
+        </div>
+
+
+        <!-- ======================================
+             LINK AREA
+        ======================================= -->
+
+        <div
+            id="linkUploadArea"
+            class="link-upload-area"
+            style="display:none;">
+
+            <div class="link-icon">
+
+                🔗
+
+            </div>
+
+
+            <h3>
+                Add Video Link
+            </h3>
+
+
+            <p>
+                Paste a YouTube or video URL
+            </p>
+
+
+            <input
+                type="url"
+                id="externalVideoLink"
+                class="link-input"
+                placeholder="https://www.youtube.com/watch?v=...">
+
+            
+            <button
+                type="button"
+                id="loadLinkBtn"
+                class="primary-btn">
+
+                Load Link
+
+            </button>
 
         </div>
 
 
-        <!-- ==========================================
+        <!-- ======================================
              THUMBNAIL
-        ========================================== -->
+        ======================================= -->
 
         <div class="thumbnail-section">
 
@@ -457,12 +490,9 @@
             <div class="thumbnail-row">
 
 
-                <!-- THUMBNAIL PREVIEW -->
-
                 <div
                     class="thumb-preview"
                     id="thumbnailPreview">
-
 
                     <span id="thumbnailText">
                         No Thumbnail
@@ -485,11 +515,8 @@
 
                     </button>
 
-
                 </div>
 
-
-                <!-- THUMBNAIL BUTTON -->
 
                 <button
                     type="button"
@@ -499,17 +526,15 @@
 
                 </button>
 
-
             </div>
 
         </div>
-
 
     </section>
 
 
     <!-- ==========================================
-         DETAILS
+         VIDEO DETAILS
     ========================================== -->
 
     <section class="details-section">
@@ -644,26 +669,6 @@
 
         </div>
 
-
-    </section>
-
-
-    <!-- ==========================================
-         LINK
-    ========================================== -->
-
-    <section class="link-section">
-
-        <h3>
-            External Link (Optional)
-        </h3>
-
-
-        <input
-            type="url"
-            class="link-input"
-            placeholder="Paste YouTube, Website or Any URL">
-
     </section>
 
 
@@ -698,6 +703,7 @@
                 Upload Progress
             </span>
 
+
             <span id="progressText">
                 0%
             </span>
@@ -707,7 +713,9 @@
 
         <div class="progress-bar">
 
-            <div class="progress-fill"></div>
+            <div
+                class="progress-fill">
+            </div>
 
         </div>
 
@@ -720,8 +728,12 @@
 
     <section class="upload-action">
 
-        <button class="upload-btn">
+        <button
+            type="button"
+            class="upload-btn">
+
             Upload Now
+
         </button>
 
     </section>
@@ -761,23 +773,13 @@
 
 
 <!-- ==========================================
-     BOTTOM NAVIGATION
+     BOTTOM NAV
 ========================================== -->
 
 <nav class="bottom-nav">
 
 
     <a href="home.html">
-
-        <svg
-            class="nav-icon"
-            viewBox="0 0 24 24">
-
-            <path
-                d="M3 11L12 3L21 11V21H14V14H10V21H3Z"
-                fill="currentColor"/>
-
-        </svg>
 
         <span>
             Home
@@ -788,16 +790,6 @@
 
     <a href="message.html">
 
-        <svg
-            class="nav-icon"
-            viewBox="0 0 24 24">
-
-            <path
-                d="M4 12L20 4L16 20L11 13L4 12Z"
-                fill="currentColor"/>
-
-        </svg>
-
         <span>
             Messages
         </span>
@@ -807,16 +799,6 @@
 
     <a href="reels.html">
 
-        <svg
-            class="nav-icon"
-            viewBox="0 0 24 24">
-
-            <path
-                d="M8 5H18V19H8V5ZM4 5H7V9H4V5ZM4 10H7V14H4V10ZM4 15H7V19H4V15Z"
-                fill="currentColor"/>
-
-        </svg>
-
         <span>
             Reels
         </span>
@@ -825,16 +807,6 @@
 
 
     <a href="profile.html">
-
-        <svg
-            class="nav-icon"
-            viewBox="0 0 24 24">
-
-            <path
-                d="M12 12A5 5 0 1 0 12 2A5 5 0 0 0 12 12ZM4 21C4 17.7 7.1 15 12 15C16.9 15 20 17.7 20 21Z"
-                fill="currentColor"/>
-
-        </svg>
 
         <span>
             Profile
@@ -849,6 +821,172 @@
 <script
     type="module"
     src="../js/upload.js">
+</script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const typeCards =
+            document.querySelectorAll(
+                ".type-card"
+            );
+
+        const uploadSelect =
+            document.querySelector(
+                "#videoUploadBox"
+            );
+
+        const linkArea =
+            document.querySelector(
+                "#linkUploadArea"
+            );
+
+        const uploadTitle =
+            document.querySelector(
+                "#videoChooseArea h3"
+            );
+
+        const uploadDescription =
+            document.querySelector(
+                "#videoChooseArea p"
+            );
+
+
+        typeCards.forEach(
+            (card) => {
+
+                card.addEventListener(
+                    "click",
+                    () => {
+
+                        const type =
+                            card
+                                .querySelector("span")
+                                ?.textContent
+                                ?.trim();
+
+
+                        if (
+                            type === "Link"
+                        ) {
+
+                            uploadSelect.style.display =
+                                "none";
+
+                            linkArea.style.display =
+                                "block";
+
+                        }
+
+                        else {
+
+                            uploadSelect.style.display =
+                                "block";
+
+                            linkArea.style.display =
+                                "none";
+
+
+                            if (
+                                type === "Video"
+                            ) {
+
+                                uploadTitle.textContent =
+                                    "Select Video";
+
+                                uploadDescription.textContent =
+                                    "MP4 • MOV • AVI • Max 2GB";
+
+                            }
+
+
+                            if (
+                                type === "Reel"
+                            ) {
+
+                                uploadTitle.textContent =
+                                    "Select Reel";
+
+                                uploadDescription.textContent =
+                                    "MP4 • MOV • Max 2GB";
+
+                            }
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        const loadLinkBtn =
+            document.querySelector(
+                "#loadLinkBtn"
+            );
+
+
+        if (loadLinkBtn) {
+
+            loadLinkBtn.addEventListener(
+                "click",
+                () => {
+
+                    const link =
+                        document
+                            .querySelector(
+                                "#externalVideoLink"
+                            )
+                            ?.value
+                            ?.trim();
+
+
+                    if (!link) {
+
+                        alert(
+                            "Please paste a video link."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !link.startsWith(
+                            "http://"
+                        ) &&
+                        !link.startsWith(
+                            "https://"
+                        )
+                    ) {
+
+                        alert(
+                            "Please enter a valid URL."
+                        );
+
+                        return;
+
+                    }
+
+
+                    alert(
+                        "Link added successfully."
+                    );
+
+                }
+            );
+
+        }
+
+    }
+);
+
 </script>
 
 
