@@ -8,6 +8,8 @@
 // Backend API
 // ==========================================
 
+import { apiFetch } from "../firebase/api.js";
+
 const API_URL =
     "https://bot-pro-backend-production.up.railway.app";
 
@@ -68,95 +70,114 @@ const uploadTypes =
         ".type-card"
     );
 
+
 const chooseFileBtn =
     document.querySelector(
         ".select-btn"
     );
+
 
 const uploadTitle =
     document.querySelector(
         ".upload-select h3"
     );
 
+
 const uploadDescription =
     document.querySelector(
         ".upload-select p"
     );
+
 
 const videoChooseArea =
     document.querySelector(
         "#videoChooseArea"
     );
 
+
 const videoPreviewArea =
     document.querySelector(
         "#videoPreviewArea"
     );
+
 
 const videoPreview =
     document.querySelector(
         "#videoPreview"
     );
 
+
 const videoFileName =
     document.querySelector(
         "#videoFileName"
     );
+
 
 const videoCancelBtn =
     document.querySelector(
         "#videoCancelBtn"
     );
 
+
 const thumbnailButton =
     document.querySelector(
         ".thumb-upload"
     );
+
 
 const thumbnailText =
     document.querySelector(
         "#thumbnailText"
     );
 
+
 const thumbnailImage =
     document.querySelector(
         "#thumbnailImage"
     );
+
 
 const thumbnailCancelBtn =
     document.querySelector(
         "#thumbnailCancelBtn"
     );
 
+
 const uploadButton =
     document.querySelector(
         ".upload-btn"
     );
+
 
 const progressFill =
     document.querySelector(
         ".progress-fill"
     );
 
+
 const progressText =
     document.querySelector(
         "#progressText"
     );
+
 
 const category =
     document.querySelector(
         ".category-select"
     );
 
+
 const linkInput =
     document.querySelector(
         ".link-input"
     );
 
+
 const tagsInput =
     document.querySelector(
         ".tags-input"
     );
+
 
 const backButton =
     document.querySelector(
@@ -173,35 +194,42 @@ const uploadSettingsBtn =
         "#uploadSettingsBtn"
     );
 
+
 const uploadSettingsPanel =
     document.querySelector(
         "#uploadSettingsPanel"
     );
+
 
 const uploadSettingsClose =
     document.querySelector(
         "#uploadSettingsClose"
     );
 
+
 const saveUploadSettings =
     document.querySelector(
         "#saveUploadSettings"
     );
+
 
 const uploadQuality =
     document.querySelector(
         "#uploadQuality"
     );
 
+
 const defaultPrivacy =
     document.querySelector(
         "#defaultPrivacy"
     );
 
+
 const defaultComments =
     document.querySelector(
         "#defaultComments"
     );
+
 
 const customThumbnailSetting =
     document.querySelector(
@@ -229,6 +257,7 @@ uploadTypes.forEach((card) => {
                 }
             );
 
+
             card.classList.add(
                 "active"
             );
@@ -250,14 +279,18 @@ uploadTypes.forEach((card) => {
                 selectedUploadType =
                     "video";
 
+
                 uploadTitle.textContent =
                     "Select Video";
+
 
                 uploadDescription.textContent =
                     "MP4 • MOV • AVI • Max 2GB";
 
+
                 fileInput.accept =
                     "video/*";
+
 
                 resetMainFile();
 
@@ -275,14 +308,18 @@ uploadTypes.forEach((card) => {
                 selectedUploadType =
                     "reel";
 
+
                 uploadTitle.textContent =
                     "Select Reel";
+
 
                 uploadDescription.textContent =
                     "MP4 • MOV • Max 2GB";
 
+
                 fileInput.accept =
                     "video/*";
+
 
                 resetMainFile();
 
@@ -300,14 +337,18 @@ uploadTypes.forEach((card) => {
                 selectedUploadType =
                     "link";
 
+
                 uploadTitle.textContent =
                     "Select File";
+
 
                 uploadDescription.textContent =
                     "Choose a video or image";
 
+
                 fileInput.accept =
                     "video/*,image/*";
+
 
                 resetMainFile();
 
@@ -387,6 +428,7 @@ fileInput.addEventListener(
             selectedUploadType =
                 "video";
 
+
             showVideoPreview(
                 file
             );
@@ -407,6 +449,7 @@ fileInput.addEventListener(
             selectedUploadType =
                 "photo";
 
+
             showPhotoPreview(
                 file
             );
@@ -419,6 +462,7 @@ fileInput.addEventListener(
             alert(
                 "Please select a video or image."
             );
+
 
             resetMainFile();
 
@@ -535,6 +579,7 @@ function showPhotoPreview(
             document.createElement(
                 "img"
             );
+
 
         imagePreview.id =
             "mainImagePreview";
@@ -830,12 +875,11 @@ function setProgress(
     progressFill.style.width =
         value + "%";
 
+
     progressText.textContent =
         value + "%";
 
 }
-
-
 // ==========================================
 // Upload Button
 // ==========================================
@@ -845,7 +889,6 @@ if (uploadButton) {
     uploadButton.addEventListener(
         "click",
         async () => {
-
 
             // ==================================
             // Check File
@@ -869,8 +912,10 @@ if (uploadButton) {
             uploadButton.disabled =
                 true;
 
+
             uploadButton.textContent =
                 "Uploading...";
+
 
             setProgress(0);
 
@@ -918,6 +963,7 @@ if (uploadButton) {
                     ".title-input"
                 );
 
+
             const descriptionInput =
                 document.querySelector(
                     ".description-input"
@@ -940,6 +986,7 @@ if (uploadButton) {
                     "description",
                     descriptionInput.value
                 );
+
 
                 formData.append(
                     "caption",
@@ -980,7 +1027,7 @@ if (uploadButton) {
 
 
             // ==================================
-            // Settings
+            // Upload Settings
             // ==================================
 
             if (uploadQuality) {
@@ -1026,6 +1073,20 @@ if (uploadButton) {
 
 
             // ==================================
+            // Custom Thumbnail
+            // ==================================
+
+            if (selectedThumbnail) {
+
+                formData.append(
+                    "thumbnail",
+                    selectedThumbnail
+                );
+
+            }
+
+
+            // ==================================
             // Upload URL
             // ==================================
 
@@ -1050,30 +1111,23 @@ if (uploadButton) {
                 setProgress(10);
 
 
-                const response =
-                    await fetch(
+                // ==================================
+                // AUTHENTICATED UPLOAD
+                // Firebase ID Token will be
+                // automatically added by apiFetch()
+                // ==================================
 
-                        API_URL +
+                const result =
+                    await apiFetch(
                         uploadRoute,
-
                         {
-
-                            method:
-                                "POST",
-
-                            body:
-                                formData
-
+                            method: "POST",
+                            body: formData
                         }
-
                     );
 
 
                 setProgress(70);
-
-
-                const result =
-                    await response.json();
 
 
                 console.log(
@@ -1086,10 +1140,7 @@ if (uploadButton) {
                 // SUCCESS
                 // ==================================
 
-                if (
-                    response.ok &&
-                    result.success
-                ) {
+                if (result.success) {
 
                     setProgress(100);
 
@@ -1157,7 +1208,38 @@ if (uploadButton) {
                 );
 
 
+                // ==================================
+                // Authentication Error
+                // ==================================
+
+                if (
+                    error.message &&
+                    (
+                        error.message
+                            .toLowerCase()
+                            .includes("logged in")
+                        ||
+                        error.message
+                            .toLowerCase()
+                            .includes("authentication")
+                    )
+                ) {
+
+                    alert(
+                        "Please login again before uploading."
+                    );
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // Normal Error
+                // ==================================
+
                 alert(
+                    error.message ||
                     "Unable to connect to the server."
                 );
 
@@ -1168,18 +1250,21 @@ if (uploadButton) {
             // Restore Button
             // ==================================
 
-            uploadButton.disabled =
-                false;
+            finally {
 
-            uploadButton.textContent =
-                "Upload Now";
+                uploadButton.disabled =
+                    false;
+
+
+                uploadButton.textContent =
+                    "Upload Now";
+
+            }
 
         }
     );
 
 }
-
-
 // ==========================================
 // UPLOAD SETTINGS
 // ==========================================
@@ -1203,6 +1288,7 @@ if (uploadSettingsBtn) {
                 uploadSettingsPanel.style.display =
                     "block";
 
+
                 uploadSettingsBtn.textContent =
                     "⚙ Settings";
 
@@ -1212,6 +1298,7 @@ if (uploadSettingsBtn) {
 
                 uploadSettingsPanel.style.display =
                     "none";
+
 
                 uploadSettingsBtn.textContent =
                     "⚙ Upload Settings";
@@ -1237,6 +1324,7 @@ if (uploadSettingsClose) {
             uploadSettingsPanel.style.display =
                 "none";
 
+
             uploadSettingsBtn.textContent =
                 "⚙ Upload Settings";
 
@@ -1260,13 +1348,16 @@ if (saveUploadSettings) {
                 uploadQuality?.value ||
                 "auto";
 
+
             const privacy =
                 defaultPrivacy?.value ||
                 "public";
 
+
             const comments =
                 defaultComments?.value ||
                 "allow";
+
 
             const customThumbnail =
                 customThumbnailSetting
@@ -1274,20 +1365,27 @@ if (saveUploadSettings) {
                 true;
 
 
+            // ==================================
+            // Save to Local Storage
+            // ==================================
+
             localStorage.setItem(
                 "botProUploadQuality",
                 quality
             );
+
 
             localStorage.setItem(
                 "botProUploadPrivacy",
                 privacy
             );
 
+
             localStorage.setItem(
                 "botProUploadComments",
                 comments
             );
+
 
             localStorage.setItem(
                 "botProCustomThumbnail",
@@ -1302,6 +1400,7 @@ if (saveUploadSettings) {
 
             uploadSettingsPanel.style.display =
                 "none";
+
 
             uploadSettingsBtn.textContent =
                 "⚙ Upload Settings";
@@ -1323,21 +1422,28 @@ function loadUploadSettings() {
             "botProUploadQuality"
         );
 
+
     const privacy =
         localStorage.getItem(
             "botProUploadPrivacy"
         );
+
 
     const comments =
         localStorage.getItem(
             "botProUploadComments"
         );
 
+
     const customThumbnail =
         localStorage.getItem(
             "botProCustomThumbnail"
         );
 
+
+    // ==================================
+    // Quality
+    // ==================================
 
     if (
         quality &&
@@ -1350,6 +1456,10 @@ function loadUploadSettings() {
     }
 
 
+    // ==================================
+    // Privacy
+    // ==================================
+
     if (
         privacy &&
         defaultPrivacy
@@ -1361,6 +1471,10 @@ function loadUploadSettings() {
     }
 
 
+    // ==================================
+    // Comments
+    // ==================================
+
     if (
         comments &&
         defaultComments
@@ -1371,6 +1485,10 @@ function loadUploadSettings() {
 
     }
 
+
+    // ==================================
+    // Custom Thumbnail
+    // ==================================
 
     if (
         customThumbnail !== null &&
@@ -1465,8 +1583,6 @@ if (backButton) {
     );
 
 }
-
-
 // ==========================================
 // Bottom Navigation
 // ==========================================
@@ -1494,6 +1610,7 @@ navLinks.forEach(
                     }
                 );
 
+
                 link.classList.add(
                     "active"
                 );
@@ -1511,16 +1628,33 @@ navLinks.forEach(
 
 function resetUploadForm() {
 
+    // ==================================
+    // Reset Main File
+    // ==================================
+
     resetMainFile();
+
+
+    // ==================================
+    // Reset Thumbnail
+    // ==================================
 
     resetThumbnail();
 
+
+    // ==================================
+    // Reset Title
+    // ==================================
 
     const titleInput =
         document.querySelector(
             ".title-input"
         );
 
+
+    // ==================================
+    // Reset Description
+    // ==================================
 
     const descriptionInput =
         document.querySelector(
@@ -1544,6 +1678,10 @@ function resetUploadForm() {
     }
 
 
+    // ==================================
+    // Reset Category
+    // ==================================
+
     if (category) {
 
         category.selectedIndex =
@@ -1551,6 +1689,10 @@ function resetUploadForm() {
 
     }
 
+
+    // ==================================
+    // Reset Link
+    // ==================================
 
     if (linkInput) {
 
@@ -1560,6 +1702,10 @@ function resetUploadForm() {
     }
 
 
+    // ==================================
+    // Reset Tags
+    // ==================================
+
     if (tagsInput) {
 
         tagsInput.value =
@@ -1567,6 +1713,10 @@ function resetUploadForm() {
 
     }
 
+
+    // ==================================
+    // Reset Progress
+    // ==================================
 
     setProgress(0);
 
@@ -1583,20 +1733,29 @@ window.addEventListener(
 
         loadUploadSettings();
 
+
         console.log(
             "🚀 Bot Pro Upload Ready"
         );
+
 
         console.log(
             "🖼️ Photo Upload Ready"
         );
 
-        console.log(
-            "⚙ Upload Settings Ready"
-        );
 
         console.log(
-            "✅ Railway Integration Loaded"
+            "⚙️ Upload Settings Ready"
+        );
+
+
+        console.log(
+            "🔐 Firebase Authentication Ready"
+        );
+
+
+        console.log(
+            "🚂 Railway Integration Ready"
         );
 
     }
