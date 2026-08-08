@@ -1,6 +1,7 @@
 // =========================================
 // Bot Pro Message JS
-// Full Version + Real-Time Messages
+// Full Version
+// Real-Time + Seen System
 // =========================================
 
 
@@ -99,6 +100,7 @@ if (searchInput) {
                     .toLowerCase()
                     .trim();
 
+
             chatItems.forEach(
                 (chat) => {
 
@@ -107,10 +109,12 @@ if (searchInput) {
                             ?.textContent
                             .toLowerCase() || "";
 
+
                     const message =
                         chat.querySelector("p")
                             ?.textContent
                             .toLowerCase() || "";
+
 
                     if (
                         name.includes(value) ||
@@ -146,23 +150,32 @@ document.addEventListener(
     (event) => {
 
         const chat =
-            event.target.closest(".chat-item");
+            event.target.closest(
+                ".chat-item"
+            );
+
 
         if (!chat) {
+
             return;
+
         }
+
 
         console.log(
             "✅ Chat Item Clicked"
         );
 
+
         const nameElement =
             chat.querySelector("h3");
+
 
         const userName =
             nameElement
                 ? nameElement.textContent.trim()
                 : "";
+
 
         if (!userName) {
 
@@ -174,10 +187,15 @@ document.addEventListener(
 
         }
 
+
         const avatarElement =
-            chat.querySelector(".chat-avatar");
+            chat.querySelector(
+                ".chat-avatar"
+            );
+
 
         let avatar = "";
+
 
         if (avatarElement) {
 
@@ -188,12 +206,14 @@ document.addEventListener(
 
         }
 
+
         if (!avatar) {
 
             avatar =
                 userName.charAt(0);
 
         }
+
 
         openChat(
             userName,
@@ -206,7 +226,7 @@ document.addEventListener(
 
 
 // =========================================
-// Open Chat Function
+// Open Chat
 // =========================================
 
 function openChat(
@@ -219,40 +239,48 @@ function openChat(
         userName
     );
 
+
     const page =
         document.getElementById(
             "messagePage"
         );
+
 
     const screen =
         document.getElementById(
             "chatScreen"
         );
 
+
     const name =
         document.getElementById(
             "chatUserName"
         );
+
 
     const userAvatar =
         document.getElementById(
             "chatUserAvatar"
         );
 
+
     const status =
         document.getElementById(
             "chatUserStatus"
         );
+
 
     const messages =
         document.getElementById(
             "chatMessages"
         );
 
+
     const input =
         document.getElementById(
             "chatInput"
         );
+
 
     if (!screen) {
 
@@ -260,9 +288,11 @@ function openChat(
             "❌ chatScreen NOT FOUND"
         );
 
+
         alert(
             "Chat screen not found."
         );
+
 
         return;
 
@@ -303,6 +333,7 @@ function openChat(
     currentReceiverId =
         userName;
 
+
     currentChatId =
         createChatId(
             CURRENT_USER_ID,
@@ -327,12 +358,14 @@ function openChat(
 
     }
 
+
     if (userAvatar) {
 
         userAvatar.textContent =
             avatar;
 
     }
+
 
     if (status) {
 
@@ -381,7 +414,7 @@ function openChat(
 
 
     // =====================================
-    // Focus
+    // Focus Input
     // =====================================
 
     setTimeout(
@@ -391,6 +424,7 @@ function openChat(
                 document.getElementById(
                     "chatInput"
                 );
+
 
             if (currentInput) {
 
@@ -423,6 +457,7 @@ async function loadMessages() {
 
     }
 
+
     try {
 
         const response =
@@ -436,8 +471,10 @@ async function loadMessages() {
 
             );
 
+
         const result =
             await response.json();
+
 
         if (
             !response.ok ||
@@ -453,8 +490,10 @@ async function loadMessages() {
 
         }
 
+
         chatMessages.innerHTML =
             "";
+
 
         result.messages.forEach(
             (message) => {
@@ -466,7 +505,16 @@ async function loadMessages() {
             }
         );
 
+
         scrollChatToBottom();
+
+
+        // =================================
+        // Mark Incoming Messages As Seen
+        // =================================
+
+        await markMessagesAsSeen();
+
 
     }
 
@@ -481,12 +529,102 @@ async function loadMessages() {
 
 }
 // =========================================
+// MARK MESSAGES AS SEEN
+// =========================================
+
+async function markMessagesAsSeen() {
+
+    if (!currentChatId) {
+
+        return;
+
+    }
+
+
+    if (!CURRENT_USER_ID) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_URL +
+                "/api/messages/seen/" +
+                encodeURIComponent(
+                    currentChatId
+                ),
+
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            receiverId:
+                                CURRENT_USER_ID
+
+                        })
+
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            console.error(
+                "❌ Mark Seen Failed:",
+                result
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "👁️ Messages marked as seen:",
+            result.updated
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Mark Seen Error:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================
 // REAL-TIME MESSAGE STREAM
-// =========================================
-
-
-// =========================================
-// Start Real-Time Messages
 // =========================================
 
 function startRealtimeMessages() {
@@ -552,6 +690,7 @@ function startRealtimeMessages() {
                         event.data
                     );
 
+
                 console.log(
                     "🟢 Real-time connected:",
                     data.chatId
@@ -578,7 +717,7 @@ function startRealtimeMessages() {
 
     messageStream.addEventListener(
         "messages",
-        (event) => {
+        async (event) => {
 
             try {
 
@@ -605,9 +744,21 @@ function startRealtimeMessages() {
                 }
 
 
+                // =================================
+                // Render Messages
+                // =================================
+
                 renderRealtimeMessages(
                     data.messages || []
                 );
+
+
+                // =================================
+                // Mark Incoming Messages Seen
+                // =================================
+
+                await markMessagesAsSeen();
+
 
             }
 
@@ -708,7 +859,9 @@ function stopRealtimeMessages() {
             "🔴 Closing message stream"
         );
 
+
         messageStream.close();
+
 
         messageStream =
             null;
@@ -796,6 +949,7 @@ document.addEventListener(
                 "#chatBackBtn"
             );
 
+
         if (!button) {
 
             return;
@@ -807,6 +961,7 @@ document.addEventListener(
             document.getElementById(
                 "messagePage"
             );
+
 
         const screen =
             document.getElementById(
@@ -834,7 +989,7 @@ document.addEventListener(
 
 
         // =====================================
-        // Show Message List
+        // Show Message Page
         // =====================================
 
         if (page) {
@@ -847,6 +1002,7 @@ document.addEventListener(
 
         currentChatId =
             "";
+
 
         currentReceiverId =
             "";
@@ -896,6 +1052,7 @@ async function sendMessage() {
         alert(
             "Please open a chat first."
         );
+
 
         return;
 
@@ -972,8 +1129,13 @@ async function sendMessage() {
         }
 
 
+        // =================================
+        // Clear Input
+        // =================================
+
         chatInput.value =
             "";
+
 
         console.log(
             "✅ Message saved:",
@@ -982,10 +1144,9 @@ async function sendMessage() {
 
 
         /*
-         * Do NOT manually add the message here.
-         *
-         * Firebase real-time stream will
-         * automatically update the screen.
+         * Message screen update will happen
+         * automatically through Firebase
+         * real-time stream.
          */
 
 
@@ -997,6 +1158,7 @@ async function sendMessage() {
             "Message Send Error:",
             error
         );
+
 
         alert(
             "Unable to send message."
@@ -1032,11 +1194,13 @@ document.addEventListener(
                 "#chatSendBtn"
             );
 
+
         if (!button) {
 
             return;
 
         }
+
 
         sendMessage();
 
@@ -1061,6 +1225,7 @@ if (chatInput) {
             ) {
 
                 event.preventDefault();
+
 
                 sendMessage();
 
@@ -1128,6 +1293,7 @@ stories.forEach(
                     alert(
                         "Add your story"
                     );
+
 
                     return;
 
@@ -1396,6 +1562,12 @@ console.log(
     "✅ Bot Pro Message JS Loaded"
 );
 
+
 console.log(
     "🟢 Real-Time Message System Ready"
+);
+
+
+console.log(
+    "👁️ Seen / Read System Ready"
 );
