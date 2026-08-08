@@ -1,1 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Bot Pro - Watch</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/watch.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     WATCH HEADER
+========================================= -->
+
+<header class="watch-header">
+
+    <button
+        id="backBtn"
+        class="watch-header-btn"
+        type="button"
+        aria-label="Go Back">
+
+        <svg
+            viewBox="0 0 24 24"
+            class="header-icon">
+
+            <path
+                d="M15 5L8 12L15 19"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+
+        </svg>
+
+    </button>
+
+
+    <div class="watch-logo">
+
+        <span class="bot">
+            Bot
+        </span>
+
+        <span class="pro">
+            Pro
+        </span>
+
+    </div>
+
+
+    <button
+        id="moreBtn"
+        class="watch-header-btn"
+        type="button"
+        aria-label="More Options">
+
+        <span class="more-dots">
+
+            •
+            •
+            •
+
+        </span>
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN WATCH CONTENT
+========================================= -->
+
+<main class="watch-page">
+
+
+    <!-- =====================================
+         VIDEO PLAYER
+    ====================================== -->
+
+    <section class="watch-video-section">
+
+        <div
+            id="videoPlayerContainer"
+            class="watch-video-container">
+
+
+            <!-- Video will be loaded by watch.js -->
+
+            <video
+                id="watchVideo"
+                class="watch-video"
+                controls
+                playsinline
+                preload="metadata">
+
+            </video>
+
+
+            <!-- Loading -->
+
+            <div
+                id="videoLoading"
+                class="video-loading">
+
+                Loading video...
+
+            </div>
+
+
+            <!-- Error -->
+
+            <div
+                id="videoError"
+                class="video-error hidden">
+
+                Video could not be loaded.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         VIDEO INFORMATION
+    ====================================== -->
+
+    <section class="watch-information">
+
+
+        <!-- Title -->
+
+        <h1
+            id="videoTitle"
+            class="watch-title">
+
+            Loading video...
+
+        </h1>
+
+
+        <!-- Channel -->
+
+        <div class="channel-row">
+
+
+            <div
+                id="channelAvatar"
+                class="channel-avatar">
+
+                BP
+
+            </div>
+
+
+            <div class="channel-info">
+
+                <h3
+                    id="channelName">
+
+                    Bot Pro
+
+                </h3>
+
+
+                <p
+                    id="uploadTime">
+
+                    Loading...
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             Video Meta
+        ================================== -->
+
+        <div class="video-meta">
+
+            <span
+                id="videoViews">
+
+                0 views
+
+            </span>
+
+
+            <span>
+                •
+            </span>
+
+
+            <span
+                id="videoUploaded">
+
+                Just now
+
+            </span>
+
+        </div>
+
+
+
+        <!-- =================================
+             ACTION BUTTONS
+        ================================== -->
+
+        <div class="watch-actions">
+
+
+            <!-- LIKE -->
+
+            <button
+                id="likeBtn"
+                class="watch-action-btn"
+                type="button">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    class="action-icon">
+
+                    <path
+                        d="M7 10V21H3V10H7ZM22 11C22 9.9 21.1 9 20 9H14.3L15.2 4.7V4.4C15.2 4 15 3.6 14.7 3.3L13.6 2L7.6 8C7.2 8.4 7 8.9 7 9.4V19C7 20.1 7.9 21 9 21H18C18.8 21 19.5 20.5 19.8 19.8L22 12.5V11Z"
+                        fill="currentColor"/>
+
+                </svg>
+
+                <span>
+                    Like
+                </span>
+
+            </button>
+
+
+
+            <!-- COMMENT -->
+
+            <button
+                id="commentBtn"
+                class="watch-action-btn"
+                type="button">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    class="action-icon">
+
+                    <path
+                        d="M4 4H20V16H7L4 19V4Z"
+                        fill="currentColor"/>
+
+                </svg>
+
+                <span>
+                    Comment
+                </span>
+
+            </button>
+
+
+
+            <!-- SHARE -->
+
+            <button
+                id="shareBtn"
+                class="watch-action-btn"
+                type="button">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    class="action-icon">
+
+                    <path
+                        d="M4 12L20 4L16 20L11 13L4 12Z"
+                        fill="currentColor"/>
+
+                </svg>
+
+                <span>
+                    Share
+                </span>
+
+            </button>
+
+
+
+            <!-- SAVE -->
+
+            <button
+                id="saveBtn"
+                class="watch-action-btn"
+                type="button">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    class="action-icon">
+
+                    <path
+                        d="M6 3H18V21L12 17L6 21V3Z"
+                        fill="currentColor"/>
+
+                </svg>
+
+                <span>
+                    Save
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         COMMENTS
+    ====================================== -->
+
+    <section
+        id="commentsSection"
+        class="comments-section">
+
+
+        <div class="comments-header">
+
+            <h2>
+
+                Comments
+
+            </h2>
+
+
+            <span
+                id="commentCount">
+
+                0
+
+            </span>
+
+        </div>
+
+
+
+        <!-- Comment Input -->
+
+        <div class="comment-input-row">
+
+
+            <div class="comment-avatar">
+
+                Y
+
+            </div>
+
+
+            <input
+                id="commentInput"
+                type="text"
+                placeholder="Add a comment...">
+
+
+            <button
+                id="sendCommentBtn"
+                class="comment-send-btn"
+                type="button">
+
+                <svg
+                    viewBox="0 0 24 24">
+
+                    <path
+                        d="M4 12L20 4L16 20L11 13L4 12Z"
+                        fill="currentColor"/>
+
+                </svg>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- Comments List -->
+
+        <div
+            id="commentsList"
+            class="comments-list">
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     MORE MENU
+========================================= -->
+
+<div
+    id="moreMenu"
+    class="more-menu hidden">
+
+
+    <button
+        id="copyLinkBtn"
+        type="button">
+
+        Copy Video Link
+
+    </button>
+
+
+    <button
+        id="reportBtn"
+        type="button">
+
+        Report
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div
+    id="toast"
+    class="toast">
+
+    Done
+
+</div>
+
+
+
+<!-- =========================================
+     WATCH JS
+========================================= -->
+
+<script
+    type="module"
+    src="../js/watch.js">
+</script>
+
+
+</body>
+
+</html>
