@@ -1,8 +1,8 @@
 /* ==================================================
    Bot Pro - Home CSS
-   Final Version
+   Final Compact Version
    Existing Design + Video Player
-   App Scale Fixed
+   No CSS Zoom
 ================================================== */
 
 
@@ -11,37 +11,22 @@
 ========================================= */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     width: 100%;
-
     min-width: 0;
-
     overflow-x: hidden;
-
 }
 
-
 body {
-
     width: 100%;
-
     max-width: 100vw;
-
     min-width: 0;
-
     margin: 0;
-
     padding: 0;
 
     font-family:
@@ -50,11 +35,9 @@ body {
         sans-serif;
 
     background: #0B0B0B;
-
     color: #FFFFFF;
 
     overflow-x: hidden;
-
 }
 
 
@@ -66,9 +49,7 @@ img,
 video,
 canvas,
 iframe {
-
     max-width: 100%;
-
 }
 
 
@@ -77,121 +58,89 @@ iframe {
 ========================================= */
 
 .header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
 
     width: 100%;
-
     max-width: 100vw;
 
-    height: 70px;
+    height: 64px;
 
-    padding: 0 18px;
+    padding: 0 15px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     background: #111111;
-
     border-bottom: 1px solid #242424;
-
 }
 
 
 .logo {
-
     display: flex;
-
     align-items: center;
 
     gap: 5px;
 
-    font-size: 30px;
-
+    font-size: 27px;
     font-weight: bold;
-
 }
 
 
 .bot {
-
     color: #FFFFFF;
-
 }
 
 
 .pro {
-
     color: #8A2BE2;
-
 }
 
 
 .header-actions {
-
     display: flex;
-
     align-items: center;
-
-    gap: 12px;
-
+    gap: 9px;
 }
 
 
 .header-btn {
-
-    width: 44px;
-
-    height: 44px;
+    width: 41px;
+    height: 41px;
 
     border: none;
-
     outline: none;
 
     border-radius: 50%;
 
     background: #1B1B1B;
-
     color: #FFFFFF;
 
     cursor: pointer;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     transition: .3s;
-
 }
 
 
 .header-btn:hover {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
 .icon {
-
-    width: 22px;
-
-    height: 22px;
-
+    width: 21px;
+    height: 21px;
 }
 
 
@@ -200,84 +149,66 @@ iframe {
 ========================================= */
 
 .search-section {
-
     width: 100%;
-
     max-width: 100%;
 
     display: flex;
-
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    padding: 18px;
-
+    padding: 15px;
 }
 
 
 .search-box {
-
     width: 80%;
-
     min-width: 0;
 
-    height: 52px;
+    height: 47px;
 
     display: flex;
-
     align-items: center;
 
-    gap: 12px;
+    gap: 10px;
 
-    padding: 0 16px;
+    padding: 0 14px;
 
-    border-radius: 30px;
+    border-radius: 28px;
 
     background: #181818;
-
     border: 1px solid #2D2D2D;
-
 }
 
 
 .search-box input {
-
     width: 100%;
-
     min-width: 0;
 
     background: none;
-
     border: none;
-
     outline: none;
 
     color: #FFFFFF;
 
-    font-size: 15px;
-
+    font-size: 14px;
 }
 
 
 .search-box input::placeholder {
-
     color: #888888;
-
 }
 
 
 .ai-btn {
-
     width: 20%;
+    min-width: 68px;
 
-    min-width: 72px;
-
-    height: 52px;
+    height: 47px;
 
     border: none;
 
-    border-radius: 28px;
+    border-radius: 26px;
 
     background:
         linear-gradient(
@@ -288,19 +219,16 @@ iframe {
 
     color: #FFFFFF;
 
-    font-size: 15px;
-
+    font-size: 14px;
     font-weight: bold;
 
     cursor: pointer;
 
     transition: .3s;
-
 }
 
 
 .ai-btn:hover {
-
     transform:
         translateY(-2px);
 
@@ -312,7 +240,6 @@ iframe {
             226,
             .4
         );
-
 }
 
 
@@ -321,38 +248,37 @@ iframe {
 ========================================= */
 
 .category-section {
-
     width: 100%;
-
     max-width: 100%;
 
     display: flex;
 
-    gap: 12px;
+    gap: 9px;
 
     overflow-x: auto;
 
-    padding: 0 18px 18px;
+    padding:
+        0
+        15px
+        15px;
 
     scrollbar-width: none;
-
 }
 
 
 .category-section::-webkit-scrollbar {
-
     display: none;
-
 }
 
 
 .category {
-
     border: none;
 
-    padding: 10px 18px;
+    padding:
+        8px
+        15px;
 
-    border-radius: 24px;
+    border-radius: 22px;
 
     background: #1B1B1B;
 
@@ -362,27 +288,24 @@ iframe {
 
     white-space: nowrap;
 
-    transition: .3s;
+    font-size: 13px;
 
+    transition: .3s;
 }
 
 
 .category:hover {
-
     background: #8A2BE2;
-
 }
 
 
 .category.active {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
@@ -391,18 +314,14 @@ iframe {
 ========================================= */
 
 .feed {
-
     width: 100%;
-
     max-width: 100%;
-
     min-width: 0;
 
     padding:
         0
-        18px
-        100px;
-
+        15px
+        92px;
 }
 
 
@@ -411,48 +330,40 @@ iframe {
 ========================================= */
 
 .video-card {
-
     width: 100%;
-
     max-width: 100%;
-
     min-width: 0;
 
     background: #171717;
 
     border: 1px solid #262626;
 
-    border-radius: 18px;
+    border-radius: 15px;
 
     overflow: hidden;
 
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 
     transition: .3s;
-
 }
 
 
 .video-card:hover {
-
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     border-color: #8A2BE2;
-
 }
 
 
 /* =========================================
-   VIDEO PLAYER / THUMBNAIL
+   VIDEO PLAYER
 ========================================= */
 
 .thumbnail {
-
     position: relative;
 
     width: 100%;
-
     max-width: 100%;
 
     aspect-ratio: 16 / 9;
@@ -462,20 +373,12 @@ iframe {
     background: #202020;
 
     overflow: hidden;
-
 }
 
 
-/* =========================================
-   ACTUAL VIDEO
-========================================= */
-
 .thumbnail video {
-
     width: 100%;
-
     height: 100%;
-
     max-width: 100%;
 
     display: block;
@@ -483,17 +386,10 @@ iframe {
     object-fit: cover;
 
     background: #111111;
-
 }
 
 
-/*
-   Keep video controls inside
-   the existing card.
-*/
-
 .thumbnail video::-webkit-media-controls-panel {
-
     background:
         linear-gradient(
             transparent,
@@ -504,7 +400,6 @@ iframe {
                 .8
             )
         );
-
 }
 
 
@@ -513,15 +408,11 @@ iframe {
 ========================================= */
 
 .thumbnail-placeholder {
-
     width: 100%;
-
     height: 100%;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     background:
@@ -533,12 +424,11 @@ iframe {
 
     color: #777777;
 
-    font-size: 34px;
+    font-size: 30px;
 
     font-weight: bold;
 
     letter-spacing: 2px;
-
 }
 
 
@@ -547,12 +437,10 @@ iframe {
 ========================================= */
 
 .duration {
-
     position: absolute;
 
-    right: 12px;
-
-    bottom: 12px;
+    right: 10px;
+    bottom: 10px;
 
     background:
         rgba(
@@ -564,14 +452,15 @@ iframe {
 
     color: #FFFFFF;
 
-    padding: 5px 10px;
+    padding:
+        4px
+        8px;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
-    font-size: 13px;
+    font-size: 11px;
 
     pointer-events: none;
-
 }
 
 
@@ -580,27 +469,21 @@ iframe {
 ========================================= */
 
 .video-details {
-
     width: 100%;
-
     max-width: 100%;
-
     min-width: 0;
 
     display: flex;
 
-    gap: 14px;
+    gap: 11px;
 
-    padding: 16px;
-
+    padding: 13px;
 }
 
 
 .channel-avatar {
-
-    width: 52px;
-
-    height: 52px;
+    width: 46px;
+    height: 46px;
 
     flex-shrink: 0;
 
@@ -614,56 +497,49 @@ iframe {
         );
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     color: #FFFFFF;
 
     font-weight: bold;
 
-    font-size: 18px;
-
+    font-size: 16px;
 }
 
 
 .video-info {
-
     flex: 1;
 
     min-width: 0;
 
     overflow: hidden;
-
 }
 
 
 .video-info h3 {
-
-    font-size: 18px;
+    font-size: 16px;
 
     font-weight: 600;
 
     color: #FFFFFF;
 
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 
     word-break: break-word;
 
+    line-height: 1.35;
 }
 
 
 .video-info p {
-
     color: #9A9A9A;
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.5;
+    line-height: 1.4;
 
     word-break: break-word;
-
 }
 
 
@@ -672,9 +548,7 @@ iframe {
 ========================================= */
 
 .video-actions {
-
     width: 100%;
-
     max-width: 100%;
 
     display: grid;
@@ -685,18 +559,16 @@ iframe {
             minmax(0, 1fr)
         );
 
-    gap: 10px;
+    gap: 8px;
 
     padding:
         0
-        16px
-        18px;
-
+        13px
+        15px;
 }
 
 
 .video-actions button {
-
     min-width: 0;
 
     border: none;
@@ -705,54 +577,45 @@ iframe {
 
     color: #FFFFFF;
 
-    height: 48px;
+    height: 44px;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
-    gap: 8px;
+    gap: 6px;
 
     cursor: pointer;
 
     transition: .3s;
-
 }
 
 
 .video-actions button:hover {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
 .action-icon {
-
-    width: 18px;
-
-    height: 18px;
+    width: 17px;
+    height: 17px;
 
     flex-shrink: 0;
-
 }
 
 
 .video-actions span {
-
-    font-size: 13px;
+    font-size: 12px;
 
     white-space: nowrap;
-
 }
 
 
@@ -761,36 +624,33 @@ iframe {
 ========================================= */
 
 .bottom-nav {
-
     position: fixed;
 
     left: 0;
-
     right: 0;
-
     bottom: 0;
 
     width: 100%;
 
-    height: 74px;
+    height: 68px;
 
     background: #111111;
 
-    border-top: 1px solid #242424;
+    border-top:
+        1px solid #242424;
 
     display: flex;
 
-    justify-content: space-around;
+    justify-content:
+        space-around;
 
     align-items: center;
 
     z-index: 999;
-
 }
 
 
 .bottom-nav a {
-
     flex: 1;
 
     min-width: 0;
@@ -802,47 +662,36 @@ iframe {
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
-    gap: 6px;
+    gap: 5px;
 
     color: #8A8A8A;
 
     transition: .3s;
-
 }
 
 
 .bottom-nav a.active {
-
     color: #8A2BE2;
-
 }
 
 
 .bottom-nav a:hover {
-
     color: #FFFFFF;
-
 }
 
 
 .nav-icon {
-
-    width: 24px;
-
-    height: 24px;
-
+    width: 22px;
+    height: 22px;
 }
 
 
 .bottom-nav span {
-
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 500;
-
 }
 
 
@@ -851,33 +700,32 @@ iframe {
 ========================================= */
 
 .upload-menu {
-
     position: fixed;
 
-    top: 78px;
+    top: 72px;
+    right: 15px;
 
-    right: 18px;
-
-    width: 230px;
+    width: 215px;
 
     max-width:
         calc(
-            100vw - 36px
+            100vw - 30px
         );
 
     background: #171717;
 
-    border: 1px solid #2C2C2C;
+    border:
+        1px solid #2C2C2C;
 
-    border-radius: 16px;
+    border-radius: 15px;
 
-    padding: 10px;
+    padding: 9px;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 10px;
+    gap: 8px;
 
     z-index: 2000;
 
@@ -889,49 +737,42 @@ iframe {
             0,
             .45
         );
-
 }
 
 
 .hidden {
-
     display: none;
-
 }
 
 
 .upload-menu button {
-
     width: 100%;
 
-    height: 48px;
+    height: 44px;
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     background: #222222;
 
     color: #FFFFFF;
 
-    font-size: 14px;
+    font-size: 13px;
 
     cursor: pointer;
 
     transition: .3s;
-
 }
 
 
 .upload-menu button:hover {
-
     background:
         linear-gradient(
             135deg,
             #6A00FF,
             #A020F0
         );
-
 }
 
 
@@ -940,32 +781,24 @@ iframe {
 ========================================= */
 
 ::-webkit-scrollbar {
-
-    width: 8px;
-
+    width: 7px;
 }
 
 
 ::-webkit-scrollbar-track {
-
     background: #111111;
-
 }
 
 
 ::-webkit-scrollbar-thumb {
-
     background: #8A2BE2;
 
     border-radius: 20px;
-
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
-
     background: #A020F0;
-
 }
 
 
@@ -976,31 +809,25 @@ iframe {
 @keyframes fadeUp {
 
     from {
-
         opacity: 0;
 
         transform:
-            translateY(20px);
-
+            translateY(16px);
     }
 
     to {
-
         opacity: 1;
 
         transform:
             translateY(0);
-
     }
 
 }
 
 
 .video-card {
-
     animation:
         fadeUp .4s ease;
-
 }
 
 
@@ -1011,73 +838,69 @@ iframe {
 @media (max-width: 768px) {
 
     .header {
+        height: 62px;
 
         padding:
             0
-            14px;
-
+            13px;
     }
 
 
     .logo {
+        font-size: 25px;
+    }
 
-        font-size: 27px;
 
+    .header-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .header-actions {
+        gap: 8px;
     }
 
 
     .search-section {
-
-        padding:
-            14px;
-
-    }
-
-
-    .category-section {
-
-        padding:
-            0
-            14px
-            14px;
-
-    }
-
-
-    .feed {
-
-        padding:
-            0
-            14px
-            90px;
-
+        padding: 13px;
     }
 
 
     .search-box {
-
-        width: 80%;
-
+        height: 46px;
     }
 
 
     .ai-btn {
+        height: 46px;
 
-        width: 20%;
+        min-width: 66px;
+    }
 
-        min-width: 70px;
 
+    .category-section {
+        padding:
+            0
+            13px
+            13px;
+    }
+
+
+    .feed {
+        padding:
+            0
+            13px
+            88px;
     }
 
 
     .video-actions {
-
         grid-template-columns:
             repeat(
                 2,
                 minmax(0, 1fr)
             );
-
     }
 
 }
@@ -1090,306 +913,255 @@ iframe {
 @media (max-width: 480px) {
 
     .header {
-
         width: 100%;
 
-        height: 66px;
+        height: 59px;
 
         padding:
             0
-            12px;
-
+            10px;
     }
 
 
     .logo {
-
-        font-size: 24px;
-
+        font-size: 21px;
     }
 
 
     .header-btn {
-
-        width: 42px;
-
-        height: 42px;
-
+        width: 37px;
+        height: 37px;
     }
 
 
     .header-actions {
-
-        gap: 8px;
-
+        gap: 7px;
     }
 
 
     .search-section {
-
         width: 100%;
 
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        gap: 8px;
-
         padding:
-            12px;
+            9px
+            10px;
 
+        gap: 7px;
     }
 
 
     .search-box {
-
         width: 78%;
 
-        height: 48px;
+        height: 43px;
 
         padding:
             0
-            13px;
+            12px;
 
+        gap: 8px;
     }
 
 
     .search-box input {
-
-        font-size: 14px;
-
+        font-size: 13px;
     }
 
 
     .ai-btn {
-
         width: 22%;
 
         min-width: 0;
 
-        height: 48px;
+        height: 43px;
 
-        font-size: 13px;
-
+        font-size: 12px;
     }
 
 
     .category-section {
-
         width: 100%;
 
         padding:
             0
-            12px
-            14px;
+            10px
+            11px;
 
+        gap: 7px;
     }
 
 
     .category {
-
         padding:
-            9px
-            15px;
+            7px
+            12px;
 
-        font-size: 13px;
-
+        font-size: 12px;
     }
 
 
     .feed {
-
         width: 100%;
 
         padding:
             0
-            12px
-            90px;
-
+            10px
+            84px;
     }
 
 
     .video-card {
-
         width: 100%;
 
-        margin-bottom: 18px;
+        margin-bottom: 15px;
 
-        border-radius: 15px;
-
+        border-radius: 13px;
     }
 
 
     .thumbnail {
-
         width: 100%;
 
         height: auto;
 
-        aspect-ratio: 16 / 9;
-
+        aspect-ratio:
+            16 / 9;
     }
 
 
     .thumbnail video {
-
         width: 100%;
 
         height: 100%;
 
         object-fit: cover;
-
     }
 
 
     .duration {
+        right: 8px;
 
-        right: 9px;
-
-        bottom: 9px;
+        bottom: 8px;
 
         padding:
-            4px
-            8px;
+            3px
+            7px;
 
-        font-size: 11px;
-
+        font-size: 10px;
     }
 
 
     .video-details {
-
         width: 100%;
 
-        padding: 13px;
+        padding: 10px;
 
-        gap: 11px;
-
+        gap: 9px;
     }
 
 
     .channel-avatar {
+        width: 40px;
+        height: 40px;
 
-        width: 44px;
-
-        height: 44px;
-
-        font-size: 16px;
-
+        font-size: 14px;
     }
 
 
     .video-info h3 {
+        font-size: 14px;
 
-        font-size: 15px;
+        line-height: 1.3;
 
-        line-height: 1.35;
-
-        margin-bottom: 5px;
-
+        margin-bottom: 4px;
     }
 
 
     .video-info p {
+        font-size: 11px;
 
-        font-size: 12px;
-
-        line-height: 1.4;
-
+        line-height: 1.35;
     }
 
 
     .video-actions {
-
         width: 100%;
 
         padding:
             0
-            12px
-            14px;
+            10px
+            12px;
 
-        gap: 8px;
+        gap: 6px;
 
         grid-template-columns:
             repeat(
                 2,
                 minmax(0, 1fr)
             );
-
     }
 
 
     .video-actions button {
-
         width: 100%;
 
         min-width: 0;
 
-        height: 44px;
+        height: 40px;
 
-        border-radius: 11px;
+        border-radius: 10px;
 
-        gap: 6px;
-
+        gap: 5px;
     }
 
 
     .action-icon {
-
-        width: 17px;
-
-        height: 17px;
-
+        width: 16px;
+        height: 16px;
     }
 
 
     .video-actions span {
-
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 
     .bottom-nav {
-
         width: 100%;
 
-        height: 70px;
-
+        height: 63px;
     }
 
 
     .nav-icon {
-
-        width: 22px;
-
-        height: 22px;
-
+        width: 20px;
+        height: 20px;
     }
 
 
     .bottom-nav span {
-
-        font-size: 11px;
-
+        font-size: 10px;
     }
 
 
     .upload-menu {
+        top: 68px;
 
-        top: 72px;
+        right: 10px;
 
-        right: 12px;
-
-        width: 220px;
+        width: 210px;
 
         max-width:
             calc(
-                100vw - 24px
+                100vw - 20px
             );
+    }
 
+
+    .upload-menu button {
+        height: 42px;
+
+        font-size: 12px;
     }
 
 }
@@ -1402,214 +1174,143 @@ iframe {
 @media (max-width: 360px) {
 
     .header {
-
-        height: 62px;
+        height: 57px;
 
         padding:
             0
-            10px;
-
+            9px;
     }
 
 
     .logo {
-
-        font-size: 22px;
-
+        font-size: 20px;
     }
 
 
     .header-btn {
-
-        width: 40px;
-
-        height: 40px;
-
+        width: 35px;
+        height: 35px;
     }
 
 
     .search-section {
-
         padding:
-            10px;
+            8px
+            9px;
 
-        gap: 7px;
-
+        gap: 6px;
     }
 
 
     .search-box {
-
         width: 77%;
 
-        height: 46px;
-
+        height: 41px;
     }
 
 
     .ai-btn {
-
         width: 23%;
 
-        min-width: 0;
+        height: 41px;
 
-        height: 46px;
-
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 
     .category-section {
-
         padding:
             0
-            10px
-            12px;
+            9px
+            10px;
 
-        gap: 8px;
-
+        gap: 6px;
     }
 
 
     .category {
-
         padding:
-            8px
-            13px;
+            6px
+            11px;
 
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 
     .feed {
-
         padding:
             0
-            10px
-            88px;
-
+            9px
+            82px;
     }
 
 
     .thumbnail {
-
         width: 100%;
 
         height: auto;
 
-        aspect-ratio: 16 / 9;
-
+        aspect-ratio:
+            16 / 9;
     }
 
 
     .video-details {
-
-        padding: 11px;
-
+        padding: 9px;
     }
 
 
     .channel-avatar {
+        width: 38px;
+        height: 38px;
 
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 14px;
-
+        font-size: 13px;
     }
 
 
     .video-info h3 {
-
-        font-size: 14px;
-
+        font-size: 13px;
     }
 
 
     .video-info p {
-
-        font-size: 11px;
-
+        font-size: 10px;
     }
 
 
     .video-actions {
-
         padding:
             0
-            10px
-            12px;
+            9px
+            11px;
 
-        gap: 6px;
-
+        gap: 5px;
     }
 
 
     .video-actions button {
-
-        height: 42px;
-
+        height: 39px;
     }
 
 
     .video-actions span {
-
-        font-size: 11px;
-
+        font-size: 10px;
     }
 
 
     .bottom-nav {
-
-        height: 68px;
-
+        height: 61px;
     }
 
 
     .nav-icon {
-
-        width: 21px;
-
-        height: 21px;
-
+        width: 19px;
+        height: 19px;
     }
 
 
     .bottom-nav span {
-
-        font-size: 10px;
-
-    }
-
-}
-/* =========================================
-   BOT PRO - SLIGHTLY SMALLER APP SCALE
-========================================= */
-
-body {
-    zoom: 0.95;
-    width: 105.263157%;
-}
-
-/* Keep mobile comfortable */
-@media (max-width: 768px) {
-
-    body {
-        zoom: 0.97;
-        width: 103.092783%;
-    }
-
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-
-    body {
-        zoom: 0.98;
-        width: 102.040816%;
+        font-size: 9px;
     }
 
 }
