@@ -3,12 +3,12 @@
 // Final Version
 // Existing Design + Uploaded Video Feed
 // Watch Page Connection
-// =========================================
+// ==========================================
 
 
 // =========================================
 // Backend API
-// =========================================
+// ==========================================
 
 const API_URL =
     "https://bot-pro-backend-production.up.railway.app";
@@ -16,7 +16,7 @@ const API_URL =
 
 // =========================================
 // Elements
-// =========================================
+// ==========================================
 
 const uploadBtn =
     document.getElementById(
@@ -449,12 +449,12 @@ function createVideoCard(
         "click",
         (event) => {
 
-            event.stopPropagation();
-
             /*
-                Do not open Watch Page when
-                user is using the video controls.
+                Keep the actual video controls
+                working normally.
             */
+
+            event.stopPropagation();
 
         }
     );
@@ -496,41 +496,129 @@ function createVideoCard(
     );
 
 
-    thumbnail.appendChild(
-        duration
+    // =====================================
+    // WATCH PAGE POSTER OVERLAY
+    // =====================================
+
+    const watchOverlay =
+        document.createElement(
+            "button"
+        );
+
+
+    watchOverlay.type =
+        "button";
+
+
+    watchOverlay.className =
+        "watch-poster-overlay";
+
+
+    watchOverlay.setAttribute(
+        "aria-label",
+        "Open video watch page"
     );
 
 
-    // =====================================
-    // OPEN WATCH PAGE WHEN THUMBNAIL
-    // AREA IS CLICKED
-    // =====================================
+    watchOverlay.innerHTML =
+        '<span class="watch-poster-play">▶</span>';
 
-    thumbnail.addEventListener(
+
+    watchOverlay.style.position =
+        "absolute";
+
+
+    watchOverlay.style.inset =
+        "0";
+
+
+    watchOverlay.style.display =
+        "flex";
+
+
+    watchOverlay.style.alignItems =
+        "center";
+
+
+    watchOverlay.style.justifyContent =
+        "center";
+
+
+    watchOverlay.style.border =
+        "0";
+
+
+    watchOverlay.style.background =
+        "transparent";
+
+
+    watchOverlay.style.cursor =
+        "pointer";
+
+
+    watchOverlay.style.zIndex =
+        "2";
+
+
+    watchOverlay.addEventListener(
         "click",
         (event) => {
 
-            /*
-                If actual video element was
-                clicked, browser video controls
-                should remain usable.
-            */
+            event.preventDefault();
 
-            if (
-                event.target ===
-                video
-            ) {
-
-                return;
-
-            }
-
+            event.stopPropagation();
 
             openWatchPage(
                 post
             );
 
         }
+    );
+
+
+    thumbnail.style.position =
+        "relative";
+
+
+    thumbnail.appendChild(
+        watchOverlay
+    );
+
+
+    // =====================================
+    // Hide Overlay After Play
+    // =====================================
+
+    video.addEventListener(
+        "play",
+        () => {
+
+            watchOverlay.style.display =
+                "none";
+
+        }
+    );
+
+
+    video.addEventListener(
+        "pause",
+        () => {
+
+            if (
+                video.currentTime === 0
+            ) {
+
+                watchOverlay.style.display =
+                    "flex";
+
+            }
+
+        }
+    );
+
+
+    thumbnail.appendChild(
+        duration
     );
 
 
@@ -625,6 +713,48 @@ function createVideoCard(
 
 
     // =====================================
+    // OPEN WATCH PAGE FROM DETAILS
+    // =====================================
+
+    details.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // OPEN WATCH PAGE FROM TITLE
+    // =====================================
+
+    title.style.cursor =
+        "pointer";
+
+
+    title.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openWatchPage(
+                post
+            );
+
+        }
+    );
+        // =====================================
     // Action Buttons
     // =====================================
 
@@ -739,6 +869,8 @@ function createVideoCard(
             "click",
             async (event) => {
 
+                event.preventDefault();
+
                 event.stopPropagation();
 
 
@@ -783,6 +915,7 @@ function createVideoCard(
 
                     }
 
+
                     catch (error) {
 
                         if (
@@ -801,6 +934,7 @@ function createVideoCard(
 
                 }
 
+
                 else {
 
                     try {
@@ -816,6 +950,7 @@ function createVideoCard(
 
                     }
 
+
                     catch (error) {
 
                         alert(
@@ -830,44 +965,6 @@ function createVideoCard(
         );
 
     }
-
-
-    // =====================================
-    // Open Watch Page From Details
-    // =====================================
-
-    details.addEventListener(
-        "click",
-        () => {
-
-            openWatchPage(
-                post
-            );
-
-        }
-    );
-
-
-    // =====================================
-    // Open Watch Page From Title
-    // =====================================
-
-    title.style.cursor =
-        "pointer";
-
-
-    title.addEventListener(
-        "click",
-        (event) => {
-
-            event.stopPropagation();
-
-            openWatchPage(
-                post
-            );
-
-        }
-    );
 
 
     // =====================================
@@ -1037,6 +1134,7 @@ async function loadUploadedVideos() {
 
     }
 
+
     catch (error) {
 
         console.error(
@@ -1084,8 +1182,8 @@ function setupVideoSearch() {
                         card.querySelector(
                             "h3"
                         )
-                        ?.textContent
-                        ?.toLowerCase() ||
+                            ?.textContent
+                            ?.toLowerCase() ||
                         "";
 
 
@@ -1093,8 +1191,8 @@ function setupVideoSearch() {
                         card.querySelector(
                             "p"
                         )
-                        ?.textContent
-                        ?.toLowerCase() ||
+                            ?.textContent
+                            ?.toLowerCase() ||
                         "";
 
 
@@ -1111,6 +1209,7 @@ function setupVideoSearch() {
                             "block";
 
                     }
+
 
                     else {
 
@@ -1154,8 +1253,6 @@ if (searchInput) {
     );
 
 }
-
-
 // =========================================
 // Categories
 // =========================================
@@ -1403,3 +1500,28 @@ console.log(
 console.log(
     "🎥 Watch Page Connection Ready"
 );
+
+
+// =========================================
+// FINAL VERSION
+// =========================================
+//
+// Home Video:
+//   Poster / Play overlay → Watch Page
+//
+// Video Title:
+//   Click → Watch Page
+//
+// Video Controls:
+//   Normal browser controls
+//
+// Watch URL:
+//   watch.html?id=POST_ID
+//
+// Share:
+//   Shares Watch Page URL
+//
+// Uploaded Videos:
+//   Loaded from Railway backend
+//
+// =========================================
